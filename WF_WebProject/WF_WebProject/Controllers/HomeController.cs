@@ -5,9 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using WF_WebProject.Models;
+using WFWebProject.Models;
 
-namespace WF_WebProject.Controllers
+namespace WFWebProject.Controllers
 {
     public class HomeController : Controller
     {

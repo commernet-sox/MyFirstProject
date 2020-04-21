@@ -6,10 +6,13 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.DependencyInjection;
+using Autofac.Extensions.DependencyInjection;
+using NLog.Web;
 
-namespace WF_WebProject
+namespace WFWebProject
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {
@@ -22,8 +25,11 @@ namespace WF_WebProject
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseKestrel();
-                    webBuilder.ConfigureServices(t=>t);
-                    webBuilder.UseStartup<Startup>();
+                    //webBuilder.ConfigureServices(services=>services.AddAutofac());
+                    //webBuilder.UseContentRoot(System.IO.Directory.GetCurrentDirectory());
+                    //webBuilder.UseIISIntegration().UseUrls("http://*:5001/");
+                    //webBuilder.UseNLog();
+                    webBuilder.UseStartup("WFWebProject")/*.CaptureStartupErrors(true)*/;
                 });
     }
 }

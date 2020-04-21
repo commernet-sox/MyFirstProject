@@ -1,6 +1,6 @@
 using System;
 
-namespace WF_WebProject.Models
+namespace WFWebProject.Models
 {
     public class ErrorViewModel
     {

@@ -9,23 +9,26 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace WF_WebProject
+namespace WFWebProject
 {
     public class Startup
     {
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            Console.WriteLine("启动了Startup");
         }
 
         public IConfiguration Configuration { get; }
-
+        //此方法由运行时调用。使用此方法将服务添加到容器。
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //注册mvc服务
+            services.AddMvc();
             services.AddControllersWithViews();
         }
-
+        //此方法由运行时调用。使用此方法配置HTTP请求管道。
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -52,6 +55,10 @@ namespace WF_WebProject
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+            //app.UseMvc((RouteBuilder) =>
+            //{
+            //    RouteBuilder.MapRoute("SinDynasty", "{Controller}/{Action}/{Parameter}", new { @Controller = "Home", @Action = "Index", @Parameter = string.Empty });
+            //});
         }
     }
 }
