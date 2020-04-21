@@ -1,0 +1,14 @@
+C:\Users\FS\source\repos\AutoFacIOC\AutoFacIOC\bin\Debug\netcoreapp3.1\AutoFacIOC.exe
+C:\Users\FS\source\repos\AutoFacIOC\AutoFacIOC\bin\Debug\netcoreapp3.1\AutoFacIOC.deps.json
+C:\Users\FS\source\repos\AutoFacIOC\AutoFacIOC\bin\Debug\netcoreapp3.1\AutoFacIOC.runtimeconfig.json
+C:\Users\FS\source\repos\AutoFacIOC\AutoFacIOC\bin\Debug\netcoreapp3.1\AutoFacIOC.runtimeconfig.dev.json
+C:\Users\FS\source\repos\AutoFacIOC\AutoFacIOC\bin\Debug\netcoreapp3.1\AutoFacIOC.dll
+C:\Users\FS\source\repos\AutoFacIOC\AutoFacIOC\bin\Debug\netcoreapp3.1\AutoFacIOC.pdb
+C:\Users\FS\source\repos\AutoFacIOC\AutoFacIOC\bin\Debug\netcoreapp3.1\Autofac.dll
+C:\Users\FS\source\repos\AutoFacIOC\AutoFacIOC\bin\Debug\netcoreapp3.1\Autofac.xml
+C:\Users\FS\source\repos\AutoFacIOC\AutoFacIOC\obj\Debug\netcoreapp3.1\AutoFacIOC.csprojAssemblyReference.cache
+C:\Users\FS\source\repos\AutoFacIOC\AutoFacIOC\obj\Debug\netcoreapp3.1\AutoFacIOC.AssemblyInfoInputs.cache
+C:\Users\FS\source\repos\AutoFacIOC\AutoFacIOC\obj\Debug\netcoreapp3.1\AutoFacIOC.AssemblyInfo.cs
+C:\Users\FS\source\repos\AutoFacIOC\AutoFacIOC\obj\Debug\netcoreapp3.1\AutoFacIOC.csproj.CopyComplete
+C:\Users\FS\source\repos\AutoFacIOC\AutoFacIOC\obj\Debug\netcoreapp3.1\AutoFacIOC.dll
+C:\Users\FS\source\repos\AutoFacIOC\AutoFacIOC\obj\Debug\netcoreapp3.1\AutoFacIOC.pdb
