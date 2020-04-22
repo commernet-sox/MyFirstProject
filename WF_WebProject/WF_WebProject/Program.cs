@@ -24,12 +24,13 @@ namespace WFWebProject
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseKestrel();
+                    //webBuilder.UseKestrel();
                     //webBuilder.ConfigureServices(services=>services.AddAutofac());
                     //webBuilder.UseContentRoot(System.IO.Directory.GetCurrentDirectory());
                     //webBuilder.UseIISIntegration().UseUrls("http://*:5001/");
                     //webBuilder.UseNLog();
-                    webBuilder.UseStartup("WFWebProject")/*.CaptureStartupErrors(true)*/;
+                    //webBuilder.UseStartup("WFWebProject")/*.CaptureStartupErrors(true)*/;
+                    webBuilder.UseStartup<Startup>();
                 });
     }
 }
