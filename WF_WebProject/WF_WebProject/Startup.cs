@@ -10,6 +10,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WFWebProject.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace WFWebProject
 {
@@ -35,8 +38,10 @@ namespace WFWebProject
             //注册mvc服务
             services.AddMvc();
             //数据库连接对象
-            var connectionstring = Configuration.GetSection("DBServerConfiguration").Get<Core.Infrastructure.DBRW.DBServerConfiguration>();
-            Core.Infrastructure.Global.DBRWManager = new Core.Infrastructure.DBRW.DBRWManager(connectionstring);
+            //var connectionstring = Configuration.GetSection("DBServerConfiguration").Get<Core.Infrastructure.DBRW.DBServerConfiguration>();
+            //Core.Infrastructure.Global.DBRWManager = new Core.Infrastructure.DBRW.DBRWManager(connectionstring);
+            services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddControllersWithViews();
         }
         //此方法由运行时调用。使用此方法配置HTTP请求管道。

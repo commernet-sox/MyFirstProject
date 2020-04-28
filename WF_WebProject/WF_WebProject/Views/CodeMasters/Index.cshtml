@@ -1,0 +1,378 @@
+﻿
+
+<div class="page-content-body">
+
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Data Table With Full Features</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+
+</div>
+
+@section scripts{
+    <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
+    <script>
+        function filterColumn(i) {
+            $('#example1').DataTable().column(i).search(
+                $('#col' + i + '_filter').val(),
+                false,
+                false
+            ).draw();
+        }
+        var editor, table, isdisposed;
+        var curWarehouseId, curType, curStorerId; // use a global for the submit and return data rendering in the examples
+        $(document).ready(function () {
+            isdisposed = false;
+            App.initResizeHandler();
+            Layout.initAjaxContentSuccessCallback();
+            App.addResizeHandler(Resize);
+            Layout.addAjaxContentSuccessCallback(AjaxDispose);
+            //时间插件配置
+            if (jQuery().datepicker) {
+                $('#col3_filter').datepicker({
+                    language: 'zh-CN',
+                    autoclose: true,
+                    todayHighlight: true,
+                    format: 'yyyy-mm-dd',
+                    clearBtn: true
+                });
+                $('.date-picker').datepicker({
+                    rtl: App.isRTL(),
+                    orientation: "left",
+                    autoclose: true,
+                    todayHighlight: true,
+                    language: 'zh-CN',
+                    clearBtn: true,
+                });
+                ////$('body').removeClass("modal-open"); // fix bug when inline picker is used in modal
+            }
+            //新增和编辑
+            @*editor = new $.fn.dataTable.Editor({
+                idSrc: "Id",
+                ajax: {
+                    create: {
+                        type: 'POST',
+                        url: '@Url.Action("WareHouseIndexCreate", "WareHouseBasic")'
+                    },
+                    edit: {
+                        type: 'POST',
+                        url: '@Url.Action("WareHouseIndexUpdate", "WareHouseBasic")'
+                    }
+                },
+                table: "#myTable",
+                template: '#customForm',
+                fields: [
+                    { label: "参数ID:", name: "CodeId" },
+                    { label: "参数名称:", name: "CodeName" },
+                    { label: "参数类型:", name: "CodeGroup" },
+                    {
+                        type: "select",
+                        label: "状态:",
+                        name: "IsActive",
+                        options: [
+                            { label: "启用", value: "1" },
+                            { label: "禁用", value: "0" }
+                        ], def: "1"
+                    },
+                    { label: "备注:", name: "Remarks" },
+                    { label: "自定义字段:", name: "HUDF_01" },
+                ]
+            });*@
+            //查询
+            table = $('#example1').DataTable({
+                "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+                lengthMenu: [[10, 25, 50, 100, 500], [10, 25, 50, 100, 500]],
+                ajax: {
+                    url: "@Url.Action("PageData", "CodeMasters")",
+                    type: "post"
+                },
+                order: [[0, 'asc']],//一定要添加
+                colReorder: {
+                    fixedColumnsLeft: 1
+                },
+                columns: [
+                    { data: "id", title: "主键", searchable: true, orderable: true, width: "50px",visible:false, responsivePriority: 1 },
+                    { data: "codeId", title: "参数ID", searchable: true, orderable: false, width: "100px", responsivePriority: 1 },
+                    { data: "codeName", title: "参数名称", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "codeGroup", title: "参数类型", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "creator", title: "创建人", searchable: false, orderable: true, width: "100px", responsivePriority: 1 },
+                    {
+                        data: "createTime", title: "创建时间", searchable: true, orderable: true, width: "100px", responsivePriority: 1,
+                        render: function (val, type, row) {
+                            val = moment(val).format('YYYY-MM-DD hh:mm:ss');
+                            return val;
+                        }
+                    },
+                    { data: "modifier", title: "修改人", searchable: false, orderable: true, width: "100px", responsivePriority: 1 },
+                    {
+                        data: "modifyTime", title: "修改时间", searchable: true, orderable: true, width: "100px", responsivePriority: 1,
+                        render: function (val, type, row) {
+                            val = val==""||val==null?"":moment(val).format('YYYY-MM-DD hh:mm:ss');
+                            return val;
+                        }
+                    },
+                    {
+                        data: "isActive", title: "状态", searchable: true, orderable: true, width: "100px", responsivePriority: 1,
+                        render: function (val, type, row) {
+                            val = val == "1" ? "启用" : "禁用";
+                            return val;
+                        }
+                    },
+                    { data: "remarks", title: "备注", searchable: false, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "hudF_01", title: "自定义字段", searchable: false, orderable: true, width: "100px", responsivePriority: 1 },
+                ],
+                buttons: [
+                        { extend: "create", text: "创建", editor: editor },
+                        { extend: "edit", text: "编辑", editor: editor },
+                        { extend: "selectedSingle", text: "启用\\停用", action: function (e, dt, node, config) {  var rows = table.rows({ selected: true }).data(); CodemasterOnOff(rows[0]['Id']); }},
+                        {
+                            extend: 'collection',
+                            text: '导出',
+                            buttons: [
+                                { extend: "copyHtml5", text: "复制" },
+                                { extend: "excelHtml5", text: "导出EXCEL" }
+                                //{ extend: "csvHtml5", text: "导出CSV" },
+                                //{ extend: "pdfHtml5", text: "导出PDF" }
+                            ]
+                        }
+                ],
+
+            });
+
+            //新增初始化
+            //editor.on('initCreate', function () {
+            //    editor.show(); //Shows all fields
+            //    //editor.field('WorkCenter').hide();
+            //    editor.field('CodeId').enable();
+            //    editor.field('CodeName').enable();
+            //    editor.field('CodeGroup').enable();
+            //    editor.field('IsActive').disable();
+            //    editor.field('Remarks').enable();
+            //    editor.field('HUDF_01').enable();
+            //});
+            //编辑初始化
+            //editor.on('initEdit', function () {
+            //    editor.show(); //Shows all fields
+            //    //editor.field('WorkCenter').hide();
+            //    editor.field('CodeId').disable();
+            //    editor.field('CodeName').enable();
+            //    editor.field('CodeGroup').enable();
+            //    editor.field('IsActive').enable();
+            //    editor.field('Remarks').enable();
+            //    editor.field('HUDF_01').enable();
+
+            //});
+            //新增提交验证
+            //editor.on('preSubmit', function (e, o, action) {
+            //    if (action !== 'remove') {
+            //        var allFlag = true;
+            //        var flag = true;
+            //        if (editor.field('CodeGroup').val().trim()== "") {
+
+            //            editor.field('CodeGroup').error("参数类型不能为空");
+            //            flag = false;
+            //            allFlag = false;
+            //        }
+            //        if (editor.field('CodeGroup').val().trim().length >20) {
+            //            editor.field('CodeGroup').error("参数类型长度不能大于20");
+            //            flag = false;
+            //            allFlag = false;
+            //        }
+            //        if (editor.field('CodeId').val().trim()=="") {
+            //            editor.field('CodeId').error("参数ID不能为空");
+            //            flag = false;
+            //            allFlag = false;
+            //        }
+            //        if (editor.field('CodeId').val().trim().length >20) {
+            //            editor.field('CodeId').error("参数ID长度不能大于20");
+            //            flag = false;
+            //            allFlag = false;
+            //        }
+            //        if (!allFlag) {
+            //            return false;
+            //        }
+            //    }
+            //});
+            //$('#myTable')
+            //    .on('error.dt', function (e, settings, techNote, message) {
+            //        if (e.type = 'error') {
+            //            toastr.error(settings.jqXHR.responseText, "", { target: '.page-content-body' });
+            //        }
+            //    });
+            //查询事件
+            $('#Search').click(function () {
+                var items = $(this).parents('.booking-search').find('.fiter');
+                $.each(items, function (index, obj) {
+                    var i = $(obj).attr('data-column');
+                    var name = $(obj).attr('data-name') + '';
+                    var val = $('#col' + i + '_filter').val();
+                    if (val === null)
+                        val = '';
+                    var index = $('#myTable').DataTable().columns().dataSrc().indexOf(name)
+                    var selectot = '.search-' + index;
+                    if ($(selectot).length === 0) {
+                        $('#myTable').DataTable().column(index).search(val, false, false);
+                    }
+                    else {
+                        $('#myTable').DataTable().column($(selectot)).search(val, false, false);
+                    }
+                });
+
+                $('#myTable').DataTable().columns().search().draw();
+            });
+            //获取下拉信息
+            @*$("#col2_filter").select2({
+                ajax: {
+                    type: 'GET',
+                    url: "@Url.Action("GetCodeGroup", "Infra")",
+                    cache: false,
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            term: params.term, // search term 请求参数
+                            page: params.page,
+
+                        };
+                    },
+                    allowClear: false,
+                    processResults: function (data, params) {
+                        params.page = params.page || 1;
+                        return {
+                            results: data.items,//itemList
+                            pagination: {
+                                more: (params.page) < data.total_count
+                            }
+                        };
+                    },
+                    multiple: false
+                },
+                theme: "classic",
+                tags: false,
+                escapeMarkup: function (markup) { return markup; },
+                formatResult: function formatRepo(repo) { return repo.text; },
+                formatSelection: function formatRepoSelection(repo) { return repo.text; }
+            });*@
+            @*$("#col1_filter").select2({
+                ajax: {
+                    type: 'GET',
+                    url: "@Url.Action("GetCodeMaster", "Infra")",
+                    cache: false,
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            term: params.term, // search term 请求参数
+                            page: params.page,
+                            codeGroup: "WAREHOUSE"
+                        };
+                    },
+                    allowClear: false,
+                    processResults: function (data, params) {
+                        params.page = params.page || 1;
+                        return {
+                            results: data.items,//itemList
+                            pagination: {
+                                more: (params.page) < data.total_count
+                            }
+                        };
+                    },
+                    multiple: false
+                },
+                theme: "classic",
+                tags: false,
+                escapeMarkup: function (markup) { return markup; },
+                formatResult: function formatRepo(repo) { return repo.text; },
+                formatSelection: function formatRepoSelection(repo) { return repo.text; }
+            });*@
+            //editor.on('close', function () {
+
+            //});
+        });
+        //调整窗口大小
+        function Resize() {
+            $('#myTable').DataTable()
+                .columns.adjust()
+                .responsive.recalc();
+        }
+        //页面数据注销
+        function AjaxDispose() {
+            if (!isdisposed) {
+                isdisposed = true;
+                //editor.field('Type').input().off('change');
+                //editor.field('CodeGroup').input().off('change');
+                //editor.field('CodeName').input().off('change');
+                //editor.field('CreateTime').input().off('change');
+                try {
+                            table.destroy();if (editor.s.template) {editor.s.template=null;}editor.destroy();
+                    //editor.destroy();
+                }
+                catch
+                {
+                    console.log("释放失败");
+                }
+            }
+        }
+        $('#Search').click();
+        //启用/停用事件
+        function CodemasterOnOff(Id)
+        {
+            $.ajax({
+                    url: "@Url.Action("OnOff", "WareHouseBasic")",    //请求的url地址
+                    dataType: "json",   //返回格式为json
+                    async: true,//请求是否异步，默认为异步，这也是ajax重要特性
+                    data: { "Id": Id },   //参数值,键值对
+                    type: "GET",   //请求方式
+                    beforeSend: function () {
+                        //请求前的处理
+                    },
+                    success: function (req) {
+                        //请求成功时处理
+                        if (req.Result)
+                        {
+                            toastr.success(req.Message);
+                        }
+                        else
+                        {
+                            toastr.error(req.Message);
+                        }
+                    },
+                    complete: function () {
+                        //请求完成的处理
+                        $('#Search').click();
+                    },
+                    error: function (res) {
+                        //请求出错处理
+                    }
+                });
+        }
+        //判断空格
+        function validate(num) {
+            return /^\s+$/.test(num);
+        }
+    </script>
+}
+
+

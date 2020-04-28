@@ -13,5 +13,6 @@ namespace WFWebProject.Models
         {
             
         }
+        public DbSet<CodeMaster> CodeMaster { get; set; }
     }
 }

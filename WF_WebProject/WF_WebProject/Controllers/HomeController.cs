@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using WFWebProject.Models;
 
@@ -12,15 +13,17 @@ namespace WFWebProject.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly DataContext db;
+        public HomeController(ILogger<HomeController> logger,DataContext dataContext)
         {
             _logger = logger;
+            db = dataContext;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var cm = await db.CodeMaster.ToListAsync();
+            return View(cm);
         }
 
         public IActionResult Privacy()

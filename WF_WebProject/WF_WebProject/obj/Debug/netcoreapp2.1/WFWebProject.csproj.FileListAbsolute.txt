@@ -1,0 +1,3 @@
+C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\obj\Debug\netcoreapp2.1\WFWebProject.csprojAssemblyReference.cache
+C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\obj\Debug\netcoreapp2.1\WFWebProject.AssemblyInfoInputs.cache
+C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\obj\Debug\netcoreapp2.1\WFWebProject.AssemblyInfo.cs

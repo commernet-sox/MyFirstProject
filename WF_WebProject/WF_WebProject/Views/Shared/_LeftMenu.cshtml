@@ -1,0 +1,38 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+    <ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 10px">
+
+
+        <li class="nav-item  start active open">
+            <a class="ajaxify" href="@Url.Action("Index", "Home" )">
+                <i class=" font-blue-soft font-lg glyphicon glyphicon-dashboard"></i>
+                <span class="title">首页</span>
+                <span class="selected"></span>
+            </a>
+        </li>
+
+        <li class="nav-item open">
+
+            <a href="javascript:;" class="nav-link nav-toggle">
+                <i class="font-blue-soft font-lg fa fa-tasks"></i>
+                <span class="title">基础数据</span>
+                <span class="arrow open"></span>
+            </a>
+            <ul class="sub-menu" style="display:block">
+
+                <li class="nav-item">
+                    <a class="ajaxify" href="@Url.Action("Index", "CodeMasters" )">
+                        <i class="font-blue-soft font-lg glyphicon glyphicon-th-list"></i>
+                        CodeMasters
+                    </a>
+                </li>
+
+
+            </ul>
+
+        </li>
+
+    </ul>
