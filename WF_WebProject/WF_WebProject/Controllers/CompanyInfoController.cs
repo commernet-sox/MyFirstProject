@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Core.WebServices.Model;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -9,13 +11,14 @@ using WFWebProject.Models;
 
 namespace WFWebProject.Controllers
 {
-    public class CodeMastersController : Controller
+    public class CompanyInfoController : Controller
     {
         private readonly DataContext _context;
-
-        public CodeMastersController(DataContext context)
+        private IHttpContextAccessor _accessor;
+        public CompanyInfoController(DataContext context,IHttpContextAccessor accessor)
         {
             _context = context;
+            _accessor = accessor;
         }
 
         // GET: CodeMasters
@@ -27,7 +30,7 @@ namespace WFWebProject.Controllers
         public async Task<IActionResult> PageData()
         {
             Dictionary<string, object> dic = new Dictionary<string, object>();
-            dic.Add("data", await _context.CodeMaster.ToListAsync());
+            dic.Add("data", await _context.CompanyInfo.ToListAsync());
             dic.Add("options", "");
             dic.Add("files", "");
 
@@ -35,7 +38,7 @@ namespace WFWebProject.Controllers
             //CoreResponse core_response = new CoreResponse(core_request);
             //core_response.DtResponse.data = await _context.CompanyInfo.ToListAsync();
             return Json(dic);
-
+            
         }
         // GET: CodeMasters/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -45,7 +48,7 @@ namespace WFWebProject.Controllers
                 return NotFound();
             }
 
-            var codeMaster = await _context.CodeMaster
+            var codeMaster = await _context.CompanyInfo
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (codeMaster == null)
             {
@@ -66,7 +69,7 @@ namespace WFWebProject.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ModifyTime,Modifier,CreateTime,Creator,CodeGroup,CodeId,CodeName,IsActive,Remarks,HUDF_01")] CodeMaster codeMaster)
+        public async Task<IActionResult> Create([Bind("Id,ModifyTime,Modifier,CreateTime,Creator,CodeGroup,CodeId,CodeName,IsActive,Remarks,HUDF_01")] CompanyInfo codeMaster)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +88,7 @@ namespace WFWebProject.Controllers
                 return NotFound();
             }
 
-            var codeMaster = await _context.CodeMaster.FindAsync(id);
+            var codeMaster = await _context.CompanyInfo.FindAsync(id);
             if (codeMaster == null)
             {
                 return NotFound();
@@ -98,7 +101,7 @@ namespace WFWebProject.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ModifyTime,Modifier,CreateTime,Creator,CodeGroup,CodeId,CodeName,IsActive,Remarks,HUDF_01")] CodeMaster codeMaster)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ModifyTime,Modifier,CreateTime,Creator,CodeGroup,CodeId,CodeName,IsActive,Remarks,HUDF_01")] CompanyInfo codeMaster)
         {
             if (id != codeMaster.Id)
             {
@@ -136,7 +139,7 @@ namespace WFWebProject.Controllers
                 return NotFound();
             }
 
-            var codeMaster = await _context.CodeMaster
+            var codeMaster = await _context.CompanyInfo
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (codeMaster == null)
             {
@@ -151,15 +154,15 @@ namespace WFWebProject.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var codeMaster = await _context.CodeMaster.FindAsync(id);
-            _context.CodeMaster.Remove(codeMaster);
+            var codeMaster = await _context.CompanyInfo.FindAsync(id);
+            _context.CompanyInfo.Remove(codeMaster);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool CodeMasterExists(int id)
         {
-            return _context.CodeMaster.Any(e => e.Id == id);
+            return _context.CompanyInfo.Any(e => e.Id == id);
         }
     }
 }

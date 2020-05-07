@@ -22,7 +22,7 @@ namespace WFWebProject.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var cm = await db.CodeMaster.ToListAsync();
+            var cm = await db.CompanyInfo.ToListAsync();
             return View(cm);
         }
 

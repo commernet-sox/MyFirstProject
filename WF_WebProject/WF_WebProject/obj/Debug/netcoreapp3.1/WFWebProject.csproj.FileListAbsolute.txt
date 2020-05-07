@@ -168,11 +168,12 @@ C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\bin\Debug\netcoreapp3.1\tr\
 C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\obj\Debug\netcoreapp3.1\WFWebProject.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\obj\Debug\netcoreapp3.1\WFWebProject.csprojAssemblyReference.cache
+C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LeftMenu.cshtml.g.cs
+C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\bin\Debug\netcoreapp3.1\Core.WebServices.dll
+C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\obj\Debug\netcoreapp3.1\Razor\Views\CompanyInfo\Index.cshtml.g.cs
 C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\obj\Debug\netcoreapp3.1\Razor\Views\CodeMasters\Create.cshtml.g.cs
 C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\obj\Debug\netcoreapp3.1\Razor\Views\CodeMasters\Delete.cshtml.g.cs
 C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\obj\Debug\netcoreapp3.1\Razor\Views\CodeMasters\Details.cshtml.g.cs
 C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\obj\Debug\netcoreapp3.1\Razor\Views\CodeMasters\Edit.cshtml.g.cs
 C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\obj\Debug\netcoreapp3.1\Razor\Views\CodeMasters\Index.cshtml.g.cs
-C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\obj\Debug\netcoreapp3.1\WFWebProject.csprojAssemblyReference.cache
-C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LeftMenu.cshtml.g.cs
-C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\bin\Debug\netcoreapp3.1\Core.WebServices.dll

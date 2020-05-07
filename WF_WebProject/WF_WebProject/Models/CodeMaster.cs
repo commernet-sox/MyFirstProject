@@ -18,5 +18,7 @@ namespace WFWebProject.Models
         public char IsActive { get; set; }
         public string Remarks { get; set; }
         public string HUDF_01 { get; set; }
+        
+
     }
 }

@@ -184,9 +184,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="@Url.Action("Index", "CodeMasters")" class="nav-link active">
+                                    <a href="@Url.Action("Index", "CompanyInfo")" class="nav-link active">
                                         <i class="fa fa-circle-o nav-icon"></i>
-                                        <p>CodeMasters</p>
+                                        <p>企业基本信息</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index", "CodeMasters")" class="nav-link">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>测试数据</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -220,7 +226,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Starter Page</h1>
+                            <h1 class="m-0 text-dark">欢迎使用</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -272,6 +278,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!--GlobalPage App Layout-->
     <script src="~/js/GlobalPage.min.js"></script>
 
+    @*<script src="~/js/globalSettings.js"></script>*@
 
     <script src="../../plugins/datatables/dataTables.bootstrap4.min.js"></script>
     <!-- SlimScroll -->

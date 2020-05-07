@@ -1,9 +1,5 @@
 ﻿
-<style>
-    table {
-        border-collapse: collapse !important;
-    }
-</style>
+
 <div class="page-content-body">
 
     <section class="content">
@@ -12,11 +8,11 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">测试数据</h3>
+                        <h3 class="card-title">企业基本信息</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped nowrap">
+                        <table id="example1" class="table table-bordered table-striped">
                         </table>
                     </div>
                     <!-- /.card-body -->
@@ -101,17 +97,15 @@
             });*@
             //查询
             table = $('#example1').DataTable({
-                "paging": true,
-                "lengthChange": true,
-                "searching": true,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "select": true,
-                
+                //"paging": true,
+                //"lengthChange": false,
+                //"searching": false,
+                //"ordering": true,
+                //"info": true,
+                //"autoWidth": false,
                 lengthMenu: [[10, 25, 50, 100, 500], [10, 25, 50, 100, 500]],
                 ajax: {
-                    url: "@Url.Action("PageData", "CodeMasters")",
+                    url: "@Url.Action("PageData", "CompanyInfo")",
                     type: "post"
                 },
                 order: [[0, 'asc']],//一定要添加
@@ -120,36 +114,12 @@
                 },
                 columns: [
                     { data: "id", title: "主键", searchable: true, orderable: true, width: "50px",visible:false, responsivePriority: 1 },
-                    { data: "codeId", title: "参数ID", searchable: true, orderable: false, width: "100px", responsivePriority: 1 },
-                    { data: "codeName", title: "参数名称", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "codeGroup", title: "参数类型", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "creator", title: "创建人", searchable: false, orderable: true, width: "100px", responsivePriority: 1 },
-                    {
-                        data: "createTime", title: "创建时间", searchable: true, orderable: true, width: "100px", responsivePriority: 1,
-                        render: function (val, type, row) {
-                            val = moment(val).format('YYYY-MM-DD hh:mm:ss');
-                            return val;
-                        }
-                    },
-                    { data: "modifier", title: "修改人", searchable: false, orderable: true, width: "100px", responsivePriority: 1 },
-                    {
-                        data: "modifyTime", title: "修改时间", searchable: true, orderable: true, width: "100px", responsivePriority: 1,
-                        render: function (val, type, row) {
-                            val = val==""||val==null?"":moment(val).format('YYYY-MM-DD hh:mm:ss');
-                            return val;
-                        }
-                    },
-                    {
-                        data: "isActive", title: "状态", searchable: true, orderable: true, width: "100px", responsivePriority: 1,
-                        render: function (val, type, row) {
-                            val = val == "1" ? "启用" : "禁用";
-                            return val;
-                        }
-                    },
-                    { data: "remarks", title: "备注", searchable: false, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "hudF_01", title: "自定义字段", searchable: false, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "hudF_01", title: "自定义字段", searchable: false, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "hudF_01", title: "自定义字段", searchable: false, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "name", title: "公司名称", searchable: true, orderable: false, width: "100px", responsivePriority: 1 },
+                    { data: "industry", title: "行业", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "legalPerson", title: "法定代表人", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "createDate", title: "成立日期", searchable: false, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "tel", title: "联系电话", searchable: false, orderable: true, width: "100px", responsivePriority: 1 },
+
                 ],
                 buttons: [
                         { extend: "create", text: "创建", editor: editor },
@@ -321,7 +291,7 @@
         });
         //调整窗口大小
         function Resize() {
-            $('#example1').DataTable()
+            $('#myTable').DataTable()
                 .columns.adjust()
                 .responsive.recalc();
         }

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WFWebProject.Models;
 
 namespace WFWebProject.Models
 {
@@ -13,6 +14,7 @@ namespace WFWebProject.Models
         {
             
         }
-        public DbSet<CodeMaster> CodeMaster { get; set; }
+        public DbSet<CompanyInfo> CompanyInfo { get; set; }
+        public DbSet<WFWebProject.Models.CodeMaster> CodeMaster { get; set; }
     }
 }
