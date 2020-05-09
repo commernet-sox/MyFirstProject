@@ -13,10 +13,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
+
+    <!--datatable  css-->
+    <link rel="stylesheet" href="~/css/datatables.min.css" />
     <!-- Theme style -->
     <link rel="stylesheet" href="dist/css/adminlte.min.css">
-    <!--datatable  css-->
-    <link href="~/css/datatables.min.css" rel="stylesheet" />
+
     <link rel="stylesheet" href="../../plugins/datatables/dataTables.bootstrap4.min.css">
     <!--Global  css-->
     @*<link href="~/css/Global.min.css" rel="stylesheet" />*@
@@ -190,6 +192,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     </a>
                                 </li>
                                 <li class="nav-item">
+                                    <a href="@Url.Action("Index", "CompanyQualifications")" class="nav-link">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>企业资质信息</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index", "ConstructorInfoes")" class="nav-link">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>建造师信息</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="@Url.Action("Index", "CodeMasters")" class="nav-link">
                                         <i class="fa fa-circle-o nav-icon"></i>
                                         <p>测试数据</p>
@@ -279,6 +293,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="~/js/GlobalPage.min.js"></script>
 
     @*<script src="~/js/globalSettings.js"></script>*@
+
+    <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
 
     <script src="../../plugins/datatables/dataTables.bootstrap4.min.js"></script>
     <!-- SlimScroll -->

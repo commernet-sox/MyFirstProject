@@ -177,3 +177,9 @@ C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\obj\Debug\netcoreapp3.1\Raz
 C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\obj\Debug\netcoreapp3.1\Razor\Views\CodeMasters\Details.cshtml.g.cs
 C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\obj\Debug\netcoreapp3.1\Razor\Views\CodeMasters\Edit.cshtml.g.cs
 C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\obj\Debug\netcoreapp3.1\Razor\Views\CodeMasters\Index.cshtml.g.cs
+C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\obj\Debug\netcoreapp3.1\Razor\Views\CompanyQualifications\Index.cshtml.g.cs
+C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\obj\Debug\netcoreapp3.1\Razor\Views\ConstructorInfoes\Create.cshtml.g.cs
+C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\obj\Debug\netcoreapp3.1\Razor\Views\ConstructorInfoes\Delete.cshtml.g.cs
+C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\obj\Debug\netcoreapp3.1\Razor\Views\ConstructorInfoes\Details.cshtml.g.cs
+C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\obj\Debug\netcoreapp3.1\Razor\Views\ConstructorInfoes\Edit.cshtml.g.cs
+C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\obj\Debug\netcoreapp3.1\Razor\Views\ConstructorInfoes\Index.cshtml.g.cs

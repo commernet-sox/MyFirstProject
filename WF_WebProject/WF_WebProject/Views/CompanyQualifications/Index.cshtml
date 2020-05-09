@@ -1,22 +1,19 @@
-﻿
-<style>
+﻿<style>
     table.dataTable {
         border-collapse: collapse !important;
     }
 </style>
 <div class="page-content-body">
-
     <section class="content">
         <div class="row">
             <div class="col-12">
-
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">测试数据</h3>
+                        <h3 class="card-title">企业资质信息</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped nowrap dtr-inline collapsed">
+                        <table id="example1" class="table table-bordered table-striped">
                         </table>
                     </div>
                     <!-- /.card-body -->
@@ -27,11 +24,10 @@
         </div>
         <!-- /.row -->
     </section>
-    
 </div>
 
 @section scripts{
-    
+
     <script>
         function filterColumn(i) {
             $('#example1').DataTable().column(i).search(
@@ -48,7 +44,7 @@
             Layout.initAjaxContentSuccessCallback();
             App.addResizeHandler(Resize);
             Layout.addAjaxContentSuccessCallback(AjaxDispose);
-            
+
             //查询
             table = $('#example1').DataTable({
                 "paging": true,
@@ -56,12 +52,12 @@
                 "searching": true,
                 "ordering": true,
                 "info": true,
-                "autoWidth": false,
-                "select": true,
+                "autoWidth": true,
+                "select": false,
                 "scrollX": true,
                 lengthMenu: [[10, 25, 50, 100, 500], [10, 25, 50, 100, 500]],
                 ajax: {
-                    url: "@Url.Action("PageData", "CodeMasters")",
+                    url: "@Url.Action("PageData", "CompanyQualifications")",
                     type: "post"
                 },
                 order: [[0, 'asc']],//一定要添加
@@ -70,36 +66,33 @@
                 },
                 columns: [
                     { data: "id", title: "主键", searchable: true, orderable: true, width: "50px",visible:false, responsivePriority: 1 },
-                    { data: "codeId", title: "参数ID", searchable: true, orderable: false, width: "100px", responsivePriority: 1 },
-                    { data: "codeName", title: "参数名称", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "codeGroup", title: "参数类型", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "creator", title: "创建人", searchable: false, orderable: true, width: "100px", responsivePriority: 1 },
-                    {
-                        data: "createTime", title: "创建时间", searchable: true, orderable: true, width: "100px", responsivePriority: 1,
+                    { data: "code", title: "企业编号", searchable: true, orderable: false, width: "100px", responsivePriority: 1 },
+                    { data: "name", title: "企业名称", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "economicType", title: "经济类型", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "province", title: "注册地（省/市）", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "city", title: "注册地（市/区）", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "time", title: "时间", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "email", title: "邮箱", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "webSite", title: "企业网址", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "qualificationType", title: "资质类型", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "contactAddress", title: "资质联系地址", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "zipCode", title: "邮编", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "safetyLicenseNo", title: "安全生产许可证编号", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "startDate", title: "有效期（起始）", searchable: true, orderable: true, width: "100px", responsivePriority: 1 ,
                         render: function (val, type, row) {
                             val = moment(val).format('YYYY-MM-DD hh:mm:ss');
                             return val;
-                        }
-                    },
-                    { data: "modifier", title: "修改人", searchable: false, orderable: true, width: "100px", responsivePriority: 1 },
-                    {
-                        data: "modifyTime", title: "修改时间", searchable: true, orderable: true, width: "100px", responsivePriority: 1,
+                        }},
+                    { data: "endDate", title: "有效期（截止）", searchable: true, orderable: true, width: "100px", responsivePriority: 1 ,
                         render: function (val, type, row) {
-                            val = val==""||val==null?"":moment(val).format('YYYY-MM-DD hh:mm:ss');
+                            val = moment(val).format('YYYY-MM-DD hh:mm:ss');
                             return val;
-                        }
-                    },
-                    {
-                        data: "isActive", title: "状态", searchable: true, orderable: true, width: "100px", responsivePriority: 1,
-                        render: function (val, type, row) {
-                            val = val == "1" ? "启用" : "禁用";
-                            return val;
-                        }
-                    },
-                    { data: "remarks", title: "备注", searchable: false, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "hudF_01", title: "自定义字段", searchable: false, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "hudF_01", title: "自定义字段", searchable: false, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "hudF_01", title: "自定义字段", searchable: false, orderable: true, width: "100px", responsivePriority: 1 },
+                        }},
+                    { data: "issuingAuthority", title: "发证机构", searchable: true, orderable: true, width: "500px", responsivePriority: 1 },
+                    { data: "scopeLicense", title: "安全生产许可证范围", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "organizationCode", title: "组织机构代码", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "comprehensiveScore", title: "信用综合评分", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    
                 ],
                 buttons: [
                         { extend: "create", text: "创建", editor: editor },
@@ -129,10 +122,9 @@
         function AjaxDispose() {
             if (!isdisposed) {
                 isdisposed = true;
-                
                 try {
-                         table.destroy();
-                 
+                            table.destroy();
+
                 }
                 catch
                 {
@@ -140,7 +132,6 @@
                 }
             }
         }
-
     </script>
 }
 

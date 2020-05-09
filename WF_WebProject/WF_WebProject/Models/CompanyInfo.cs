@@ -42,7 +42,7 @@ namespace WFWebProject.Models
         public string RegisteredCapital { get; set; }
         //实缴资本
         public string PaidCapital { get; set; }
-        //BusinessStatus
+        //经营状态
         public string BusinessStatus { get; set; }
         //统一社会信用代码
         public string CreditCode { get; set; }
