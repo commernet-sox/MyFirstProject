@@ -1,33 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\FS\\source\\repos\\WF_WebProject\\WF_WebProject\\WFWebProject.csproj": {}
+    "E:\\GitHub\\MyFirstProject\\MyFirstProject\\WF_WebProject\\WF_WebProject\\WFWebProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\FS\\source\\repos\\WF_WebProject\\WF_WebProject\\WFWebProject.csproj": {
+    "E:\\GitHub\\MyFirstProject\\MyFirstProject\\WF_WebProject\\WF_WebProject\\WFWebProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\FS\\source\\repos\\WF_WebProject\\WF_WebProject\\WFWebProject.csproj",
+        "projectUniqueName": "E:\\GitHub\\MyFirstProject\\MyFirstProject\\WF_WebProject\\WF_WebProject\\WFWebProject.csproj",
         "projectName": "WFWebProject",
-        "projectPath": "C:\\Users\\FS\\source\\repos\\WF_WebProject\\WF_WebProject\\WFWebProject.csproj",
-        "packagesPath": "C:\\Users\\FS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\FS\\source\\repos\\WF_WebProject\\WF_WebProject\\obj\\",
+        "projectPath": "E:\\GitHub\\MyFirstProject\\MyFirstProject\\WF_WebProject\\WF_WebProject\\WFWebProject.csproj",
+        "packagesPath": "C:\\Users\\15105\\.nuget\\packages\\",
+        "outputPath": "E:\\GitHub\\MyFirstProject\\MyFirstProject\\WF_WebProject\\WF_WebProject\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "D:\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\FS\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 18.2.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\15105\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\DevExpress 18.2\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
@@ -102,7 +95,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
