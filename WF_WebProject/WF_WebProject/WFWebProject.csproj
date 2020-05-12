@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -40,30 +40,25 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Autofac">
-      <HintPath>..\..\..\..\.nuget\packages\autofac\4.8.1\lib\net45\Autofac.dll</HintPath>
-    </Reference>
-    <Reference Include="Autofac.Extensions.DependencyInjection">
-      <HintPath>..\..\..\..\.nuget\packages\autofac.extensions.dependencyinjection\4.3.1\lib\netstandard1.1\Autofac.Extensions.DependencyInjection.dll</HintPath>
-    </Reference>
     <Reference Include="Core.Database.Extension">
-      <HintPath>D:\HR_Management\ShareDlls\Core.Database.Extension.dll</HintPath>
+      <HintPath>bin\Core.Database.Extension.dll</HintPath>
+      <Private>true</Private>
     </Reference>
     <Reference Include="Core.Database.Repository">
-      <HintPath>D:\HR_Management\ShareDlls\Core.Database.Repository.dll</HintPath>
+      <HintPath>bin\Core.Database.Repository.dll</HintPath>
+      <Private>true</Private>
     </Reference>
     <Reference Include="Core.Infrastructure">
-      <HintPath>D:\HR_Management\ShareDlls\Core.Infrastructure.dll</HintPath>
+      <HintPath>bin\Core.Infrastructure.dll</HintPath>
+      <Private>true</Private>
     </Reference>
     <Reference Include="Core.Infrastructure.Extension">
-      <HintPath>D:\HR_Management\ShareDlls\Core.Infrastructure.Extension.dll</HintPath>
+      <HintPath>bin\Core.Infrastructure.Extension.dll</HintPath>
+      <Private>true</Private>
     </Reference>
     <Reference Include="Core.WebServices">
-      <HintPath>D:\HR_Management\ShareDlls\Core.WebServices.dll</HintPath>
-    </Reference>
-
-    <Reference Include="NLog.Web.AspNetCore">
-      <HintPath>..\..\..\..\.nuget\packages\nlog.web.aspnetcore\4.7.0\lib\netstandard2.0\NLog.Web.AspNetCore.dll</HintPath>
+      <HintPath>bin\Core.WebServices.dll</HintPath>
+      <Private>true</Private>
     </Reference>
   </ItemGroup>
 
