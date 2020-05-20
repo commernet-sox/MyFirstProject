@@ -2,167 +2,60 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Core.Database.Repository;
+using Core.WebServices.Interface;
 using Core.WebServices.Model;
+using Core.WebServices.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using WFWebProject.DTO;
+using WFWebProject.Interface;
 using WFWebProject.Models;
 
 namespace WFWebProject.Controllers
 {
+    
     public class CompanyInfoController : Controller
     {
         private readonly DataContext _context;
         private IHttpContextAccessor _accessor;
-        public CompanyInfoController(DataContext context,IHttpContextAccessor accessor)
+        private ICompanyInfoService _companyInfoService;
+        public CompanyInfoController(DataContext context,IHttpContextAccessor accessor,ICompanyInfoService companyInfoService) 
         {
             _context = context;
             _accessor = accessor;
+            _companyInfoService = companyInfoService;
         }
 
-        // GET: CodeMasters
         public async Task<IActionResult> Index()
         {
             return View();
         }
-        [HttpPost]
-        public async Task<IActionResult> PageData()
-        {
-            Dictionary<string, object> dic = new Dictionary<string, object>();
-            dic.Add("data", await _context.CompanyInfo.ToListAsync());
-            dic.Add("options", "");
-            dic.Add("files", "");
-
-            //var core_request = new Core.WebServices.Model.CoreRequest(_accessor.HttpContext);
-            //CoreResponse core_response = new CoreResponse(core_request);
-            //core_response.DtResponse.data = await _context.CompanyInfo.ToListAsync();
-            return Json(dic);
-            
-        }
-        // GET: CodeMasters/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var codeMaster = await _context.CompanyInfo
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (codeMaster == null)
-            {
-                return NotFound();
-            }
-
-            return View(codeMaster);
-        }
-
-        // GET: CodeMasters/Create
-        public IActionResult Create()
+        public async Task<IActionResult> AllIndex()
         {
             return View();
         }
-
-        // POST: CodeMasters/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ModifyTime,Modifier,CreateTime,Creator,CodeGroup,CodeId,CodeName,IsActive,Remarks,HUDF_01")] CompanyInfo codeMaster)
+        public async Task<IActionResult> PageData()
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(codeMaster);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(codeMaster);
+            var result = this._companyInfoService.DTData(HttpContext);
+            return Json(result.DtResponse);
+            
         }
 
-        // GET: CodeMasters/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var codeMaster = await _context.CompanyInfo.FindAsync(id);
-            if (codeMaster == null)
-            {
-                return NotFound();
-            }
-            return View(codeMaster);
-        }
-
-        // POST: CodeMasters/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ModifyTime,Modifier,CreateTime,Creator,CodeGroup,CodeId,CodeName,IsActive,Remarks,HUDF_01")] CompanyInfo codeMaster)
+        public async Task<IActionResult> CompanyAllPageData()
         {
-            if (id != codeMaster.Id)
-            {
-                return NotFound();
-            }
+            var result = this._companyInfoService.CompanyAllPageData(new Core.WebServices.Model.CoreRequest(HttpContext));
+            return Json(result.DtResponse);
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(codeMaster);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CodeMasterExists(codeMaster.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(codeMaster);
         }
 
-        // GET: CodeMasters/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
-            var codeMaster = await _context.CompanyInfo
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (codeMaster == null)
-            {
-                return NotFound();
-            }
-
-            return View(codeMaster);
-        }
-
-        // POST: CodeMasters/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var codeMaster = await _context.CompanyInfo.FindAsync(id);
-            _context.CompanyInfo.Remove(codeMaster);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool CodeMasterExists(int id)
-        {
-            return _context.CompanyInfo.Any(e => e.Id == id);
-        }
     }
 }

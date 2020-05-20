@@ -16,7 +16,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped nowrap dtr-inline collapsed">
+                        <table id="example1" class="table table-bordered table-striped nowrap ">
                         </table>
                     </div>
                     <!-- /.card-body -->
@@ -48,18 +48,47 @@
             Layout.initAjaxContentSuccessCallback();
             App.addResizeHandler(Resize);
             Layout.addAjaxContentSuccessCallback(AjaxDispose);
+
             
             //查询
             table = $('#example1').DataTable({
-                "paging": true,
-                "lengthChange": true,
-                "searching": true,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "select": true,
+                //"paging": true,
+                //"lengthChange": true,
+                "searching":true,
+                //"ordering": true,
+                //"info": true,
+                //"autoWidth": false,
+                //"select": true,
                 "scrollX": true,
                 lengthMenu: [[10, 25, 50, 100, 500], [10, 25, 50, 100, 500]],
+                initComplete: function () {
+                    console.log("111");
+                    table.search("").draw();
+                },
+                drawCallback: function () {
+                    $('#example1 thead th').each( function () {
+                        var title = $(this).text();
+                        $(this).html( '<input type="text" class="dataTables_sizing" style="width:100%"  placeholder="Search '+title+'" />' );
+                    } );
+                     //Apply the search
+                    this.api().columns().every(function () {
+                        console.log(this.columns());
+                        var that = this;
+ 
+                        $('input').on('keyup change clear', function () {
+                            console.log(that);
+                            console.log(that.search() + ":" + this.value);
+                            if (this.parentNode.cellIndex == that[0].toString()) {
+                                if (that.search() !== this.value) {
+                                    that[0] = (this.parentNode.cellIndex + 1).toString();
+                                that
+                                    .search( this.value )
+                                    .draw();
+                            }
+                            }
+                        } );
+                    } );
+                },
                 ajax: {
                     url: "@Url.Action("PageData", "CodeMasters")",
                     type: "post"
@@ -68,56 +97,43 @@
                 colReorder: {
                     fixedColumnsLeft: 1
                 },
+                serverSide:true,//启用服务端必须要加上
                 columns: [
-                    { data: "id", title: "主键", searchable: true, orderable: true, width: "50px",visible:false, responsivePriority: 1 },
-                    { data: "codeId", title: "参数ID", searchable: true, orderable: false, width: "100px", responsivePriority: 1 },
-                    { data: "codeName", title: "参数名称", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "codeGroup", title: "参数类型", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "creator", title: "创建人", searchable: false, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "Id", title: "主键", searchable: true, orderable: true, width: "50px",visible:false, responsivePriority: 1 },
+                    { data: "CodeId", title: "参数ID", searchable: true, orderable: false, width: "100px", responsivePriority: 1 },
+                    { data: "CodeName", title: "参数名称", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "CodeGroup", title: "参数类型", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "Creator", title: "创建人", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     {
-                        data: "createTime", title: "创建时间", searchable: true, orderable: true, width: "100px", responsivePriority: 1,
+                        data: "CreateTime", title: "创建时间", searchable: true, orderable: true, width: "100px", responsivePriority: 1,
                         render: function (val, type, row) {
                             val = moment(val).format('YYYY-MM-DD hh:mm:ss');
                             return val;
                         }
                     },
-                    { data: "modifier", title: "修改人", searchable: false, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "Modifier", title: "修改人", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     {
-                        data: "modifyTime", title: "修改时间", searchable: true, orderable: true, width: "100px", responsivePriority: 1,
+                        data: "ModifyTime", title: "修改时间", searchable: true, orderable: true, width: "100px", responsivePriority: 1,
                         render: function (val, type, row) {
                             val = val==""||val==null?"":moment(val).format('YYYY-MM-DD hh:mm:ss');
                             return val;
                         }
                     },
                     {
-                        data: "isActive", title: "状态", searchable: true, orderable: true, width: "100px", responsivePriority: 1,
+                        data: "IsActive", title: "状态", searchable: true, orderable: true, width: "100px", responsivePriority: 1,
                         render: function (val, type, row) {
                             val = val == "1" ? "启用" : "禁用";
                             return val;
                         }
                     },
-                    { data: "remarks", title: "备注", searchable: false, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "hudF_01", title: "自定义字段", searchable: false, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "hudF_01", title: "自定义字段", searchable: false, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "hudF_01", title: "自定义字段", searchable: false, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "Remarks", title: "备注", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "HUDF_01", title: "自定义字段", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    
                 ],
-                buttons: [
-                        { extend: "create", text: "创建", editor: editor },
-                        { extend: "edit", text: "编辑", editor: editor },
-                        { extend: "selectedSingle", text: "启用\\停用", action: function (e, dt, node, config) {  var rows = table.rows({ selected: true }).data(); CodemasterOnOff(rows[0]['Id']); }},
-                        {
-                            extend: 'collection',
-                            text: '导出',
-                            buttons: [
-                                { extend: "copyHtml5", text: "复制" },
-                                { extend: "excelHtml5", text: "导出EXCEL" }
-                                //{ extend: "csvHtml5", text: "导出CSV" },
-                                //{ extend: "pdfHtml5", text: "导出PDF" }
-                            ]
-                        }
-                ],
+                
 
             });
+             
         });
         //调整窗口大小
         function Resize() {
