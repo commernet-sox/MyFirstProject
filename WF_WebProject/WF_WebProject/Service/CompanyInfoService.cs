@@ -1,0 +1,150 @@
+﻿using AutoMapper;
+using Core.Database.Repository;
+using Core.WebServices.Model;
+using Core.WebServices.Service;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using WFWebProject.DTO;
+using WFWebProject.Interface;
+using WFWebProject.Models;
+
+namespace WFWebProject.Service
+{
+    public class CompanyInfoService : BaseService<CompanyInfo, DataContext, CompanyInfoDTO, int>, ICompanyInfoService
+    {
+        public CompanyInfoService(IRepository<CompanyInfo, DataContext> Repository, IMapper mapper) : base(Repository, mapper)
+        {
+
+        }
+        protected override CoreResponse PageData(CoreRequest core_request)
+        {
+            var dbcontext = base.Repository.SlaveUnitOfWork.DbContext;
+            var query = from item in dbcontext.CompanyInfo
+                        select new CompanyInfoDTO
+                        {
+                            Id=item.Id,
+                            Address=item.Address,
+                            BusinessScope=item.BusinessScope,
+                            BusinessStatus=item.BusinessStatus,
+                            BusinessTerm=item.BusinessTerm,
+                            City=item.City,
+                            CreateDate=item.CreateDate,
+                            CreditCode=item.CreditCode,
+                            District=item.District,
+                            EnglishName=item.EnglishName,
+                            IdentificationNumber=item.IdentificationNumber,
+                            Industry=item.Industry,
+                            LegalPerson=item.LegalPerson,
+                            Name=item.Name,
+                            NameUsedBefore=item.NameUsedBefore,
+                            NumberInsured=item.NumberInsured,
+                            OrganizationCode=item.OrganizationCode,
+                            PaidCapital=item.PaidCapital,
+                            PersonnelSize=item.PersonnelSize,
+                            Province=item.Province,
+                            PublicAddress=item.PublicAddress,
+                            PublicEmail= item.PublicEmail,
+                            PublicTel=item.PublicTel,
+                            PublicWebSite=item.PublicWebSite,
+                            RegisterAddress=item.RegisterAddress,
+                            RegisteredCapital=item.RegisteredCapital,
+                            RegistrationAuthority=item.RegistrationAuthority,
+                            RegistrationNo=item.RegistrationNo,
+                            TaxpayerQualification= item.TaxpayerQualification,
+                            Tel=item.Tel,
+                            Type=item.Type,
+                        };
+            var result = base.PageDataWithQuery<CompanyInfoDTO>(core_request, query);
+            List<CompanyInfoDTO> itemList = result.DtResponse.data as List<CompanyInfoDTO>;
+            result.DtResponse.data = itemList;
+            return result;
+        }
+        protected override CoreResponse Create(CoreRequest core_request)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override CoreResponse Edit(CoreRequest core_request)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override CoreResponse Remove(CoreRequest core_request)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override CoreResponse Upload(CoreRequest core_request)
+        {
+            throw new NotImplementedException();
+        }
+
+        public CoreResponse CompanyAllPageData(CoreRequest core_request)
+        {
+            var dbcontext = base.Repository.SlaveUnitOfWork.DbContext;
+            //var query = from item in dbcontext.CompanyInfo
+            //            join item1 in dbcontext.CompanyQualification
+            //                   on item.Name equals item1.Name
+            //            select new CompanyInfoDTO
+            //            {
+            //                Id = item.Id,
+            //                Address = item.Address,
+            //                BusinessScope = item.BusinessScope,
+            //                BusinessStatus = item.BusinessStatus,
+            //                BusinessTerm = item.BusinessTerm,
+            //                City = item.City,
+            //                CreateDate = item.CreateDate,
+            //                CreditCode = item.CreditCode,
+            //                District = item.District,
+            //                EnglishName = item.EnglishName,
+            //                IdentificationNumber = item.IdentificationNumber,
+            //                Industry = item.Industry,
+            //                LegalPerson = item.LegalPerson,
+            //                Name = item.Name,
+            //                NameUsedBefore = item.NameUsedBefore,
+            //                NumberInsured = item.NumberInsured,
+            //                OrganizationCode = item.OrganizationCode,
+            //                PaidCapital = item.PaidCapital,
+            //                PersonnelSize = item.PersonnelSize,
+            //                Province = item.Province,
+            //                PublicAddress = item.PublicAddress,
+            //                PublicEmail = item.PublicEmail,
+            //                PublicTel = item.PublicTel,
+            //                PublicWebSite = item.PublicWebSite,
+            //                RegisterAddress = item.RegisterAddress,
+            //                RegisteredCapital = item.RegisteredCapital,
+            //                RegistrationAuthority = item.RegistrationAuthority,
+            //                RegistrationNo = item.RegistrationNo,
+            //                TaxpayerQualification = item.TaxpayerQualification,
+            //                Tel = item.Tel,
+            //                Type = item.Type,
+
+            //                City1 = item1.City,
+            //                Code = item1.Code,
+            //                ComprehensiveScore = item1.ComprehensiveScore,
+            //                ContactAddress = item1.ContactAddress,
+            //                EconomicType = item1.EconomicType,
+            //                Email = item1.Email,
+            //                EndDate = item1.EndDate,
+            //                IssuingAuthority = item1.IssuingAuthority,
+            //                OrganizationCode1 = item1.OrganizationCode,
+            //                Province1 = item1.Province,
+            //                QualificationType = item1.QualificationType,
+            //                SafetyLicenseNo = item1.SafetyLicenseNo,
+            //                ScopeLicense = item1.ScopeLicense,
+            //                StartDate = item1.StartDate,
+            //                Time = item1.Time,
+            //                WebSite = item1.WebSite,
+            //                ZipCode = item1.ZipCode,
+            //            };
+            var query = "SELECT A.*,B.Code,B.EconomicType,B.Province AS Province1,B.City AS City1,B.Time,B.Email,B.WebSite,B.QualificationType,B.ContactAddress,B.ZipCode,B.SafetyLicenseNo,B.StartDate,B.EndDate,B.IssuingAuthority,B.ScopeLicense,B.OrganizationCode AS OrganizationCode1,B.ComprehensiveScore,NULL AS access_token FROM dbo.CompanyInfo A JOIN dbo.CompanyQualification B ON A.Name=B.Name";
+            var result = base.PageDataWithSQL<CompanyInfoDTO>(core_request, query);
+            //var result = base.PageDataWithQuery<CompanyInfoDTO>(core_request, query);
+            List<CompanyInfoDTO> itemList = result.DtResponse.data as List<CompanyInfoDTO>;
+            result.DtResponse.data = itemList;
+            return result;
+        }
+    }
+}

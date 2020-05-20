@@ -47,15 +47,43 @@
 
             //查询
             table = $('#example1').DataTable({
-                "paging": true,
-                "lengthChange": true,
-                "searching": true,
-                "ordering": true,
-                "info": true,
-                "autoWidth": true,
-                "select": false,
+                //"paging": true,
+                //"lengthChange": true,
+                //"searching": true,
+                //"ordering": true,
+                //"info": true,
+                //"autoWidth": true,
+                //"select": false,
                 "scrollX": true,
                 lengthMenu: [[10, 25, 50, 100, 500], [10, 25, 50, 100, 500]],
+                initComplete: function () {
+                    //console.log("111");
+                    table.search("").draw();
+                },
+                drawCallback: function () {
+                    $('#example1 thead th').each( function () {
+                        var title = $(this).text();
+                        $(this).html( '<input type="text" class="dataTables_sizing" style="width:100%"  placeholder="Search '+title+'" />' );
+                    } );
+                     //Apply the search
+                    this.api().columns().every(function () {
+                        //console.log(this.columns());
+                        var that = this;
+ 
+                        $('input').on('keyup change clear', function () {
+                            //console.log(that);
+                            //console.log(that.search() + ":" + this.value);
+                            if (this.parentNode.cellIndex == that[0].toString()) {
+                                if (that.search() !== this.value) {
+                                    that[0] = (this.parentNode.cellIndex + 1).toString();
+                                that
+                                    .search( this.value )
+                                    .draw();
+                            }
+                            }
+                        } );
+                    } );
+                },
                 ajax: {
                     url: "@Url.Action("PageData", "CompanyInfo")",
                     type: "post"
@@ -64,54 +92,41 @@
                 colReorder: {
                     fixedColumnsLeft: 1
                 },
+                serverSide:true,
                 columns: [
-                    { data: "id", title: "主键", searchable: true, orderable: true, width: "50px",visible:false, responsivePriority: 1 },
-                    { data: "name", title: "公司名称", searchable: true, orderable: false, width: "100px", responsivePriority: 1 },
-                    { data: "industry", title: "行业", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "legalPerson", title: "法定代表人", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "createDate", title: "成立日期", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "tel", title: "联系电话", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "province", title: "所属省份", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "city", title: "所属市区", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "district", title: "所属区县", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "type", title: "公司类型", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "address", title: "办公地址", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "publicTel", title: "企业公示的联系电话（更多号码）", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "publicAddress", title: "企业公示的地址", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "publicWebSite", title: "企业公示的网址", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "publicEmail", title: "企业公示的邮箱", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "businessScope", title: "经营范围", searchable: true, orderable: true, width: "500px", responsivePriority: 1 },
-                    { data: "registeredCapital", title: "注册资本", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "paidCapital", title: "实缴资本", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "businessStatus", title: "经营状态", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "creditCode", title: "统一社会信用代码", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "registrationNo", title: "工商注册号", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "identificationNumber", title: "纳税人识别号", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "organizationCode", title: "组织机构代码", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "registrationAuthority", title: "登记机关", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "businessTerm", title: "营业期限", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "taxpayerQualification", title: "纳税人资质", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "personnelSize", title: "人员规模", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "numberInsured", title: "参保人数", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "nameUsedBefore", title: "曾用名", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "englishName", title: "英文名称", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "registerAddress", title: "注册地址", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "Id", title: "主键", searchable: true, orderable: true, width: "50px",visible:false, responsivePriority: 1 },
+                    { data: "Name", title: "公司名称", searchable: true, orderable: false, width: "100px", responsivePriority: 1 },
+                    { data: "Industry", title: "行业", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "LegalPerson", title: "法定代表人", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "CreateDate", title: "成立日期", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "Tel", title: "联系电话", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "Province", title: "所属省份", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "City", title: "所属市区", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "District", title: "所属区县", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "Type", title: "公司类型", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "Address", title: "办公地址", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "PublicTel", title: "企业公示的联系电话（更多号码）", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "PublicAddress", title: "企业公示的地址", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "PublicWebSite", title: "企业公示的网址", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "PublicEmail", title: "企业公示的邮箱", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "BusinessScope", title: "经营范围", searchable: true, orderable: true, width: "500px", responsivePriority: 1 },
+                    { data: "RegisteredCapital", title: "注册资本", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "PaidCapital", title: "实缴资本", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "BusinessStatus", title: "经营状态", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "CreditCode", title: "统一社会信用代码", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "RegistrationNo", title: "工商注册号", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "IdentificationNumber", title: "纳税人识别号", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "OrganizationCode", title: "组织机构代码", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "RegistrationAuthority", title: "登记机关", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "BusinessTerm", title: "营业期限", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "TaxpayerQualification", title: "纳税人资质", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "PersonnelSize", title: "人员规模", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "NumberInsured", title: "参保人数", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "NameUsedBefore", title: "曾用名", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "EnglishName", title: "英文名称", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "RegisterAddress", title: "注册地址", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                 ],
-                buttons: [
-                        { extend: "create", text: "创建", editor: editor },
-                        { extend: "edit", text: "编辑", editor: editor },
-                        { extend: "selectedSingle", text: "启用\\停用", action: function (e, dt, node, config) {  var rows = table.rows({ selected: true }).data(); CodemasterOnOff(rows[0]['Id']); }},
-                        {
-                            extend: 'collection',
-                            text: '导出',
-                            buttons: [
-                                { extend: "copyHtml5", text: "复制" },
-                                { extend: "excelHtml5", text: "导出EXCEL" }
-                                //{ extend: "csvHtml5", text: "导出CSV" },
-                                //{ extend: "pdfHtml5", text: "导出PDF" }
-                            ]
-                        }
-                ],
+                
 
             });
         });

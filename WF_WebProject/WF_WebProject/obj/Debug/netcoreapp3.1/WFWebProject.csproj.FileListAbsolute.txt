@@ -29,13 +29,6 @@ C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\bin\Debug\netcoreapp3.1\WFW
 C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\bin\Debug\netcoreapp3.1\WFWebProject.pdb
 C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\bin\Debug\netcoreapp3.1\WFWebProject.Views.dll
 C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\bin\Debug\netcoreapp3.1\WFWebProject.Views.pdb
-C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\bin\Debug\netcoreapp3.1\Autofac.dll
-C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\bin\Debug\netcoreapp3.1\Autofac.Extensions.DependencyInjection.dll
-C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\bin\Debug\netcoreapp3.1\NLog.Web.AspNetCore.dll
-C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\bin\Debug\netcoreapp3.1\Autofac.xml
-C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\bin\Debug\netcoreapp3.1\Autofac.Extensions.DependencyInjection.pdb
-C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\bin\Debug\netcoreapp3.1\Autofac.Extensions.DependencyInjection.xml
-C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\bin\Debug\netcoreapp3.1\NLog.Web.AspNetCore.xml
 C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\obj\Debug\netcoreapp3.1\WFWebProject.Views.pdb
 C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\obj\Debug\netcoreapp3.1\WFWebProject.csproj.CopyComplete
 C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\bin\Debug\netcoreapp3.1\Core.Infrastructure.dll
@@ -167,7 +160,6 @@ C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\bin\Debug\netcoreapp3.1\ru\
 C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\obj\Debug\netcoreapp3.1\WFWebProject.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\obj\Debug\netcoreapp3.1\WFWebProject.csprojAssemblyReference.cache
 C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LeftMenu.cshtml.g.cs
 C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\bin\Debug\netcoreapp3.1\Core.WebServices.dll
@@ -363,3 +355,8 @@ E:\GitHub\MyFirstProject\MyFirstProject\WF_WebProject\WF_WebProject\obj\Debug\ne
 E:\GitHub\MyFirstProject\MyFirstProject\WF_WebProject\WF_WebProject\obj\Debug\netcoreapp3.1\staticwebassets\WFWebProject.StaticWebAssets.Manifest.cache
 E:\GitHub\MyFirstProject\MyFirstProject\WF_WebProject\WF_WebProject\obj\Debug\netcoreapp3.1\staticwebassets\WFWebProject.StaticWebAssets.xml
 E:\GitHub\MyFirstProject\MyFirstProject\WF_WebProject\WF_WebProject\obj\Debug\netcoreapp3.1\WFWebProject.genruntimeconfig.cache
+C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\obj\Debug\netcoreapp3.1\Razor\Views\CompanyAllInfo\Index.cshtml.g.cs
+C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\bin\Debug\netcoreapp3.1\AutoMapper.dll
+C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\bin\Debug\netcoreapp3.1\Autofac.dll
+C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\bin\Debug\netcoreapp3.1\Autofac.Extensions.DependencyInjection.dll
+C:\Users\FS\source\repos\WF_WebProject\WF_WebProject\obj\Debug\netcoreapp3.1\WFWebProject.MvcApplicationPartsAssemblyInfo.cache

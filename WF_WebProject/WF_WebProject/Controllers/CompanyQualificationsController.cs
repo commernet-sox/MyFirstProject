@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using WFWebProject.Interface;
 using WFWebProject.Models;
 
 namespace WFWebProject.Controllers
@@ -12,10 +13,12 @@ namespace WFWebProject.Controllers
     public class CompanyQualificationsController : Controller
     {
         private readonly DataContext _context;
+        private ICompanyQualificationService _companyQualificationService;
 
-        public CompanyQualificationsController(DataContext context)
+        public CompanyQualificationsController(DataContext context, ICompanyQualificationService companyQualificationService)
         {
             _context = context;
+            _companyQualificationService = companyQualificationService;
         }
 
         // GET: CompanyQualifications
@@ -27,15 +30,9 @@ namespace WFWebProject.Controllers
         [HttpPost]
         public async Task<IActionResult> PageData()
         {
-            Dictionary<string, object> dic = new Dictionary<string, object>();
-            dic.Add("data", await _context.CompanyQualification.ToListAsync());
-            dic.Add("options", "");
-            dic.Add("files", "");
 
-            //var core_request = new Core.WebServices.Model.CoreRequest(_accessor.HttpContext);
-            //CoreResponse core_response = new CoreResponse(core_request);
-            //core_response.DtResponse.data = await _context.CompanyInfo.ToListAsync();
-            return Json(dic);
+            var result = this._companyQualificationService.DTData(HttpContext);
+            return Json(result.DtResponse);
 
         }
 

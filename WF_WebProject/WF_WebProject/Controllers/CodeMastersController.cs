@@ -2,39 +2,38 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using WFWebProject.Interface;
 using WFWebProject.Models;
+using WFWebProject.Service;
 
 namespace WFWebProject.Controllers
 {
+    
     public class CodeMastersController : Controller
     {
         private readonly DataContext _context;
-
-        public CodeMastersController(DataContext context)
+        private ICodeMasterService _codeMasterService;
+        public CodeMastersController(DataContext context,ICodeMasterService codeMasterService)
         {
             _context = context;
+            _codeMasterService = codeMasterService;
         }
 
         // GET: CodeMasters
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> PageData()
+        public IActionResult PageData()
         {
-            Dictionary<string, object> dic = new Dictionary<string, object>();
-            dic.Add("data", await _context.CodeMaster.ToListAsync());
-            dic.Add("options", "");
-            dic.Add("files", "");
-
-            //var core_request = new Core.WebServices.Model.CoreRequest(_accessor.HttpContext);
-            //CoreResponse core_response = new CoreResponse(core_request);
-            //core_response.DtResponse.data = await _context.CompanyInfo.ToListAsync();
-            return Json(dic);
+            var result = this._codeMasterService.DTData(HttpContext);
+            return Json(result.DtResponse);
 
         }
         // GET: CodeMasters/Details/5

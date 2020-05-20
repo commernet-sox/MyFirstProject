@@ -1,0 +1,109 @@
+﻿<style>
+    table.dataTable {
+        border-collapse: collapse !important;
+    }
+</style>
+<div class="page-content-body">
+
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">菜单管理</h3>
+                    </div>
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered table-striped nowrap ">
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div id="customForm" style="padding-left: 17px;">
+        <fieldset class="userinfo">
+            <legend>用户信息</legend>
+            <div data-editor-template="Id"></div>
+            <div data-editor-template="UserName"></div>
+            
+        </fieldset>
+        <fieldset class="permissioninfo">
+            <legend>权限信息</legend>
+            <div data-editor-template=""></div>
+        </fieldset>
+    </div>
+</div>
+
+@section scripts{
+
+    <script>
+        function filterColumn(i) {
+            $('#example1').DataTable().column(i).search(
+                $('#col' + i + '_filter').val(),
+                false,
+                false
+            ).draw();
+        }
+        var editor, table, isdisposed;
+        var curWarehouseId, curType, curStorerId; // use a global for the submit and return data rendering in the examples
+        $(document).ready(function () {
+            isdisposed = false;
+            App.initResizeHandler();
+            Layout.initAjaxContentSuccessCallback();
+            App.addResizeHandler(Resize);
+            Layout.addAjaxContentSuccessCallback(AjaxDispose);
+
+
+            //查询
+            table = $('#example1').DataTable({
+
+                lengthMenu: [[10, 25, 50, 100, 500], [10, 25, 50, 100, 500]],
+                
+                ajax: {
+                    url: "@Url.Action("Index", "Home")",
+                    type: "post"
+                },
+                order: [[0, 'asc']],//一定要添加
+                colReorder: {
+                    fixedColumnsLeft: 1
+                },
+                serverSide:true,//启用服务端必须要加上
+                columns: [
+                    { data: "Id", title: "主键", searchable: true, orderable: true, width: "50px",visible:false, responsivePriority: 1 },
+                    { data: "UserName", title: "用户名", searchable: true, orderable: false, width: "100px", responsivePriority: 1 },
+                    { data: "Tel", title: "手机号码", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                ],
+                buttons: [
+                     Output.WriteLine("{ extend: \"create\", text: \"创建\", name:\"Create\", editor: editor},"),
+                     Output.WriteLine("{ extend: \"edit\", text: \"编辑\", name:\"Edit\", editor: editor},"),
+                ]
+
+            });
+
+        });
+        //调整窗口大小
+        function Resize() {
+            $('#example1').DataTable()
+                .columns.adjust()
+                .responsive.recalc();
+        }
+        //页面数据注销
+        function AjaxDispose() {
+            if (!isdisposed) {
+                isdisposed = true;
+
+                try {
+                         table.destroy();
+
+                }
+                catch
+                {
+                    console.log("释放失败");
+                }
+            }
+        }
+
+    </script>
+}
+
+

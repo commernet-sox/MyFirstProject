@@ -15,8 +15,8 @@ namespace WFWebProject.Models
             
         }
         public DbSet<CompanyInfo> CompanyInfo { get; set; }
-        public DbSet<WFWebProject.Models.CodeMaster> CodeMaster { get; set; }
-        public DbSet<WFWebProject.Models.CompanyQualification> CompanyQualification { get; set; }
-        public DbSet<WFWebProject.Models.ConstructorInfo> ConstructorInfo { get; set; }
+        public DbSet<CodeMaster> CodeMaster { get; set; }
+        public DbSet<CompanyQualification> CompanyQualification { get; set; }
+        public DbSet<ConstructorInfo> ConstructorInfo { get; set; }
     }
 }
