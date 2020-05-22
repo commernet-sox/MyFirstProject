@@ -66,6 +66,9 @@ namespace WFWebProject
                 options.IdleTimeout = TimeSpan.FromMinutes(30); //session活期时间
                 options.Cookie.HttpOnly = true;//设为httponly
             });
+            //添加返回压缩
+            services.AddResponseCompression();
+            services.AddResponseCaching();
             //注册mvc服务
             services.AddMvc().AddJsonOptions(options =>
              {
@@ -125,6 +128,8 @@ namespace WFWebProject
         
         public void Configure(IApplicationBuilder app, Microsoft.AspNetCore.Hosting.IHostingEnvironment env)
         {
+            app.UseResponseCompression();
+            app.UseResponseCaching();
             var cachePeriod = env.IsDevelopment() ? "600" : "604800";
             app.UseStaticFiles(new StaticFileOptions
             {

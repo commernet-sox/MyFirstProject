@@ -38,10 +38,11 @@ namespace WFWebProject.Controllers
             return View();
         }
         [AllowAnonymous]
-        public async Task<IActionResult> Login(Login model)
+        public async Task<IActionResult> Login(Login model,string ReturnUrl=null)
         {
             try
             {
+                ViewBag.ReturnUrl = ReturnUrl;
                 //验证模型是否正确
                 if (!ModelState.IsValid)
                 {
@@ -76,6 +77,10 @@ namespace WFWebProject.Controllers
                     HttpContext.Session.SetString("User", model.Tel);
                     #endregion
                     //return Json(new { result = true, userName = dt.Rows[0]["Tel"], password = dt.Rows[0]["Pwd"], roleID = dt.Rows[0]["roleID"] });
+                    if (ReturnUrl != null)
+                    {
+                        return Redirect(ReturnUrl);
+                    }
                     return RedirectToAction("Index","Home");
                 }
                 else

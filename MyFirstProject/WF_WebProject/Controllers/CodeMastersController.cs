@@ -13,7 +13,7 @@ using WFWebProject.Service;
 
 namespace WFWebProject.Controllers
 {
-    
+    [Authorize]
     public class CodeMastersController : Controller
     {
         private readonly DataContext _context;
