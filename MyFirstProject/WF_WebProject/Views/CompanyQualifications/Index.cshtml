@@ -1,0 +1,153 @@
+﻿<style>
+    table.dataTable {
+        border-collapse: collapse !important;
+    }
+</style>
+<div class="page-content-body">
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">企业资质信息</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+</div>
+
+@section scripts{
+
+    <script>
+        function filterColumn(i) {
+            $('#example1').DataTable().column(i).search(
+                $('#col' + i + '_filter').val(),
+                false,
+                false
+            ).draw();
+        }
+        var editor, table, isdisposed;
+        var curWarehouseId, curType, curStorerId; // use a global for the submit and return data rendering in the examples
+        $(document).ready(function () {
+            isdisposed = false;
+            App.initResizeHandler();
+            Layout.initAjaxContentSuccessCallback();
+            App.addResizeHandler(Resize);
+            Layout.addAjaxContentSuccessCallback(AjaxDispose);
+
+            //查询
+            table = $('#example1').DataTable({
+                //"paging": true,
+                //"lengthChange": true,
+                //"searching": true,
+                //"ordering": true,
+                //"info": true,
+                //"autoWidth": true,
+                //"select": false,
+                "scrollX": true,
+                lengthMenu: [[10, 25, 50, 100, 500], [10, 25, 50, 100, 500]],
+                initComplete: function () {
+                    //console.log("111");
+                    table.search("").draw();
+                },
+                drawCallback: function () {
+                    $('#example1 thead th').each( function () {
+                        var title = $(this).text();
+                        $(this).html( '<input type="text" class="dataTables_sizing" style="width:100%"  placeholder="Search '+title+'" />' );
+                    } );
+                     //Apply the search
+                    this.api().columns().every(function () {
+                        //console.log(this.columns());
+                        var that = this;
+ 
+                        $('input').on('keyup change clear', function () {
+                            //console.log(that);
+                            //console.log(that.search() + ":" + this.value);
+                            if (this.parentNode.cellIndex == that[0].toString()) {
+                                if (that.search() !== this.value) {
+                                    that[0] = (this.parentNode.cellIndex + 1).toString();
+                                that
+                                    .search( this.value )
+                                    .draw();
+                            }
+                            }
+                        } );
+                    } );
+                },
+                ajax: {
+                    url: "@Url.Action("PageData", "CompanyQualifications")",
+                    type: "post"
+                },
+                order: [[0, 'asc']],//一定要添加
+                colReorder: {
+                    fixedColumnsLeft: 1
+                },
+                serverSide:true,
+                columns: [
+                    { data: "Id", title: "主键", searchable: true, orderable: true, width: "50px",visible:false, responsivePriority: 1 },
+                    { data: "Code", title: "企业编号", searchable: true, orderable: false, width: "100px", responsivePriority: 1 },
+                    { data: "Name", title: "企业名称", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "EconomicType", title: "经济类型", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "Province", title: "注册地（省/市）", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "City", title: "注册地（市/区）", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "Time", title: "时间", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "Email", title: "邮箱", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "WebSite", title: "企业网址", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "QualificationType", title: "资质类型", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "ContactAddress", title: "资质联系地址", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "ZipCode", title: "邮编", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "SafetyLicenseNo", title: "安全生产许可证编号", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "StartDate", title: "有效期（起始）", searchable: true, orderable: true, width: "100px", responsivePriority: 1 ,
+                        render: function (val, type, row) {
+                            val = moment(val).format('YYYY-MM-DD hh:mm:ss');
+                            return val;
+                        }},
+                    { data: "EndDate", title: "有效期（截止）", searchable: true, orderable: true, width: "100px", responsivePriority: 1 ,
+                        render: function (val, type, row) {
+                            val = moment(val).format('YYYY-MM-DD hh:mm:ss');
+                            return val;
+                        }},
+                    { data: "IssuingAuthority", title: "发证机构", searchable: true, orderable: true, width: "500px", responsivePriority: 1 },
+                    { data: "ScopeLicense", title: "安全生产许可证范围", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "OrganizationCode", title: "组织机构代码", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "ComprehensiveScore", title: "信用综合评分", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    
+                ],
+                
+
+            });
+        });
+        //调整窗口大小
+        function Resize() {
+            $('#example1').DataTable()
+                .columns.adjust()
+                .responsive.recalc();
+        }
+        //页面数据注销
+        function AjaxDispose() {
+            if (!isdisposed) {
+                isdisposed = true;
+                try {
+                            table.destroy();
+
+                }
+                catch
+                {
+                    console.log("释放失败");
+                }
+            }
+        }
+    </script>
+}
+
+

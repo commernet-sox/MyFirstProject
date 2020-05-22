@@ -1,0 +1,137 @@
+﻿<style>
+    table.dataTable {
+        border-collapse: collapse !important;
+    }
+</style>
+<div class="page-content-body">
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">建造师信息</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+</div>
+
+@section scripts{
+
+    <script>
+        function filterColumn(i) {
+            $('#example1').DataTable().column(i).search(
+                $('#col' + i + '_filter').val(),
+                false,
+                false
+            ).draw();
+        }
+        var editor, table, isdisposed;
+        var curWarehouseId, curType, curStorerId; // use a global for the submit and return data rendering in the examples
+        $(document).ready(function () {
+            isdisposed = false;
+            App.initResizeHandler();
+            Layout.initAjaxContentSuccessCallback();
+            App.addResizeHandler(Resize);
+            Layout.addAjaxContentSuccessCallback(AjaxDispose);
+
+            //查询
+            table = $('#example1').DataTable({
+                //"paging": true,
+                //"lengthChange": true,
+                //"searching": true,
+                //"ordering": true,
+                //"info": true,
+                //"autoWidth": true,
+                //"select": false,
+                "scrollX": true,
+                lengthMenu: [[10, 25, 50, 100, 500], [10, 25, 50, 100, 500]],
+                initComplete: function () {
+                    //console.log("111");
+                    table.search("").draw();
+                },
+                drawCallback: function () {
+                    $('#example1 thead th').each( function () {
+                        var title = $(this).text();
+                        $(this).html( '<input type="text" class="dataTables_sizing" style="width:100%"  placeholder="Search '+title+'" />' );
+                    } );
+                     //Apply the search
+                    this.api().columns().every(function () {
+                        //console.log(this.columns());
+                        var that = this;
+ 
+                        $('input').on('keyup change clear', function () {
+                            //console.log(that);
+                            //console.log(that.search() + ":" + this.value);
+                            if (this.parentNode.cellIndex == that[0].toString()) {
+                                if (that.search() !== this.value) {
+                                    that[0] = (this.parentNode.cellIndex + 1).toString();
+                                that
+                                    .search( this.value )
+                                    .draw();
+                            }
+                            }
+                        } );
+                    } );
+                },
+                ajax: {
+                    url: "@Url.Action("PageData", "ConstructorInfoes")",
+                    type: "post"
+                },
+                order: [[0, 'asc']],//一定要添加
+                colReorder: {
+                    fixedColumnsLeft: 1
+                },
+                serverSide:true,
+                columns: [
+                    { data: "Id", title: "主键", searchable: true, orderable: true, width: "50px",visible:false, responsivePriority: 1 },
+                    { data: "Province", title: "省份", searchable: true, orderable: false, width: "100px", responsivePriority: 1 },
+                    { data: "CompanyName", title: "企业名称", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "Constructor", title: "建造师", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "RegisterNumber", title: "注册号", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "PracticeSealNo", title: "执业印章号", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "RegisterCertNo", title: "注册证书编号", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "QualificationCertNo", title: "执业资格证书编号", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "DateIssue", title: "发证日期", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "RegisterMajor", title: "注册专业", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "ValidityRegistration", title: "注册有效期", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    
+                ],
+                
+
+            });
+        });
+        //调整窗口大小
+        function Resize() {
+            $('#example1').DataTable()
+                .columns.adjust()
+                .responsive.recalc();
+        }
+        //页面数据注销
+        function AjaxDispose() {
+            if (!isdisposed) {
+                isdisposed = true;
+                try {
+                            table.destroy();
+
+                }
+                catch
+                {
+                    console.log("释放失败");
+                }
+            }
+        }
+    </script>
+}
+
+
