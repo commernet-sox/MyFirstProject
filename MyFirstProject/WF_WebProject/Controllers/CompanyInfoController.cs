@@ -17,7 +17,7 @@ using WFWebProject.Models;
 
 namespace WFWebProject.Controllers
 {
-    
+    [Authorize]
     public class CompanyInfoController : Controller
     {
         private readonly DataContext _context;

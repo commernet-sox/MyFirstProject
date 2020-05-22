@@ -14,5 +14,6 @@ namespace WFWebProject.Models
         [DataType(DataType.Password)]
         public string Pwd { get; set; }
         public bool RememberMe { get; set; }
+       
     }
 }

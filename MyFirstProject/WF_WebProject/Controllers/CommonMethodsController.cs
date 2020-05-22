@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Core.WebServices.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WFWebProject.Interface;
 
 namespace WFWebProject.Controllers
 {
+    [Authorize]
     public class CommonMethodsController : Controller
     {
         private IUserService _userService;
