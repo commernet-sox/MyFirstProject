@@ -1,0 +1,93 @@
+﻿@model MenuModel
+<nav class="mt-2">
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link active">
+                <i class="nav-icon fa fa-dashboard"></i>
+                <p>
+                    系统数据
+                    <i class="right fa fa-angle-left"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+
+
+                <li class="nav-item">
+                    <a href="@Url.Action("Menu", "Home")" class="nav-link active">
+                        <i class="fa fa-circle-o nav-icon"></i>
+                        <p>菜单管理</p>
+                    </a>
+                </li>
+
+
+
+            </ul>
+        </li>
+        <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link active">
+                <i class="nav-icon fa fa-dashboard"></i>
+                <p>
+                    基础数据
+                    <i class="right fa fa-angle-left"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+
+
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "CompanyInfo")" class="nav-link active">
+                        <i class="fa fa-circle-o nav-icon"></i>
+                        <p>企业基本信息</p>
+                    </a>
+                </li>
+
+
+
+
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "CompanyQualifications")" class="nav-link">
+                        <i class="fa fa-circle-o nav-icon"></i>
+                        <p>企业资质信息</p>
+                    </a>
+                </li>
+
+
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "ConstructorInfoes")" class="nav-link">
+                        <i class="fa fa-circle-o nav-icon"></i>
+                        <p>建造师信息</p>
+                    </a>
+                </li>
+
+
+                <li class="nav-item">
+                    <a href="@Url.Action("AllIndex", "CompanyInfo")" class="nav-link">
+                        <i class="fa fa-circle-o nav-icon"></i>
+                        <p>企业全部信息</p>
+                    </a>
+                </li>
+                }
+
+                <li class="nav-item">
+                    <a href="@Url.Action("All", "CompanyInfo")" class="nav-link">
+                        <i class="fa fa-circle-o nav-icon"></i>
+                        <p>All</p>
+                    </a>
+                </li>
+                @if (Model.MenuName.Where(t => t.ToString() == "建造师信息").FirstOrDefault() != null)
+                {
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "CodeMasters")" class="nav-link">
+                            <i class="fa fa-circle-o nav-icon"></i>
+                            <p>测试数据</p>
+                        </a>
+                    </li>
+                }
+
+
+            </ul>
+        </li>
+
+
+    </ul>
+</nav>
