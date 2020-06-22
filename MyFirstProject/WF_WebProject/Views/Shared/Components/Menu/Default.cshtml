@@ -15,7 +15,7 @@
                     @if (Model.MenuName.Where(t => t.ToString() == "菜单管理").FirstOrDefault() != null)
                     {
                         <li class="nav-item">
-                            <a href="@Url.Action("Menu", "Home")" class="nav-link active">
+                            <a href="@Url.Action("Menu", "Home")" class="nav-link ">
                                 <i class="fa fa-circle-o nav-icon"></i>
                                 <p>菜单管理</p>
                             </a>
@@ -48,7 +48,7 @@
                     @if (Model.MenuName.Where(t => t.ToString() == "企业基本信息").FirstOrDefault() != null)
                     {
                         <li class="nav-item">
-                            <a href="@Url.Action("Index", "CompanyInfo")" class="nav-link active">
+                            <a href="@Url.Action("Index", "CompanyInfo")" class="nav-link ">
                                 <i class="fa fa-circle-o nav-icon"></i>
                                 <p>企业基本信息</p>
                             </a>
