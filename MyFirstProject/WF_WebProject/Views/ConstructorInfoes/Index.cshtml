@@ -6,28 +6,85 @@
 <div class="page-content-body">
     <section class="content">
         <div class="row">
+            <div class="col-md-12">
+                <div class="portlet light">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-search"></i>
+                            <span class="caption-subject bold font-grey-gallery uppercase">建造师信息</span>
+                            <span class="caption-helper">查询可以收缩</span>
+                        </div>
+                        <div class="tools">
+                            <a href="" class="collapse" data-original-title="" title=""> </a>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="booking-search">
+                            <div class="row form-group">
+                                <div class="fiter col-md-4 col-xs-6" data-column="3" data-name="DateIssue">
+                                    <label class="control-label">发证日期:</label>
+                                    <div class="date-picker input-daterange" data-date-format="YYYY-MM-DD">
+                                        <input class="form-control" type="text" id="col3_filter" placeholder="创建时间" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row margin-top">
+                                <div class="fiter col-md-2 col-xs-5">
+                                    <button class="btn green btn-block  margin-bottom-20" id="Search">查询<i class="m-icon-swapright m-icon-white"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">建造师信息</h3>
                     </div>
-                    <!-- /.card-header -->
                     <div class="card-body">
                         <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>省份</th>
+                                    <th>企业名称</th>
+                                    <th>建造师</th>
+                                    <th>注册号</th>
+                                    <th>执业印章号</th>
+                                    <th>注册证书编号</th>
+                                    <th>执业资格证书编号</th>
+                                    <th>发证日期</th>
+                                    <th>注册专业</th>
+                                    <th>注册有效期</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>省份</th>
+                                    <th>企业名称</th>
+                                    <th>建造师</th>
+                                    <th>注册号</th>
+                                    <th>执业印章号</th>
+                                    <th>注册证书编号</th>
+                                    <th>执业资格证书编号</th>
+                                    <th>发证日期</th>
+                                    <th>注册专业</th>
+                                    <th>注册有效期</th>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
-                    <!-- /.card-body -->
                 </div>
-                <!-- /.card -->
             </div>
-            <!-- /.col -->
         </div>
-        <!-- /.row -->
     </section>
 </div>
 
 @section scripts{
-
     <script>
         function filterColumn(i) {
             $('#example1').DataTable().column(i).search(
@@ -44,9 +101,45 @@
             Layout.initAjaxContentSuccessCallback();
             App.addResizeHandler(Resize);
             Layout.addAjaxContentSuccessCallback(AjaxDispose);
-
+            //时间插件配置
+            if (jQuery().datepicker) {
+                $('#col3_filter').datepicker({
+                    language: 'zh-CN',
+                    autoclose: true,
+                    todayHighlight: true,
+                    format: 'yyyy-mm-dd',
+                    clearBtn: true
+                });
+                $('.date-picker').datepicker({
+                    rtl: App.isRTL(),
+                    orientation: "left",
+                    autoclose: true,
+                    todayHighlight: true,
+                    language: 'zh-CN',
+                    clearBtn: true,
+                });
+            }
+            $('#example1 tfoot th').each(function () {
+                var title = $(this).text();
+                $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+            });
             //查询
             table = $('#example1').DataTable({
+
+                initComplete: function () {
+                    // Apply the search
+                    this.api().columns().every(function () {
+                        var that = this;
+
+                        $('input', this.footer()).on('keyup change clear', function () {
+                            if (that.search() !== this.value) {
+                                that
+                                    .search(this.value)
+                                    .draw();
+                            }
+                        });
+                    });
+                },
                 //"paging": true,
                 //"lengthChange": true,
                 //"searching": true,
@@ -56,34 +149,34 @@
                 //"select": false,
                 "scrollX": true,
                 lengthMenu: [[10, 25, 50, 100, 500], [10, 25, 50, 100, 500]],
-                initComplete: function () {
-                    //console.log("111");
-                    table.search("").draw();
-                },
-                drawCallback: function () {
-                    $('#example1 thead th').each( function () {
-                        var title = $(this).text();
-                        $(this).html( '<input type="text" class="dataTables_sizing" style="width:100%"  placeholder="Search '+title+'" />' );
-                    } );
-                     //Apply the search
-                    this.api().columns().every(function () {
-                        //console.log(this.columns());
-                        var that = this;
+                //initComplete: function () {
+                //    //console.log("111");
+                //    table.search("").draw();
+                //},
+                //drawCallback: function () {
+                //    $('#example1 thead th').each( function () {
+                //        var title = $(this).text();
+                //        $(this).html( '<input type="text" class="dataTables_sizing" style="width:100%"  placeholder="Search '+title+'" />' );
+                //    } );
+                //     //Apply the search
+                //    this.api().columns().every(function () {
+                //        //console.log(this.columns());
+                //        var that = this;
  
-                        $('input').on('keyup change clear', function () {
-                            //console.log(that);
-                            //console.log(that.search() + ":" + this.value);
-                            if (this.parentNode.cellIndex == that[0].toString()) {
-                                if (that.search() !== this.value) {
-                                    that[0] = (this.parentNode.cellIndex + 1).toString();
-                                that
-                                    .search( this.value )
-                                    .draw();
-                            }
-                            }
-                        } );
-                    } );
-                },
+                //        $('input').on('keyup change clear', function () {
+                //            //console.log(that);
+                //            //console.log(that.search() + ":" + this.value);
+                //            if (this.parentNode.cellIndex == that[0].toString()) {
+                //                if (that.search() !== this.value) {
+                //                    that[0] = (this.parentNode.cellIndex + 1).toString();
+                //                that
+                //                    .search( this.value )
+                //                    .draw();
+                //            }
+                //            }
+                //        } );
+                //    } );
+                //},
                 ajax: {
                     url: "@Url.Action("PageData", "ConstructorInfoes")",
                     type: "post"
@@ -94,21 +187,42 @@
                 },
                 serverSide:true,
                 columns: [
-                    { data: "Id", title: "主键", searchable: true, orderable: true, width: "50px",visible:false, responsivePriority: 1 },
-                    { data: "Province", title: "省份", searchable: true, orderable: false, width: "100px", responsivePriority: 1 },
-                    { data: "CompanyName", title: "企业名称", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "Constructor", title: "建造师", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "RegisterNumber", title: "注册号", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "PracticeSealNo", title: "执业印章号", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "RegisterCertNo", title: "注册证书编号", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "QualificationCertNo", title: "执业资格证书编号", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "DateIssue", title: "发证日期", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "RegisterMajor", title: "注册专业", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "ValidityRegistration", title: "注册有效期", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "Id",  searchable: true, orderable: true, width: "50px",visible:false, responsivePriority: 1 },
+                    { data: "Province",  searchable: true, orderable: false, width: "100px", responsivePriority: 1 },
+                    { data: "CompanyName",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "Constructor",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "RegisterNumber",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "PracticeSealNo",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "RegisterCertNo",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "QualificationCertNo",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "DateIssue",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "RegisterMajor",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "ValidityRegistration",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     
                 ],
                 
 
+            });
+            //查询事件
+            $('#Search').click(function () {
+                var items = $(this).parents('.booking-search').find('.fiter');
+                $.each(items, function (index, obj) {
+                    var i = $(obj).attr('data-column');
+                    var name = $(obj).attr('data-name') + '';
+                    var val = $('#col' + i + '_filter').val();
+                    if (val === null)
+                        val = '';
+                    var index = $('#example1').DataTable().columns().dataSrc().indexOf(name)
+                    var selectot = '.search-' + index;
+                    if ($(selectot).length === 0) {
+                        $('#example1').DataTable().column(index).search(val, false, false);
+                    }
+                    else {
+                        $('#example1').DataTable().column($(selectot)).search(val, false, false);
+                    }
+                });
+
+                $('#example1').DataTable().columns().search().draw();
             });
         });
         //调整窗口大小
