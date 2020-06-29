@@ -21,6 +21,9 @@ namespace WFWebProject.Profile
 
             CreateMap<UserMenuRoleDTO, UserMenuRole>();
             CreateMap<UserMenuRole, UserMenuRoleDTO>();
+
+            CreateMap<CodeMasterDTO,CodeMaster>();
+            CreateMap<CodeMaster,CodeMasterDTO>();
         }
     }
 }
