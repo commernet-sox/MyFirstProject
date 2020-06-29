@@ -53,6 +53,7 @@ namespace WFWebProject.Controllers
                 dt.Columns.Add("Pwd", typeof(string));
                 dt.Columns.Add("roleID", typeof(string));
                 if (db.User.Where(t=>t.UserName==model.Tel&&t.Pwd==model.Pwd).Count()>0)
+                //if (model.Tel=="123"&&model.Pwd=="123")
                 {
                     dt.Rows.Add("Tel",model.Tel);
                     dt.Rows.Add("Pwd", model.Pwd);
