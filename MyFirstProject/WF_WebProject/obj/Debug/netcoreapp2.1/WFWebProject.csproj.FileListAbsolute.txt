@@ -103,7 +103,6 @@ C:\Users\FS\source\repos\MyFirstProject\WF_WebProject\bin\Debug\netcoreapp2.1\Co
 C:\Users\FS\source\repos\MyFirstProject\WF_WebProject\bin\Debug\netcoreapp2.1\Core.Infrastructure.dll
 C:\Users\FS\source\repos\MyFirstProject\WF_WebProject\bin\Debug\netcoreapp2.1\Core.Infrastructure.Extension.dll
 C:\Users\FS\source\repos\MyFirstProject\WF_WebProject\bin\Debug\netcoreapp2.1\Core.WebServices.dll
-C:\Users\FS\source\repos\MyFirstProject\WF_WebProject\obj\Debug\netcoreapp2.1\WFWebProject.csprojAssemblyReference.cache
 C:\Users\FS\source\repos\MyFirstProject\WF_WebProject\obj\Debug\netcoreapp2.1\WFWebProject.RazorAssemblyInfo.cache
 C:\Users\FS\source\repos\MyFirstProject\WF_WebProject\obj\Debug\netcoreapp2.1\WFWebProject.RazorAssemblyInfo.cs
 C:\Users\FS\source\repos\MyFirstProject\WF_WebProject\obj\Debug\netcoreapp2.1\WFWebProject.AssemblyInfoInputs.cache
@@ -180,3 +179,6 @@ E:\GitHub\MyFirstProject\MyFirstProject\MyFirstProject\WF_WebProject\obj\Debug\n
 E:\GitHub\MyFirstProject\MyFirstProject\MyFirstProject\WF_WebProject\obj\Debug\netcoreapp2.1\WFWebProject.dll
 E:\GitHub\MyFirstProject\MyFirstProject\MyFirstProject\WF_WebProject\obj\Debug\netcoreapp2.1\WFWebProject.pdb
 E:\GitHub\MyFirstProject\MyFirstProject\MyFirstProject\WF_WebProject\obj\Debug\netcoreapp2.1\WFWebProject.genruntimeconfig.cache
+C:\Users\FS\source\repos\MyFirstProject\WF_WebProject\obj\Debug\netcoreapp2.1\WFWebProject.csproj.CoreCompileInputs.cache
+C:\Users\FS\source\repos\MyFirstProject\WF_WebProject\obj\Debug\netcoreapp2.1\WFWebProject.genruntimeconfig.cache
+C:\Users\FS\source\repos\MyFirstProject\WF_WebProject\obj\Debug\netcoreapp2.1\WFWebProject.csprojAssemblyReference.cache

@@ -44,6 +44,34 @@ namespace WFWebProject.Service
             result.DtResponse.data = warehouseBasicList;
             return result;
         }
+
+        public CoreResponse EditData(string Id, CoreRequest core_request)
+        {
+            try
+            {
+                var dbcontext = base.Repository.SlaveUnitOfWork.DbContext;
+                CoreResponse core_response = new CoreResponse(core_request);
+                foreach (var item in core_request.DtRequest.Data)
+                {
+                    string key = item.Key;
+                    var data = item.Value as Dictionary<string, object>;
+                    CodeMasterDTO codeMasterDTO = this.GetByID(Convert.ToInt32(Id));
+                    if (codeMasterDTO == null) continue;
+                    if (data.ContainsKey("Remarks"))
+                    {
+                        codeMasterDTO.Remarks = data["Remarks"].ToString();
+                    }
+                    codeMasterDTO.ModifyTime = DateTime.Now;
+                    codeMasterDTO.Modifier = "wangfeng";
+                    this.Update(codeMasterDTO);
+                }
+                return core_response;
+            }
+            catch (Exception ex)
+            {
+                return new CoreResponse(core_request);
+            }
+        }
         protected override CoreResponse Create(CoreRequest core_request)
         {
             throw new NotImplementedException();
