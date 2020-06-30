@@ -35,6 +35,13 @@ namespace WFWebProject.Controllers
             var result = this._ConstructorInfoService.DTData(HttpContext);
             return Json(result.DtResponse);
         }
-        
+        [HttpPost]
+        public async Task<IActionResult> Edit(string Id)
+        {
+            Core.WebServices.Model.CoreRequest coreRequest = new Core.WebServices.Model.CoreRequest(HttpContext);
+            Core.WebServices.Model.CoreResponse core_response = new Core.WebServices.Model.CoreResponse(coreRequest);
+            this._ConstructorInfoService.EditData(Id, coreRequest);
+            return Json(core_response.DtResponse);
+        }
     }
 }

@@ -10,6 +10,43 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">建造师信息</h3>
+                        <div class="portlet-body">
+                            <div class="booking-search">
+                                <div class="row form-group">
+                                    <div class="fiter col-md-6 col-xs-8">
+                                        <div class=" input-group input-large date-picker input-daterange" data-date-format="yyyy-mm-dd" style="margin-top:21px;">
+                                            <div class="fiter" data-column="01" data-name="DateIssue">
+                                                <input type="text" id="col01_filter" class="form-control" placeholder="发证日期开始-日期" autocomplete="off">
+                                            </div>
+                                            <span class="input-group-addon">
+                                                到
+                                            </span>
+                                            <div class="fiter" data-column="02" data-name="DateIssue1">
+                                                <input type="text" id="col02_filter" class="form-control" placeholder="发证日期结束-日期" autocomplete="off">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="fiter col-md-6 col-xs-8">
+                                        <div class=" input-group input-large date-picker input-daterange" data-date-format="yyyy-mm-dd" style="margin-top:21px;">
+                                            <div class="fiter" data-column="03" data-name="ValidityRegistration">
+                                                <input type="text" id="col03_filter" class="form-control" placeholder="注册有效期开始-日期" autocomplete="off">
+                                            </div>
+                                            <span class="input-group-addon">
+                                                到
+                                            </span>
+                                            <div class="fiter" data-column="04" data-name="ValidityRegistration1">
+                                                <input type="text" id="col04_filter" class="form-control" placeholder="注册有效期结束-日期" autocomplete="off">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row margin-top">
+                                    <div class="fiter col-md-2 col-xs-5">
+                                        <button class="btn green btn-block  margin-bottom-20" id="Search">查询<i class="m-icon-swapright m-icon-white"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body">
                         <table id="example1" class="table table-bordered table-striped">
@@ -26,6 +63,7 @@
                                     <th>发证日期</th>
                                     <th>注册专业</th>
                                     <th>注册有效期</th>
+                                    <th>备注</th>
                                 </tr>
                             </thead>
                             <tfoot>
@@ -41,6 +79,7 @@
                                     <th>发证日期</th>
                                     <th>注册专业</th>
                                     <th>注册有效期</th>
+                                    <th>备注</th>
                                 </tr>
                             </tfoot>
                         </table>
@@ -61,20 +100,43 @@
             ).draw();
         }
         var editor, table, isdisposed;
-        var curWarehouseId, curType, curStorerId; // use a global for the submit and return data rendering in the examples
+        var curWarehouseId, curType, curStorerId;
+        var rowId = '0';
         $(document).ready(function () {
             isdisposed = false;
             App.initResizeHandler();
             Layout.initAjaxContentSuccessCallback();
             App.addResizeHandler(Resize);
             Layout.addAjaxContentSuccessCallback(AjaxDispose);
+
             //时间插件配置
             if (jQuery().datepicker) {
-                $('#col3_filter').datepicker({
+                $('#col01_filter').datepicker({
                     language: 'zh-CN',
                     autoclose: true,
                     todayHighlight: true,
-                    format: 'yyyy-mm-dd',
+                    format: 'yyyy-mm-dd 00:00:00',
+                    clearBtn: true
+                });
+                $('#col02_filter').datepicker({
+                    language: 'zh-CN',
+                    autoclose: true,
+                    todayHighlight: true,
+                    format: 'yyyy-mm-dd 23:59:59',
+                    clearBtn: true
+                });
+                $('#col03_filter').datepicker({
+                    language: 'zh-CN',
+                    autoclose: true,
+                    todayHighlight: true,
+                    format: 'yyyy-mm-dd 00:00:00',
+                    clearBtn: true
+                });
+                $('#col04_filter').datepicker({
+                    language: 'zh-CN',
+                    autoclose: true,
+                    todayHighlight: true,
+                    format: 'yyyy-mm-dd 23:59:59',
                     clearBtn: true
                 });
                 $('.date-picker').datepicker({
@@ -86,6 +148,15 @@
                     clearBtn: true,
                 });
             }
+
+            //行内编辑
+            $('#example1').on('click', 'tbody td.editable', function (e) {
+                rowId = table.row($(this).closest('tr')).data().Id;
+                console.log("rowId=" + rowId);
+                initeditor();
+                editor.inline(this);
+            });
+
             $('#example1 tfoot th').each(function () {
                 var title = $(this).text();
                 $(this).html('<input type="text" placeholder="Search ' + title + '" />');
@@ -107,43 +178,8 @@
                         });
                     });
                 },
-                //"paging": true,
-                //"lengthChange": true,
-                //"searching": true,
-                //"ordering": true,
-                //"info": true,
-                //"autoWidth": true,
-                //"select": false,
                 "scrollX": true,
                 lengthMenu: [[10, 25, 50, 100, 500], [10, 25, 50, 100, 500]],
-                //initComplete: function () {
-                //    //console.log("111");
-                //    table.search("").draw();
-                //},
-                //drawCallback: function () {
-                //    $('#example1 thead th').each( function () {
-                //        var title = $(this).text();
-                //        $(this).html( '<input type="text" class="dataTables_sizing" style="width:100%"  placeholder="Search '+title+'" />' );
-                //    } );
-                //     //Apply the search
-                //    this.api().columns().every(function () {
-                //        //console.log(this.columns());
-                //        var that = this;
- 
-                //        $('input').on('keyup change clear', function () {
-                //            //console.log(that);
-                //            //console.log(that.search() + ":" + this.value);
-                //            if (this.parentNode.cellIndex == that[0].toString()) {
-                //                if (that.search() !== this.value) {
-                //                    that[0] = (this.parentNode.cellIndex + 1).toString();
-                //                that
-                //                    .search( this.value )
-                //                    .draw();
-                //            }
-                //            }
-                //        } );
-                //    } );
-                //},
                 ajax: {
                     url: "@Url.Action("PageData", "ConstructorInfoes")",
                     type: "post"
@@ -162,14 +198,17 @@
                     { data: "PracticeSealNo",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     { data: "RegisterCertNo",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     { data: "QualificationCertNo",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "DateIssue",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "DateIssue", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "DateIssue1", title: "", searchable: true, orderable: false, visible: false, width: "80px" },
                     { data: "RegisterMajor",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "ValidityRegistration",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    
+                    { data: "ValidityRegistration", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "ValidityRegistration1", title: "", searchable: true, orderable: false, visible: false, width: "80px" },
+                    { data: "Remarks", title: "备注", searchable: true, orderable: true, width: "100px", responsivePriority: 1, className: "editable" },
                 ],
-                
+
 
             });
+
             //查询事件
             $('#Search').click(function () {
                 var items = $(this).parents('.booking-search').find('.fiter');
@@ -192,6 +231,24 @@
                 $('#example1').DataTable().columns().search().draw();
             });
         });
+        //编辑更新
+        function initeditor() {
+            editor = new $.fn.dataTable.Editor({
+                        idSrc: "Id",
+                        ajax: {
+                            edit: {
+                                url: '@Url.Action("Edit", "ConstructorInfoes")',
+                                type: 'POST',
+                                dataType: 'json',
+                                data: { "Id": rowId+'' }
+                            }
+                        },
+                        table: "#example1",
+                        fields: [
+                            { label: "Remarks:", name: "Remarks" },
+                        ]
+                    });
+        }
         //调整窗口大小
         function Resize() {
             $('#example1').DataTable()

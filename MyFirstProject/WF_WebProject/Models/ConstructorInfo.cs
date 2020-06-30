@@ -28,5 +28,11 @@ namespace WFWebProject.Models
         public string RegisterMajor { get; set; }
         //注册有效期
         public string ValidityRegistration { get; set; }
+        //备注
+        public string Remarks { get; set; }
+        //修改时间
+        public Nullable<DateTime> ModifyTime { get; set; }
+        //修改人
+        public string Modifier { get; set; }
     }
 }

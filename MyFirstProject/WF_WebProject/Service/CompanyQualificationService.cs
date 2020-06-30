@@ -2,6 +2,7 @@
 using Core.Database.Repository;
 using Core.WebServices.Model;
 using Core.WebServices.Service;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,6 +51,33 @@ namespace WFWebProject.Service
             List<CompanyQualificationDTO> itemList = result.DtResponse.data as List<CompanyQualificationDTO>;
             result.DtResponse.data = itemList;
             return result;
+        }
+        public CoreResponse EditData(string Id, CoreRequest core_request)
+        {
+            try
+            {
+                var dbcontext = base.Repository.SlaveUnitOfWork.DbContext;
+                CoreResponse core_response = new CoreResponse(core_request);
+                foreach (var item in core_request.DtRequest.Data)
+                {
+                    string key = item.Key;
+                    var data = item.Value as Dictionary<string, object>;
+                    CompanyQualificationDTO companyQualificationDTO = this.GetByID(Convert.ToInt32(Id));
+                    if (companyQualificationDTO == null) continue;
+                    if (data.ContainsKey("Remarks"))
+                    {
+                        companyQualificationDTO.Remarks = data["Remarks"].ToString();
+                    }
+                    companyQualificationDTO.ModifyTime = DateTime.Now;
+                    companyQualificationDTO.Modifier = core_request.HttpContext.Session.GetString("User");
+                    this.Update(companyQualificationDTO);
+                }
+                return core_response;
+            }
+            catch (Exception ex)
+            {
+                return new CoreResponse(core_request);
+            }
         }
         protected override CoreResponse Create(CoreRequest core_request)
         {

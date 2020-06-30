@@ -65,7 +65,7 @@
         }
 
         var editor, table, isdisposed;
-        var rowId='0'; // use a global for the submit and return data rendering in the examples
+        var rowId='0'; 
         $(document).ready(function () {
             isdisposed = false;
             App.initResizeHandler();
@@ -99,7 +99,7 @@
                 });
             }
 
-
+            //行内编辑
             $('#example1').on('click', 'tbody td.editable', function (e) {
                 rowId = table.row($(this).closest('tr')).data().Id;
                 console.log("rowId=" + rowId);
@@ -191,6 +191,7 @@
 
             });
 
+            //条件搜索
             $('#Search').click(function () {
                 var items = $(this).parents('.booking-search').find('.fiter');
 
@@ -215,6 +216,8 @@
 
             
         });
+
+        //编辑更新
         function initeditor() {
             editor = new $.fn.dataTable.Editor({
                         idSrc: "Id",
@@ -232,12 +235,14 @@
                         ]
                     });
         }
+
         //调整窗口大小
         function Resize() {
             $('#example1').DataTable()
                 .columns.adjust()
                 .responsive.recalc();
         }
+
         //页面数据注销
         function AjaxDispose() {
             if (!isdisposed) {

@@ -81,8 +81,12 @@ namespace WFWebProject.DTO
         [MappingExpression(PropertyName = "RegistrationAuthority", DefaultOperator = ExpressionOperator.Contains)]
         public System.String RegistrationAuthority { get; set; }
         //营业期限
-        [MappingExpression(PropertyName = "BusinessTerm", DefaultOperator = ExpressionOperator.Contains)]
-        public System.String BusinessTerm { get; set; }
+        [MappingExpression(PropertyName = "BusinessTerm", DefaultOperator = ExpressionOperator.GreaterThanOrEqual)]
+        public DateTime BusinessTerm { get; set; }
+        //用于营业期限范围查询
+        //营业期限
+        [MappingExpression(PropertyName = "BusinessTerm", DefaultOperator = ExpressionOperator.LessThanOrEqual)]
+        public DateTime BusinessTerm1 { get; set; }
         //纳税人资质
         [MappingExpression(PropertyName = "TaxpayerQualification", DefaultOperator = ExpressionOperator.Contains)]
         public System.String TaxpayerQualification { get; set; }
@@ -120,7 +124,7 @@ namespace WFWebProject.DTO
         public string City1 { get; set; }
         //时间
         [MappingExpression(PropertyName = "Time", DefaultOperator = ExpressionOperator.Contains)]
-        public string Time { get; set; }
+        public DateTime? Time { get; set; }
         //邮箱
         [MappingExpression(PropertyName = "Email", DefaultOperator = ExpressionOperator.Contains)]
         public string Email { get; set; }
@@ -140,11 +144,17 @@ namespace WFWebProject.DTO
         [MappingExpression(PropertyName = "SafetyLicenseNo", DefaultOperator = ExpressionOperator.Contains)]
         public string SafetyLicenseNo { get; set; }
         //[有效期（起始）]
-        [MappingExpression(PropertyName = "StartDate", DefaultOperator = ExpressionOperator.Contains)]
+        [MappingExpression(PropertyName = "StartDate", DefaultOperator = ExpressionOperator.GreaterThanOrEqual)]
         public Nullable<DateTime> StartDate { get; set; }
+        //[有效期（起始）]
+        [MappingExpression(PropertyName = "StartDate", DefaultOperator = ExpressionOperator.LessThanOrEqual)]
+        public Nullable<DateTime> StartDate1 { get; set; }
         //[有效期（截止）]
-        [MappingExpression(PropertyName = "EndDate", DefaultOperator = ExpressionOperator.Contains)]
+        [MappingExpression(PropertyName = "EndDate", DefaultOperator = ExpressionOperator.GreaterThanOrEqual)]
         public Nullable<DateTime> EndDate { get; set; }
+        //[有效期（截止）]
+        [MappingExpression(PropertyName = "EndDate", DefaultOperator = ExpressionOperator.LessThanOrEqual)]
+        public Nullable<DateTime> EndDate1 { get; set; }
         //发证机构
         [MappingExpression(PropertyName = "IssuingAuthority", DefaultOperator = ExpressionOperator.Contains)]
         public string IssuingAuthority { get; set; }
@@ -157,5 +167,13 @@ namespace WFWebProject.DTO
         //信用综合评分
         [MappingExpression(PropertyName = "ComprehensiveScore", DefaultOperator = ExpressionOperator.Contains)]
         public string ComprehensiveScore { get; set; }
+
+        //备注
+        [MappingExpression(PropertyName = "Remarks", DefaultOperator = ExpressionOperator.Contains)]
+        public string Remarks { get; set; }
+        //修改时间
+        public Nullable<DateTime> ModifyTime { get; set; }
+        //修改人
+        public string Modifier { get; set; }
     }
 }

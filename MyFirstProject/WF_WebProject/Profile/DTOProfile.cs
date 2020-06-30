@@ -24,6 +24,15 @@ namespace WFWebProject.Profile
 
             CreateMap<CodeMasterDTO,CodeMaster>();
             CreateMap<CodeMaster,CodeMasterDTO>();
+
+            CreateMap<ConstructorInfoDTO,ConstructorInfo>();
+            CreateMap<ConstructorInfo, ConstructorInfoDTO>();
+
+            CreateMap<CompanyInfoDTO,CompanyInfo>();
+            CreateMap<CompanyInfo, CompanyInfoDTO>();
+
+            CreateMap<CompanyQualificationDTO,CompanyQualification>();
+            CreateMap<CompanyQualification, CompanyQualificationDTO>();
         }
     }
 }
