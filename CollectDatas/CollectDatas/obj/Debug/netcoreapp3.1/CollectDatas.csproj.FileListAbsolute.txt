@@ -1,0 +1,15 @@
+C:\Users\FS\source\repos\CollectDatas\CollectDatas\bin\Debug\netcoreapp3.1\CollectDatas.exe
+C:\Users\FS\source\repos\CollectDatas\CollectDatas\bin\Debug\netcoreapp3.1\CollectDatas.deps.json
+C:\Users\FS\source\repos\CollectDatas\CollectDatas\bin\Debug\netcoreapp3.1\CollectDatas.runtimeconfig.json
+C:\Users\FS\source\repos\CollectDatas\CollectDatas\bin\Debug\netcoreapp3.1\CollectDatas.runtimeconfig.dev.json
+C:\Users\FS\source\repos\CollectDatas\CollectDatas\bin\Debug\netcoreapp3.1\CollectDatas.dll
+C:\Users\FS\source\repos\CollectDatas\CollectDatas\bin\Debug\netcoreapp3.1\CollectDatas.pdb
+C:\Users\FS\source\repos\CollectDatas\CollectDatas\obj\Debug\netcoreapp3.1\CollectDatas.csprojAssemblyReference.cache
+C:\Users\FS\source\repos\CollectDatas\CollectDatas\obj\Debug\netcoreapp3.1\CollectDatas.AssemblyInfoInputs.cache
+C:\Users\FS\source\repos\CollectDatas\CollectDatas\obj\Debug\netcoreapp3.1\CollectDatas.AssemblyInfo.cs
+C:\Users\FS\source\repos\CollectDatas\CollectDatas\obj\Debug\netcoreapp3.1\CollectDatas.dll
+C:\Users\FS\source\repos\CollectDatas\CollectDatas\obj\Debug\netcoreapp3.1\CollectDatas.pdb
+C:\Users\FS\source\repos\CollectDatas\CollectDatas\obj\Debug\netcoreapp3.1\CollectDatas.Form1.resources
+C:\Users\FS\source\repos\CollectDatas\CollectDatas\obj\Debug\netcoreapp3.1\CollectDatas.csproj.GenerateResource.cache
+C:\Users\FS\source\repos\CollectDatas\CollectDatas\obj\Debug\netcoreapp3.1\CollectDatas.csproj.CoreCompileInputs.cache
+C:\Users\FS\source\repos\CollectDatas\CollectDatas\obj\Debug\netcoreapp3.1\CollectDatas.genruntimeconfig.cache

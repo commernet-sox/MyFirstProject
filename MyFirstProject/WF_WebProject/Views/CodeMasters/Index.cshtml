@@ -5,7 +5,6 @@
     }
 </style>
 <div class="page-content-body">
-
     <section class="content">
         <div class="row">
             <div class="col-12">
@@ -13,6 +12,30 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">测试数据</h3>
+                        <div class="portlet-body">
+                            <div class="booking-search">
+                                <div class="row form-group">
+                                    <div class="fiter col-md-6 col-xs-8">
+                                        <div class=" input-group input-large date-picker input-daterange" data-date-format="yyyy-mm-dd" style="margin-top:21px;">
+                                            <div class="fiter" data-column="01" data-name="CreateTime">
+                                                <input type="text" id="col01_filter" class="form-control" placeholder="创建开始-日期" autocomplete="off">
+                                            </div>
+                                            <span class="input-group-addon">
+                                                到
+                                            </span>
+                                            <div class="fiter" data-column="02" data-name="CreateTime1">
+                                                <input type="text" id="col02_filter" class="form-control" placeholder="创建结束-日期" autocomplete="off">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row margin-top">
+                                    <div class="fiter col-md-2 col-xs-5">
+                                        <button class="btn green btn-block  margin-bottom-20" id="Search">查询<i class="m-icon-swapright m-icon-white"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -27,11 +50,11 @@
         </div>
         <!-- /.row -->
     </section>
-    
+
 </div>
 
 @section scripts{
-    
+
     <script>
         function filterColumn(i) {
             $('#example1').DataTable().column(i).search(
@@ -40,8 +63,9 @@
                 false
             ).draw();
         }
+
         var editor, table, isdisposed;
-        var curWarehouseId, curType, curStorerId; // use a global for the submit and return data rendering in the examples
+        var rowId='0'; // use a global for the submit and return data rendering in the examples
         $(document).ready(function () {
             isdisposed = false;
             App.initResizeHandler();
@@ -49,7 +73,40 @@
             App.addResizeHandler(Resize);
             Layout.addAjaxContentSuccessCallback(AjaxDispose);
 
-            
+            //时间插件配置
+            if (jQuery().datepicker) {
+                $('#col01_filter').datepicker({
+                    language: 'zh-CN',
+                    autoclose: true,
+                    todayHighlight: true,
+                    format: 'yyyy-mm-dd 00:00:00',
+                    clearBtn: true
+                });
+                $('#col02_filter').datepicker({
+                    language: 'zh-CN',
+                    autoclose: true,
+                    todayHighlight: true,
+                    format: 'yyyy-mm-dd 23:59:59',
+                    clearBtn: true
+                });
+                $('.date-picker').datepicker({
+                    rtl: App.isRTL(),
+                    orientation: "left",
+                    autoclose: true,
+                    todayHighlight: true,
+                    language: 'zh-CN',
+                    clearBtn: true,
+                });
+            }
+
+
+            $('#example1').on('click', 'tbody td.editable', function (e) {
+                rowId = table.row($(this).closest('tr')).data().Id;
+                console.log("rowId=" + rowId);
+                initeditor();
+                editor.inline(this);
+            });
+
             //查询
             table = $('#example1').DataTable({
                 //"paging": true,
@@ -72,12 +129,12 @@
                     } );
                      //Apply the search
                     this.api().columns().every(function () {
-                        console.log(this.columns());
+                        //console.log(this.columns());
                         var that = this;
- 
+
                         $('input').on('keyup change clear', function () {
-                            console.log(that);
-                            console.log(that.search() + ":" + this.value);
+                            //console.log(that);
+                            //console.log(that.search() + ":" + this.value);
                             if (this.parentNode.cellIndex == that[0].toString()) {
                                 if (that.search() !== this.value) {
                                     that[0] = (this.parentNode.cellIndex + 1).toString();
@@ -111,6 +168,7 @@
                             return val;
                         }
                     },
+                    { data: "CreateTime1", title: "", searchable: true, orderable: false, visible: false, width: "80px" },
                     { data: "Modifier", title: "修改人", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     {
                         data: "ModifyTime", title: "修改时间", searchable: true, orderable: true, width: "100px", responsivePriority: 1,
@@ -126,15 +184,54 @@
                             return val;
                         }
                     },
-                    { data: "Remarks", title: "备注", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "Remarks", title: "备注", searchable: true, orderable: true, width: "100px", responsivePriority: 1, className: "editable"},
                     { data: "HUDF_01", title: "自定义字段", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    
+
                 ],
-                
 
             });
-             
+
+            $('#Search').click(function () {
+                var items = $(this).parents('.booking-search').find('.fiter');
+
+                $.each(items, function (index, obj) {
+                    var i = $(obj).attr('data-column');
+                    var name = $(obj).attr('data-name') + '';
+                    var val = $('#col' + i + '_filter').val();
+                    if (val === null)
+                        val = '';
+                    var index = $('#example1').DataTable().columns().dataSrc().indexOf(name);
+                    var selectot = '.search-' + index;
+                    if ($(selectot).length === 0) {
+                        $('#example1').DataTable().column(index).search(val, false, false);
+                    }
+                    else {
+                        $('#example1').DataTable().column($(selectot)).search(val, false, false);
+                    }
+                });
+
+                $('#example1').DataTable().columns().search().draw();
+            });
+
+            
         });
+        function initeditor() {
+            editor = new $.fn.dataTable.Editor({
+                        idSrc: "Id",
+                        ajax: {
+                            edit: {
+                                url: '@Url.Action("Edit", "CodeMasters")',
+                                type: 'POST',
+                                dataType: 'json',
+                                data: { "Id": rowId+'' }
+                            }
+                        },
+                        table: "#example1",
+                        fields: [
+                            { label: "Remarks:", name: "Remarks" },
+                        ]
+                    });
+        }
         //调整窗口大小
         function Resize() {
             $('#example1').DataTable()
@@ -145,10 +242,10 @@
         function AjaxDispose() {
             if (!isdisposed) {
                 isdisposed = true;
-                
+
                 try {
                          table.destroy();
-                 
+
                 }
                 catch
                 {
