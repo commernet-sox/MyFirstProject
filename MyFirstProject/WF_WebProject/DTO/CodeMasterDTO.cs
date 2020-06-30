@@ -17,6 +17,11 @@ namespace WFWebProject.DTO
         public System.String Modifier { get; set; }
         [MappingExpression(PropertyName = "CreateTime", DefaultOperator = ExpressionOperator.GreaterThanOrEqual)]
         public System.DateTime CreateTime { get; set; }
+
+        [AutoMapper.IgnoreMap]
+        [MappingExpression(PropertyName = "CreateTime", DefaultOperator = ExpressionOperator.LessThanOrEqual)]
+        public Nullable<System.DateTime> CreateTime1 { get; set; }
+
         [MappingExpression(PropertyName = "Creator", DefaultOperator = ExpressionOperator.Contains)]
         public System.String Creator { get; set; }
         [MappingExpression(PropertyName = "CodeGroup", DefaultOperator = ExpressionOperator.Contains)]
