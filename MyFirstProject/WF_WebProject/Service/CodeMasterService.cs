@@ -11,6 +11,7 @@ using WFWebProject.DTO;
 using WFWebProject.Interface;
 using WFWebProject.Models;
 using Core.Infrastructure.DataTables;
+using Microsoft.AspNetCore.Http;
 
 namespace WFWebProject.Service
 {
@@ -62,7 +63,7 @@ namespace WFWebProject.Service
                         codeMasterDTO.Remarks = data["Remarks"].ToString();
                     }
                     codeMasterDTO.ModifyTime = DateTime.Now;
-                    codeMasterDTO.Modifier = "wangfeng";
+                    codeMasterDTO.Modifier = core_request.HttpContext.Session.GetString("User");
                     this.Update(codeMasterDTO);
                 }
                 return core_response;
