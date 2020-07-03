@@ -33,13 +33,28 @@ namespace WFWebProject.DTO
         [MappingExpression(PropertyName = "QualificationCertNo", DefaultOperator = ExpressionOperator.Contains)]
         public string QualificationCertNo { get; set; }
         //发证日期
-        [MappingExpression(PropertyName = "DateIssue", DefaultOperator = ExpressionOperator.Contains)]
-        public string DateIssue { get; set; }
+        [MappingExpression(PropertyName = "DateIssue", DefaultOperator = ExpressionOperator.GreaterThanOrEqual)]
+        public DateTime? DateIssue { get; set; }
+        //发证日期
+        [AutoMapper.IgnoreMap]
+        [MappingExpression(PropertyName = "DateIssue", DefaultOperator = ExpressionOperator.LessThanOrEqual)]
+        public DateTime? DateIssue1 { get; set; }
         //注册专业
         [MappingExpression(PropertyName = "RegisterMajor", DefaultOperator = ExpressionOperator.Contains)]
         public string RegisterMajor { get; set; }
         //注册有效期
-        [MappingExpression(PropertyName = "ValidityRegistration", DefaultOperator = ExpressionOperator.Contains)]
-        public string ValidityRegistration { get; set; }
+        [MappingExpression(PropertyName = "ValidityRegistration", DefaultOperator = ExpressionOperator.GreaterThanOrEqual)]
+        public DateTime? ValidityRegistration { get; set; }
+        //注册有效期
+        [AutoMapper.IgnoreMap]
+        [MappingExpression(PropertyName = "ValidityRegistration", DefaultOperator = ExpressionOperator.LessThanOrEqual)]
+        public DateTime? ValidityRegistration1 { get; set; }
+        //备注
+        [MappingExpression(PropertyName = "Remarks", DefaultOperator = ExpressionOperator.Contains)]
+        public string Remarks { get; set; }
+        //修改时间
+        public Nullable<DateTime> ModifyTime { get; set; }
+        //修改人
+        public string Modifier { get; set; }
     }
 }
