@@ -36,7 +36,7 @@ namespace WFWebProject.Service
                             RegisterMajor = item.RegisterMajor,
                             RegisterNumber = item.RegisterNumber,
                             ValidityRegistration = item.ValidityRegistration,
-                            
+                            Remarks=item.Remarks,
                         };
             var result = base.PageDataWithQuery<ConstructorInfoDTO>(core_request, query);
             List<ConstructorInfoDTO> itemList = result.DtResponse.data as List<ConstructorInfoDTO>;

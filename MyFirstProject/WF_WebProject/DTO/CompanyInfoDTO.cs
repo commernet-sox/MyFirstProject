@@ -15,7 +15,7 @@ namespace WFWebProject.DTO
         [MappingExpression(PropertyName = "Province", DefaultOperator = ExpressionOperator.Contains)]
         public System.String Province { get; set; }
         //所属市区
-        [MappingExpression(PropertyName = "Modifier", DefaultOperator = ExpressionOperator.Contains)]
+        [MappingExpression(PropertyName = "City", DefaultOperator = ExpressionOperator.Contains)]
         public System.String City { get; set; }
         //所属区县
         [MappingExpression(PropertyName = "District", DefaultOperator = ExpressionOperator.Contains)]
@@ -33,8 +33,12 @@ namespace WFWebProject.DTO
         [MappingExpression(PropertyName = "LegalPerson", DefaultOperator = ExpressionOperator.Contains)]
         public System.String LegalPerson { get; set; }
         //成立日期
-        [MappingExpression(PropertyName = "CreateDate", DefaultOperator = ExpressionOperator.Contains)]
-        public System.String CreateDate { get; set; }
+        [MappingExpression(PropertyName = "CreateDate", DefaultOperator = ExpressionOperator.GreaterThanOrEqual)]
+        public DateTime CreateDate { get; set; }
+        //成立日期
+        [AutoMapper.IgnoreMap]
+        [MappingExpression(PropertyName = "CreateDate", DefaultOperator = ExpressionOperator.LessThanOrEqual)]
+        public DateTime CreateDate1 { get; set; }
         //办公地址
         [MappingExpression(PropertyName = "Address", DefaultOperator = ExpressionOperator.Contains)]
         public System.String Address { get; set; }
@@ -81,12 +85,9 @@ namespace WFWebProject.DTO
         [MappingExpression(PropertyName = "RegistrationAuthority", DefaultOperator = ExpressionOperator.Contains)]
         public System.String RegistrationAuthority { get; set; }
         //营业期限
-        [MappingExpression(PropertyName = "BusinessTerm", DefaultOperator = ExpressionOperator.GreaterThanOrEqual)]
-        public DateTime BusinessTerm { get; set; }
-        //用于营业期限范围查询
-        //营业期限
-        [MappingExpression(PropertyName = "BusinessTerm", DefaultOperator = ExpressionOperator.LessThanOrEqual)]
-        public DateTime BusinessTerm1 { get; set; }
+        [MappingExpression(PropertyName = "BusinessTerm", DefaultOperator = ExpressionOperator.Contains)]
+        public string BusinessTerm { get; set; }
+        
         //纳税人资质
         [MappingExpression(PropertyName = "TaxpayerQualification", DefaultOperator = ExpressionOperator.Contains)]
         public System.String TaxpayerQualification { get; set; }
@@ -172,8 +173,10 @@ namespace WFWebProject.DTO
         [MappingExpression(PropertyName = "Remarks", DefaultOperator = ExpressionOperator.Contains)]
         public string Remarks { get; set; }
         //修改时间
+        [MappingExpression(PropertyName = "ModifyTime", DefaultOperator = ExpressionOperator.Contains)]
         public Nullable<DateTime> ModifyTime { get; set; }
         //修改人
+        [MappingExpression(PropertyName = "Modifier", DefaultOperator = ExpressionOperator.Contains)]
         public string Modifier { get; set; }
     }
 }
