@@ -23,10 +23,16 @@ namespace WFWebProject.Models
         //执业资格证书编号
         public string QualificationCertNo { get; set; }
         //发证日期
-        public string DateIssue { get; set; }
+        public DateTime? DateIssue { get; set; }
         //注册专业
         public string RegisterMajor { get; set; }
         //注册有效期
-        public string ValidityRegistration { get; set; }
+        public DateTime? ValidityRegistration { get; set; }
+        //备注
+        public string Remarks { get; set; }
+        //修改时间
+        public Nullable<DateTime> ModifyTime { get; set; }
+        //修改人
+        public string Modifier { get; set; }
     }
 }

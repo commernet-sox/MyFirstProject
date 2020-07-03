@@ -38,129 +38,13 @@ namespace WFWebProject.Controllers
 
         }
 
-        // GET: CompanyQualifications/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var companyQualification = await _context.CompanyQualification
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (companyQualification == null)
-            {
-                return NotFound();
-            }
-
-            return View(companyQualification);
-        }
-
-        // GET: CompanyQualifications/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: CompanyQualifications/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Code,Name,EconomicType,Province,City,Time,Email,WebSite,QualificationType,ContactAddress,ZipCode,SafetyLicenseNo,StartDate,EndDate,IssuingAuthority,ScopeLicense,OrganizationCode,ComprehensiveScore")] CompanyQualification companyQualification)
+        public async Task<IActionResult> Edit(string Id)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(companyQualification);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(companyQualification);
-        }
-
-        // GET: CompanyQualifications/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var companyQualification = await _context.CompanyQualification.FindAsync(id);
-            if (companyQualification == null)
-            {
-                return NotFound();
-            }
-            return View(companyQualification);
-        }
-
-        // POST: CompanyQualifications/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Code,Name,EconomicType,Province,City,Time,Email,WebSite,QualificationType,ContactAddress,ZipCode,SafetyLicenseNo,StartDate,EndDate,IssuingAuthority,ScopeLicense,OrganizationCode,ComprehensiveScore")] CompanyQualification companyQualification)
-        {
-            if (id != companyQualification.Id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(companyQualification);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CompanyQualificationExists(companyQualification.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(companyQualification);
-        }
-
-        // GET: CompanyQualifications/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var companyQualification = await _context.CompanyQualification
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (companyQualification == null)
-            {
-                return NotFound();
-            }
-
-            return View(companyQualification);
-        }
-
-        // POST: CompanyQualifications/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var companyQualification = await _context.CompanyQualification.FindAsync(id);
-            _context.CompanyQualification.Remove(companyQualification);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool CompanyQualificationExists(int id)
-        {
-            return _context.CompanyQualification.Any(e => e.Id == id);
+            Core.WebServices.Model.CoreRequest coreRequest = new Core.WebServices.Model.CoreRequest(HttpContext);
+            Core.WebServices.Model.CoreResponse core_response = new Core.WebServices.Model.CoreResponse(coreRequest);
+            this._companyQualificationService.EditData(Id, coreRequest);
+            return Json(core_response.DtResponse);
         }
     }
 }

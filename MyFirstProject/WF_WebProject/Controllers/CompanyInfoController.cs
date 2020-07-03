@@ -56,6 +56,14 @@ namespace WFWebProject.Controllers
 
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Edit(string Id)
+        {
+            Core.WebServices.Model.CoreRequest coreRequest = new Core.WebServices.Model.CoreRequest(HttpContext);
+            Core.WebServices.Model.CoreResponse core_response = new Core.WebServices.Model.CoreResponse(coreRequest);
+            this._companyInfoService.EditData(Id, coreRequest);
+            return Json(core_response.DtResponse);
+        }
 
     }
 }

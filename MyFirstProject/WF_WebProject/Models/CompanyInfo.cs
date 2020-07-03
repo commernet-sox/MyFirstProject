@@ -56,7 +56,7 @@ namespace WFWebProject.Models
         //登记机关
         public string RegistrationAuthority { get; set; }
         //营业期限
-        public string BusinessTerm { get; set; }
+        public DateTime BusinessTerm { get; set; }
         //纳税人资质
         public string TaxpayerQualification { get; set; }
         //人员规模
@@ -69,6 +69,11 @@ namespace WFWebProject.Models
         public string EnglishName { get; set; }
         //注册地址
         public string RegisterAddress { get; set; }
-        
+        //备注
+        public string Remarks { get; set; }
+        //修改时间
+        public Nullable<DateTime> ModifyTime { get; set; }
+        //修改人
+        public string Modifier { get; set; }
     }
 }

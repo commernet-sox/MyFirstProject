@@ -19,7 +19,7 @@ namespace WFWebProject.Models
         //[注册地（市/区）]
         public string City { get; set; }
         //时间
-        public string Time { get; set; }
+        public DateTime Time { get; set; }
         //邮箱
         public string Email { get; set; }
         //企业网址
@@ -44,5 +44,11 @@ namespace WFWebProject.Models
         public string OrganizationCode { get; set; }
         //信用综合评分
         public string ComprehensiveScore { get; set; }
+        //备注
+        public string Remarks { get; set; }
+        //修改时间
+        public Nullable<DateTime> ModifyTime { get; set; }
+        //修改人
+        public string Modifier { get; set; }
     }
 }

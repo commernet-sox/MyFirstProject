@@ -12,5 +12,6 @@ namespace WFWebProject.Interface
     public interface ICompanyInfoService : IBase<CompanyInfo, CompanyInfoDTO, int>, IDatatable
     {
         CoreResponse CompanyAllPageData(CoreRequest core_request);
+        CoreResponse EditData(string Id, CoreRequest core_request);
     }
 }
