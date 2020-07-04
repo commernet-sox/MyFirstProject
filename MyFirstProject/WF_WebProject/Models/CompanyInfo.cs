@@ -24,7 +24,7 @@ namespace WFWebProject.Models
         //法定代表人
         public string LegalPerson { get; set; }
         //成立日期
-        public string CreateDate { get; set; }
+        public DateTime CreateDate { get; set; }
         //办公地址
         public string Address { get; set; }
         //企业公示的联系电话
@@ -56,7 +56,7 @@ namespace WFWebProject.Models
         //登记机关
         public string RegistrationAuthority { get; set; }
         //营业期限
-        public DateTime BusinessTerm { get; set; }
+        public string BusinessTerm { get; set; }
         //纳税人资质
         public string TaxpayerQualification { get; set; }
         //人员规模

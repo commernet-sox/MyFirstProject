@@ -15,14 +15,14 @@
                                 <div class="row form-group">
                                     <div class="fiter col-md-6 col-xs-8">
                                         <div class=" input-group input-large date-picker input-daterange" data-date-format="yyyy-mm-dd" style="margin-top:21px;">
-                                            <div class="fiter" data-column="01" data-name="BusinessTerm">
-                                                <input type="text" id="col01_filter" class="form-control" placeholder="营业期限开始-日期" autocomplete="off">
+                                            <div class="fiter" data-column="01" data-name="CreateDate">
+                                                <input type="text" id="col01_filter" class="form-control" placeholder="成立开始-日期" autocomplete="off">
                                             </div>
                                             <span class="input-group-addon">
                                                 到
                                             </span>
-                                            <div class="fiter" data-column="02" data-name="BusinessTerm1">
-                                                <input type="text" id="col02_filter" class="form-control" placeholder="营业期限结束-日期" autocomplete="off">
+                                            <div class="fiter" data-column="02" data-name="CreateDate1">
+                                                <input type="text" id="col02_filter" class="form-control" placeholder="成立结束-日期" autocomplete="off">
                                             </div>
                                         </div>
                                     </div>
@@ -45,6 +45,7 @@
                                     <th>行业</th>
                                     <th>法定代表人</th>
                                     <th>成立日期</th>
+                                    <th>成立日期1</th>
                                     <th>联系电话</th>
                                     <th>所属省份</th>
                                     <th>所属市区</th>
@@ -81,6 +82,7 @@
                                     <th>行业</th>
                                     <th>法定代表人</th>
                                     <th>成立日期</th>
+                                    <th>成立日期1</th>
                                     <th>联系电话</th>
                                     <th>所属省份</th>
                                     <th>所属市区</th>
@@ -207,7 +209,9 @@
                     { data: "Name",  searchable: true, orderable: false, width: "100px", responsivePriority: 1 },
                     { data: "Industry",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     { data: "LegalPerson",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "CreateDate",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "CreateDate", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+
+                    { data: "CreateDate1", searchable: true, orderable: false, visible: false, width: "80px" },
                     { data: "Tel",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     { data: "Province",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     { data: "City",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
@@ -228,17 +232,15 @@
                     { data: "OrganizationCode",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     { data: "RegistrationAuthority",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     { data: "BusinessTerm", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "BusinessTerm1", title: "", searchable: true, orderable: false, visible: false, width: "80px" },
+                    
                     { data: "TaxpayerQualification",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     { data: "PersonnelSize",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     { data: "NumberInsured",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     { data: "NameUsedBefore",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     { data: "EnglishName",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     { data: "RegisterAddress", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "Remarks", title: "备注", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "Remarks", title: "备注", searchable: true, orderable: true, width: "100px", responsivePriority: 1, className: "editable"},
                 ],
-
-
             });
 
             $('#Search').click(function () {
