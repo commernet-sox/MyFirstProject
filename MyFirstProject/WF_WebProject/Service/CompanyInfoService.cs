@@ -15,9 +15,10 @@ namespace WFWebProject.Service
 {
     public class CompanyInfoService : BaseService<CompanyInfo, DataContext, CompanyInfoDTO, int>, ICompanyInfoService
     {
-        public CompanyInfoService(IRepository<CompanyInfo, DataContext> Repository, IMapper mapper) : base(Repository, mapper)
+        private ICompanyQualificationService _companyQualificationService;
+        public CompanyInfoService(IRepository<CompanyInfo, DataContext> Repository, IMapper mapper,ICompanyQualificationService companyQualificationService) : base(Repository, mapper)
         {
-
+            _companyQualificationService=companyQualificationService;
         }
         protected override CoreResponse PageData(CoreRequest core_request)
         {
@@ -126,36 +127,36 @@ namespace WFWebProject.Service
             //            select new CompanyInfoDTO
             //            {
             //                Id = item.Id,
-            //                Address = item.Address,
-            //                BusinessScope = item.BusinessScope,
-            //                BusinessStatus = item.BusinessStatus,
-            //                BusinessTerm = item.BusinessTerm,
-            //                City = item.City,
-            //                CreateDate = item.CreateDate,
-            //                CreditCode = item.CreditCode,
-            //                District = item.District,
-            //                EnglishName = item.EnglishName,
-            //                IdentificationNumber = item.IdentificationNumber,
-            //                Industry = item.Industry,
-            //                LegalPerson = item.LegalPerson,
-            //                Name = item.Name,
-            //                NameUsedBefore = item.NameUsedBefore,
-            //                NumberInsured = item.NumberInsured,
-            //                OrganizationCode = item.OrganizationCode,
-            //                PaidCapital = item.PaidCapital,
-            //                PersonnelSize = item.PersonnelSize,
             //                Province = item.Province,
-            //                PublicAddress = item.PublicAddress,
-            //                PublicEmail = item.PublicEmail,
-            //                PublicTel = item.PublicTel,
-            //                PublicWebSite = item.PublicWebSite,
-            //                RegisterAddress = item.RegisterAddress,
-            //                RegisteredCapital = item.RegisteredCapital,
-            //                RegistrationAuthority = item.RegistrationAuthority,
-            //                RegistrationNo = item.RegistrationNo,
-            //                TaxpayerQualification = item.TaxpayerQualification,
-            //                Tel = item.Tel,
+            //                City = item.City,
+            //                District = item.District,
             //                Type = item.Type,
+            //                Industry = item.Industry,
+            //                Name = item.Name,
+            //                LegalPerson = item.LegalPerson,
+            //                CreateDate = item.CreateDate,
+            //                Address = item.Address,
+            //                Tel = item.Tel,
+            //                PublicTel = item.PublicTel,
+            //                PublicAddress = item.PublicAddress,
+            //                PublicWebSite = item.PublicWebSite,
+            //                PublicEmail = item.PublicEmail,
+            //                BusinessScope = item.BusinessScope,
+            //                RegisteredCapital = item.RegisteredCapital,
+            //                PaidCapital = item.PaidCapital,
+            //                BusinessStatus = item.BusinessStatus,
+            //                CreditCode = item.CreditCode,
+            //                RegistrationNo = item.RegistrationNo,
+            //                IdentificationNumber = item.IdentificationNumber,
+            //                OrganizationCode = item.OrganizationCode,
+            //                RegistrationAuthority = item.RegistrationAuthority,
+            //                BusinessTerm = item.BusinessTerm,
+            //                TaxpayerQualification = item.TaxpayerQualification,
+            //                PersonnelSize = item.PersonnelSize,
+            //                NumberInsured = item.NumberInsured,
+            //                NameUsedBefore = item.NameUsedBefore,
+            //                EnglishName = item.EnglishName,
+            //                RegisterAddress = item.RegisterAddress,
 
             //                City1 = item1.City,
             //                Code = item1.Code,
@@ -174,8 +175,12 @@ namespace WFWebProject.Service
             //                Time = item1.Time,
             //                WebSite = item1.WebSite,
             //                ZipCode = item1.ZipCode,
+
+            //                Remarks= item.Remarks,
+            //                ModifyTime= item.ModifyTime,
+            //                Modifier= item.Modifier,
             //            };
-            var query = "SELECT A.*,B.Code,B.EconomicType,B.Province AS Province1,B.City AS City1,B.Time,B.Email,B.WebSite,B.QualificationType,B.ContactAddress,B.ZipCode,B.SafetyLicenseNo,B.StartDate,B.EndDate,B.IssuingAuthority,B.ScopeLicense,B.OrganizationCode AS OrganizationCode1,B.ComprehensiveScore,NULL AS access_token FROM dbo.CompanyInfo A JOIN dbo.CompanyQualification B ON A.Name=B.Name";
+            var query = "SELECT A.*,A.CreateDate as CreateDate1,B.Time as Time1,B.StartDate as StartDate1,B.EndDate as EndDate1,B.Code,B.EconomicType,B.Province AS Province1,B.City AS City1,B.Time,B.Email,B.WebSite,B.QualificationType,B.ContactAddress,B.ZipCode,B.SafetyLicenseNo,B.StartDate,B.EndDate,B.IssuingAuthority,B.ScopeLicense,B.OrganizationCode AS OrganizationCode1,B.ComprehensiveScore,null as access_token  FROM dbo.CompanyInfo A JOIN dbo.CompanyQualification B ON A.Name=B.Name";
             var result = base.PageDataWithSQL<CompanyInfoDTO>(core_request, query);
             //var result = base.PageDataWithQuery<CompanyInfoDTO>(core_request, query);
             List<CompanyInfoDTO> itemList = result.DtResponse.data as List<CompanyInfoDTO>;
