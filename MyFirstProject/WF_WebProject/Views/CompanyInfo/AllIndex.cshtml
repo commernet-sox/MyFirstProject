@@ -15,14 +15,14 @@
                                 <div class="row form-group">
                                     <div class="fiter col-md-6 col-xs-8">
                                         <div class=" input-group input-large date-picker input-daterange" data-date-format="yyyy-mm-dd" style="margin-top:21px;">
-                                            <div class="fiter" data-column="01" data-name="CreateTime">
-                                                <input type="text" id="col01_filter" class="form-control" placeholder="创建开始-日期" autocomplete="off">
+                                            <div class="fiter" data-column="01" data-name="CreateDate">
+                                                <input type="text" id="col01_filter" class="form-control" placeholder="成立开始-日期" autocomplete="off">
                                             </div>
                                             <span class="input-group-addon">
                                                 到
                                             </span>
-                                            <div class="fiter" data-column="02" data-name="CreateTime1">
-                                                <input type="text" id="col02_filter" class="form-control" placeholder="创建结束-日期" autocomplete="off">
+                                            <div class="fiter" data-column="02" data-name="CreateDate1">
+                                                <input type="text" id="col02_filter" class="form-control" placeholder="成立结束-日期" autocomplete="off">
                                             </div>
                                         </div>
                                     </div>
@@ -135,6 +135,8 @@
                                     <th>组织机构代码</th>
                                     <th>信用综合评分</th>
                                     <th>备注</th>
+                                    <th>修改时间</th>
+                                    <th>修改人</th>
                                 </tr>
                             </thead>
                             <tfoot>
@@ -194,6 +196,8 @@
                                     <th>组织机构代码</th>
                                     <th>信用综合评分</th>
                                     <th>备注</th>
+                                    <th>修改时间</th>
+                                    <th>修改人</th>
                                 </tr>
                             </tfoot>
                         </table>
@@ -321,7 +325,6 @@
                 },
                 "scrollX": true,
                 lengthMenu: [[10, 25, 50, 100, 500], [10, 25, 50, 100, 500]],
-
                 ajax: {
                     url: "@Url.Action("CompanyAllPageData", "CompanyInfo")",
                     type: "post"
@@ -337,9 +340,7 @@
                     { data: "Industry", title: "行业", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     { data: "LegalPerson", title: "法定代表人", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     { data: "CreateDate", title: "成立日期", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-
                     { data: "CreateDate1", searchable: true, orderable: false, visible: false, width: "80px" },
-
                     { data: "Tel", title: "联系电话", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     { data: "Province", title: "所属省份", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     { data: "City", title: "所属市区", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
@@ -360,7 +361,6 @@
                     { data: "OrganizationCode", title: "组织机构代码", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     { data: "RegistrationAuthority", title: "登记机关", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     { data: "BusinessTerm", title: "营业期限", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    
                     { data: "TaxpayerQualification", title: "纳税人资质", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     { data: "PersonnelSize", title: "人员规模", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     { data: "NumberInsured", title: "参保人数", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
@@ -400,9 +400,9 @@
                     { data: "OrganizationCode1", title: "组织机构代码", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     { data: "ComprehensiveScore", title: "信用综合评分", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     { data: "Remarks", title: "备注", searchable: true, orderable: true, width: "100px", responsivePriority: 1, className: "editable" },
+                    { data: "ModifyTime", title: "修改时间", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "Modifier", title: "修改人", searchable: true, orderable: true, width: "100px", responsivePriority: 1},
                 ],
-
-
             });
 
             //条件搜索
