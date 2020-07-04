@@ -44,7 +44,7 @@ namespace WFWebProject.Service
                             Time = item.Time,
                             WebSite = item.WebSite,
                             ZipCode = item.ZipCode,
-                            
+                            Remarks=item.Remarks,
 
                         };
             var result = base.PageDataWithQuery<CompanyQualificationDTO>(core_request, query);

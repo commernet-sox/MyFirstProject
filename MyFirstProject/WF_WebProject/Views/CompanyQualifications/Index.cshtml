@@ -76,6 +76,7 @@
                                     <th>注册地（省/市）</th>
                                     <th>注册地（市/区）</th>
                                     <th>时间</th>
+                                    <th>时间1</th>
                                     <th>邮箱</th>
                                     <th>企业网址</th>
                                     <th>资质类型</th>
@@ -83,7 +84,9 @@
                                     <th>邮编</th>
                                     <th>安全生产许可证编号</th>
                                     <th>有效期（起始）</th>
+                                    <th>有效期（起始）1</th>
                                     <th>有效期（截止）</th>
+                                    <th>有效期（截止）1</th>
                                     <th>发证机构</th>
                                     <th>安全生产许可证范围</th>
                                     <th>组织机构代码</th>
@@ -100,6 +103,7 @@
                                     <th>注册地（省/市）</th>
                                     <th>注册地（市/区）</th>
                                     <th>时间</th>
+                                    <th>时间1</th>
                                     <th>邮箱</th>
                                     <th>企业网址</th>
                                     <th>资质类型</th>
@@ -107,7 +111,9 @@
                                     <th>邮编</th>
                                     <th>安全生产许可证编号</th>
                                     <th>有效期（起始）</th>
+                                    <th>有效期（起始）1</th>
                                     <th>有效期（截止）</th>
+                                    <th>有效期（截止）1</th>
                                     <th>发证机构</th>
                                     <th>安全生产许可证范围</th>
                                     <th>组织机构代码</th>
@@ -256,15 +262,26 @@
                     { data: "SafetyLicenseNo", title: "安全生产许可证编号", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     { data: "StartDate", title: "有效期（起始）", searchable: true, orderable: true, width: "100px", responsivePriority: 1 ,
                         render: function (val, type, row) {
-                            val = moment(val).format('YYYY-MM-DD hh:mm:ss');
-                            return val;
+                            if (val == null) {
+                                return "";
+                            }
+                            else {
+                                val = moment(val).format('YYYY-MM-DD hh:mm:ss');
+                                return val;
+                            }
+                            
                         }
                     },
                     { data: "StartDate1", title: "", searchable: true, orderable: false, visible: false, width: "80px" },
                     { data: "EndDate", title: "有效期（截止）", searchable: true, orderable: true, width: "100px", responsivePriority: 1 ,
                         render: function (val, type, row) {
-                            val = moment(val).format('YYYY-MM-DD hh:mm:ss');
-                            return val;
+                            if (val == null) {
+                                return "";
+                            }
+                            else {
+                                val = moment(val).format('YYYY-MM-DD hh:mm:ss');
+                                return val;
+                            }
                         }
                     },
                     { data: "EndDate1", title: "", searchable: true, orderable: false, visible: false, width: "80px" },

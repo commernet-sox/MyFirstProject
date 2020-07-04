@@ -36,5 +36,8 @@ namespace WFWebProject.DTO
         public System.String Remarks { get; set; }
         [MappingExpression(PropertyName = "HUDF_01", DefaultOperator = ExpressionOperator.Contains)]
         public System.String HUDF_01 { get; set; }
+
+        [MappingExpression(PropertyName = "page", DefaultOperator = ExpressionOperator.Contains)]
+        public string page { get; set; }
     }
 }
