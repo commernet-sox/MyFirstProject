@@ -10,7 +10,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">企业基本信息</h3>
-                        <div class="portlet-body">
+                        @*<div class="portlet-body">
                             <div class="booking-search">
                                 <div class="row form-group">
                                     <div class="fiter col-md-6 col-xs-8">
@@ -33,7 +33,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>*@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -45,7 +45,7 @@
                                     <th>行业</th>
                                     <th>法定代表人</th>
                                     <th>成立日期</th>
-                                    <th>成立日期1</th>
+                                    
                                     <th>联系电话</th>
                                     <th>所属省份</th>
                                     <th>所属市区</th>
@@ -82,7 +82,7 @@
                                     <th>行业</th>
                                     <th>法定代表人</th>
                                     <th>成立日期</th>
-                                    <th>成立日期1</th>
+                                    
                                     <th>联系电话</th>
                                     <th>所属省份</th>
                                     <th>所属市区</th>
@@ -142,20 +142,20 @@
 
             //时间插件配置
             if (jQuery().datepicker) {
-                $('#col01_filter').datepicker({
-                    language: 'zh-CN',
-                    autoclose: true,
-                    todayHighlight: true,
-                    format: 'yyyy-mm-dd 00:00:00',
-                    clearBtn: true
-                });
-                $('#col02_filter').datepicker({
-                    language: 'zh-CN',
-                    autoclose: true,
-                    todayHighlight: true,
-                    format: 'yyyy-mm-dd 23:59:59',
-                    clearBtn: true
-                });
+                //$('#col01_filter').datepicker({
+                //    language: 'zh-CN',
+                //    autoclose: true,
+                //    todayHighlight: true,
+                //    format: 'yyyy-mm-dd 00:00:00',
+                //    clearBtn: true
+                //});
+                //$('#col02_filter').datepicker({
+                //    language: 'zh-CN',
+                //    autoclose: true,
+                //    todayHighlight: true,
+                //    format: 'yyyy-mm-dd 23:59:59',
+                //    clearBtn: true
+                //});
                 $('.date-picker').datepicker({
                     rtl: App.isRTL(),
                     orientation: "left",
@@ -211,7 +211,7 @@
                     { data: "LegalPerson",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     { data: "CreateDate", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
 
-                    { data: "CreateDate1", searchable: true, orderable: false, visible: false, width: "80px" },
+                    //{ data: "CreateDate1", searchable: true, orderable: false, visible: false, width: "80px" },
                     { data: "Tel",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     { data: "Province",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     { data: "City",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
