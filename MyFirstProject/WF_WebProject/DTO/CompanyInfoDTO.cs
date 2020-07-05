@@ -34,11 +34,11 @@ namespace WFWebProject.DTO
         public System.String LegalPerson { get; set; }
         //成立日期
         [MappingExpression(PropertyName = "CreateDate", DefaultOperator = ExpressionOperator.GreaterThanOrEqual)]
-        public DateTime CreateDate { get; set; }
+        public DateTime? CreateDate { get; set; }
         //成立日期
-        [AutoMapper.IgnoreMap]
-        [MappingExpression(PropertyName = "CreateDate", DefaultOperator = ExpressionOperator.LessThanOrEqual)]
-        public DateTime CreateDate1 { get; set; }
+        
+        //[MappingExpression(PropertyName = "CreateDate", DefaultOperator = ExpressionOperator.LessThanOrEqual)]
+        //public DateTime? CreateDate1 { get; set; }
         //办公地址
         [MappingExpression(PropertyName = "Address", DefaultOperator = ExpressionOperator.Contains)]
         public System.String Address { get; set; }
@@ -125,8 +125,11 @@ namespace WFWebProject.DTO
         [MappingExpression(PropertyName = "City", DefaultOperator = ExpressionOperator.Contains)]
         public string City1 { get; set; }
         //时间
-        [MappingExpression(PropertyName = "Time", DefaultOperator = ExpressionOperator.Contains)]
+        [MappingExpression(PropertyName = "Time", DefaultOperator = ExpressionOperator.GreaterThanOrEqual)]
         public DateTime? Time { get; set; }
+        //时间
+        [MappingExpression(PropertyName = "Time1", DefaultOperator = ExpressionOperator.LessThanOrEqual)]
+        public DateTime? Time1 { get; set; }
         //邮箱
         [MappingExpression(PropertyName = "Email", DefaultOperator = ExpressionOperator.Contains)]
         public string Email { get; set; }
@@ -149,13 +152,13 @@ namespace WFWebProject.DTO
         [MappingExpression(PropertyName = "StartDate", DefaultOperator = ExpressionOperator.GreaterThanOrEqual)]
         public Nullable<DateTime> StartDate { get; set; }
         //[有效期（起始）]
-        [MappingExpression(PropertyName = "StartDate", DefaultOperator = ExpressionOperator.LessThanOrEqual)]
+        [MappingExpression(PropertyName = "StartDate1", DefaultOperator = ExpressionOperator.LessThanOrEqual)]
         public Nullable<DateTime> StartDate1 { get; set; }
         //[有效期（截止）]
         [MappingExpression(PropertyName = "EndDate", DefaultOperator = ExpressionOperator.GreaterThanOrEqual)]
         public Nullable<DateTime> EndDate { get; set; }
         //[有效期（截止）]
-        [MappingExpression(PropertyName = "EndDate", DefaultOperator = ExpressionOperator.LessThanOrEqual)]
+        [MappingExpression(PropertyName = "EndDate1", DefaultOperator = ExpressionOperator.LessThanOrEqual)]
         public Nullable<DateTime> EndDate1 { get; set; }
         //发证机构
         [MappingExpression(PropertyName = "IssuingAuthority", DefaultOperator = ExpressionOperator.Contains)]
