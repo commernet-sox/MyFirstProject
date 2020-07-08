@@ -34,16 +34,21 @@ namespace WFWebProject.DTO
         public string QualificationCertNo { get; set; }
         //发证日期
         [MappingExpression(PropertyName = "DateIssue", DefaultOperator = ExpressionOperator.GreaterThanOrEqual)]
-        public string DateIssue { get; set; }
+        public DateTime? DateIssue { get; set; }
         //发证日期
+        [AutoMapper.IgnoreMap]
         [MappingExpression(PropertyName = "DateIssue", DefaultOperator = ExpressionOperator.LessThanOrEqual)]
-        public string DateIssue1 { get; set; }
+        public DateTime? DateIssue1 { get; set; }
         //注册专业
         [MappingExpression(PropertyName = "RegisterMajor", DefaultOperator = ExpressionOperator.Contains)]
         public string RegisterMajor { get; set; }
         //注册有效期
-        [MappingExpression(PropertyName = "ValidityRegistration", DefaultOperator = ExpressionOperator.Contains)]
-        public string ValidityRegistration { get; set; }
+        [MappingExpression(PropertyName = "ValidityRegistration", DefaultOperator = ExpressionOperator.GreaterThanOrEqual)]
+        public DateTime? ValidityRegistration { get; set; }
+        //注册有效期
+        [AutoMapper.IgnoreMap]
+        [MappingExpression(PropertyName = "ValidityRegistration", DefaultOperator = ExpressionOperator.LessThanOrEqual)]
+        public DateTime? ValidityRegistration1 { get; set; }
         //备注
         [MappingExpression(PropertyName = "Remarks", DefaultOperator = ExpressionOperator.Contains)]
         public string Remarks { get; set; }

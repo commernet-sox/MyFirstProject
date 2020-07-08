@@ -36,9 +36,9 @@ namespace WFWebProject.DTO
         [MappingExpression(PropertyName = "CreateDate", DefaultOperator = ExpressionOperator.GreaterThanOrEqual)]
         public DateTime? CreateDate { get; set; }
         //成立日期
-        [AutoMapper.IgnoreMap]
-        [MappingExpression(PropertyName = "CreateDate1", DefaultOperator = ExpressionOperator.LessThanOrEqual)]
-        public DateTime? CreateDate1 { get; set; }
+        
+        //[MappingExpression(PropertyName = "CreateDate", DefaultOperator = ExpressionOperator.LessThanOrEqual)]
+        //public DateTime? CreateDate1 { get; set; }
         //办公地址
         [MappingExpression(PropertyName = "Address", DefaultOperator = ExpressionOperator.Contains)]
         public System.String Address { get; set; }
@@ -87,7 +87,8 @@ namespace WFWebProject.DTO
         //营业期限
         [MappingExpression(PropertyName = "BusinessTerm", DefaultOperator = ExpressionOperator.Contains)]
         public string BusinessTerm { get; set; }
-        
+
+
         //纳税人资质
         [MappingExpression(PropertyName = "TaxpayerQualification", DefaultOperator = ExpressionOperator.Contains)]
         public System.String TaxpayerQualification { get; set; }
