@@ -180,7 +180,7 @@ namespace WFWebProject.Service
             //                ModifyTime= item.ModifyTime,
             //                Modifier= item.Modifier,
             //            };
-            var query = "SELECT A.*,A.CreateDate as CreateDate1,B.Time as Time1,B.StartDate as StartDate1,B.EndDate as EndDate1,B.Code,B.EconomicType,B.Province AS Province1,B.City AS City1,B.Time,B.Email,B.WebSite,B.QualificationType,B.ContactAddress,B.ZipCode,B.SafetyLicenseNo,B.StartDate,B.EndDate,B.IssuingAuthority,B.ScopeLicense,B.OrganizationCode AS OrganizationCode1,B.ComprehensiveScore,null as access_token  FROM dbo.CompanyInfo A JOIN dbo.CompanyQualification B ON A.Name=B.Name";
+            var query = "SELECT A.*,B.Time as Time1,B.StartDate as StartDate1,B.EndDate as EndDate1,B.Code,B.EconomicType,B.Province AS Province1,B.City AS City1,B.Time,B.Email,B.WebSite,B.QualificationType,B.ContactAddress,B.ZipCode,B.SafetyLicenseNo,B.StartDate,B.EndDate,B.IssuingAuthority,B.ScopeLicense,B.OrganizationCode AS OrganizationCode1,B.ComprehensiveScore,null as access_token  FROM dbo.CompanyInfo A JOIN dbo.CompanyQualification B ON A.Name=B.Name";
             var result = base.PageDataWithSQL<CompanyInfoDTO>(core_request, query);
             //var result = base.PageDataWithQuery<CompanyInfoDTO>(core_request, query);
             List<CompanyInfoDTO> itemList = result.DtResponse.data as List<CompanyInfoDTO>;
