@@ -18,7 +18,7 @@ namespace WcfService1
         //[WebGet(ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]//WebInvoke
         [WebInvoke( Method = "GET", BodyStyle = WebMessageBodyStyle.WrappedRequest, RequestFormat =WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
         //[WebGet(UriTemplate = "/GetData/{value}", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-        string GetData();
+        string GetData(string value);
 
         [OperationContract]
         [WebInvoke( Method = "POST",  BodyStyle = WebMessageBodyStyle.WrappedRequest, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
@@ -32,7 +32,7 @@ namespace WcfService1
         string SendEmail(string Name, string Tel, string Email, string OtherWay, string Message);
 
         [OperationContract]
-        [WebInvoke( Method = "GET", BodyStyle = WebMessageBodyStyle.WrappedRequest, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        [WebInvoke( Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
         string LeavingMessage(string Name,string Tel,string Email,string OtherWay,string Message);
 
         // TODO: 在此添加您的服务操作
