@@ -3,7 +3,8 @@
         border-collapse: collapse !important;
     }
 </style>
-<div class="page-content-body">
+@*onselectstart="return false"  禁止复制*@
+<div class="page-content-body" onselectstart="return false">
     <section class="content">
         <div class="row">
             <div class="col-12">
@@ -13,7 +14,7 @@
                         <div class="portlet-body">
                             <div class="booking-search">
                                 <div class="row form-group">
-                                    
+
                                     <div class="fiter col-md-6 col-xs-8">
                                         <div class=" input-group input-large date-picker input-daterange" data-date-format="yyyy-mm-dd" style="margin-top:21px;">
                                             <div class="fiter" data-column="03" data-name="Time">
@@ -64,7 +65,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="card-body">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
@@ -269,7 +270,7 @@
                                 val = moment(val).format('YYYY-MM-DD hh:mm:ss');
                                 return val;
                             }
-                            
+
                         }
                     },
                     { data: "StartDate1", title: "", searchable: true, orderable: false, visible: false, width: "80px" },
