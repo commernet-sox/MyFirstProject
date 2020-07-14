@@ -128,6 +128,23 @@
             </div>
         </div>
     </section>
+
+    <div class="modal fade" id="issueTableCode" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">详情页</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                </div>
+                <div class="modal-body">
+                    <pre id="issueTableCodeContent" style="width: auto"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 @section scripts{
@@ -249,18 +266,24 @@
                 columns: [
                     { data: "Id", title: "主键", searchable: true, orderable: true, width: "50px",visible:false, responsivePriority: 1 },
                     { data: "Code", title: "企业编号", searchable: true, orderable: false, width: "100px", responsivePriority: 1 },
-                    { data: "Name", title: "企业名称", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "EconomicType", title: "经济类型", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    {
+                        data: "Name", title: "企业名称", searchable: true, orderable: true, width: "100px", responsivePriority: 1,
+                        render: function (data, type, row, meta) {
+                            var title = "<a href='javascript:void(0);' onclick='Detail(" + meta.row + ")' title='" + row.Name + "'>" + row.Name.substring(0, 10) + "..." + "</a>";
+                            return title;
+                        }
+                    },
+                    { data: "EconomicType", title: "经济类型", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 1 },
                     { data: "Province", title: "注册地（省/市）", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     { data: "City", title: "注册地（市/区）", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     { data: "Time", title: "时间", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     { data: "Time1", title: "", searchable: true, orderable: false, visible: false, width: "80px" },
-                    { data: "Email", title: "邮箱", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "WebSite", title: "企业网址", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "Email", title: "邮箱", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 1 },
+                    { data: "WebSite", title: "企业网址", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 1 },
                     { data: "QualificationType", title: "资质类型", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "ContactAddress", title: "资质联系地址", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "ZipCode", title: "邮编", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "SafetyLicenseNo", title: "安全生产许可证编号", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "ContactAddress", title: "资质联系地址", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 1 },
+                    { data: "ZipCode", title: "邮编", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 1 },
+                    { data: "SafetyLicenseNo", title: "安全生产许可证编号", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 1 },
                     { data: "StartDate", title: "有效期（起始）", searchable: true, orderable: true, width: "100px", responsivePriority: 1 ,
                         render: function (val, type, row) {
                             if (val == null) {
@@ -286,17 +309,13 @@
                         }
                     },
                     { data: "EndDate1", title: "", searchable: true, orderable: false, visible: false, width: "80px" },
-                    { data: "IssuingAuthority", title: "发证机构", searchable: true, orderable: true, width: "500px", responsivePriority: 1 },
+                    { data: "IssuingAuthority", title: "发证机构", searchable: true, orderable: true, visible: false, width: "500px", responsivePriority: 1 },
                     { data: "ScopeLicense", title: "安全生产许可证范围", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     { data: "OrganizationCode", title: "组织机构代码", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     { data: "ComprehensiveScore", title: "信用综合评分", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     { data: "Remarks", title: "备注", searchable: true, orderable: true, width: "100px", responsivePriority: 1, className: "editable" },
-
                 ],
-
-
             });
-
             //条件搜索
             $('#Search').click(function () {
                 var items = $(this).parents('.booking-search').find('.fiter');
@@ -320,6 +339,25 @@
                 $('#example1').DataTable().columns().search().draw();
             });
         });
+
+        //详情页
+        function Detail(Id) {
+            console.log("您点击了" + Id);
+            //显示模态框展示代码
+            $("#issueTableCode").modal("show");
+            var rows = table.rows(Id).data();
+            $("#issueTableCodeContent").html("");
+            var text = "经济类型 : " + (rows[0].EconomicType == null ? "无" : rows[0].EconomicType) + "\n";
+            text += "邮箱 : " + (rows[0].Email == null ? "无" : rows[0].Email) + "\n";
+            text += "企业网址 : " + (rows[0].WebSite == null ? "无" : rows[0].WebSite) + "\n";
+            text += "资质联系地址 : " + (rows[0].ContactAddress == null ? "无" : rows[0].ContactAddress) + "\n";
+            text += "邮编 : " + (rows[0].ZipCode == null ? "无" : rows[0].ZipCode) + "\n";
+            text += "安全生产许可证编号 : " + (rows[0].SafetyLicenseNo == null ? "无" : rows[0].SafetyLicenseNo) + "\n";
+            text += "发证机构 : " + (rows[0].IssuingAuthority == null ? "无" : rows[0].IssuingAuthority) + "\n";
+
+            $("#issueTableCodeContent").html(text);
+
+        }
         //编辑更新
         function initeditor() {
             editor = new $.fn.dataTable.Editor({
