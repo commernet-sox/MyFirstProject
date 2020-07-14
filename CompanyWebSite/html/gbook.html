@@ -1,21 +1,26 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>在线留言</title>
-    <meta name="description" content="简洁大方的互联网公司企业白色HTML模板由ASPCMS模板仿站教程网站制作，大家可以免费下载使用，ASPCMS模板仿站教程网保证代码完全免费，使大家能够拥有一个喜欢的网络平台。" />
-    <meta name="keywords" content="互联网信息公司网站模板,简洁大方的企业HTML模板,企业白色HTML模板" />
+    <meta name="description"
+        content="上海资质代办就找聘仁企业。专业从事上海资质代办服务。聘仁企业10年上海资质代办经验，8000+上海资质代办成功案例，帮助建筑企业成功办理上海建筑资质新办、建筑资质延续、建筑资质升级、建筑资质转让等上海建筑资质代办服务。上海资质代办100%通过率，让建筑单位省时，省力，省心办好上海建筑资质。" />
+    <meta name="keywords" content="上海资质代办,上海建筑资质代办,上海建筑资质办理" />
     <meta name="renderer" content="webkit" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <link rel="stylesheet" type="text/css" href="../css/style.css" />
     <script src="../js/jQuery1.8.2.js" type="text/javascript"></script>
     <!--[if IE]><script src="../js/html5.js" type="text/javascript"></script><![endif]-->
 </head>
+
 <body>
     <!--头部开始-->
     <header data-waypointsok="" class="header mysection">
         <div class="tem_inner tem_head mynav mysection_s">
-            <h1> <a class="logo_img" href="" title=""> <img src="../images/logo2.png" height="85" width="130" style="margin: 0;" alt="" title="" /> </a> </h1>
+            <h1> <a class="logo_img" href="index.html" title=""> <img src="../images/logo2.png" height="85" width="130"
+                        style="margin: 0;" alt="" title="" /> </a> </h1>
             <nav>
                 <ul>
                     <li><a href="index.html" title="网站首页">网站首页</a></li>
@@ -61,7 +66,8 @@
             <div class="met_article">
                 <section class="met_article_head">
                     <h1>在线留言</h1>
-                    <div class="met_position"> <a href="index.html" title="首页">首页</a> &gt; <a href="gbook.html">在线留言</a> </div>
+                    <div class="met_position"> <a href="index.html" title="首页">首页</a> &gt; <a href="gbook.html">在线留言</a>
+                    </div>
                 </section>
                 <div class="met_clear"></div>
                 <div id="messagelist">
@@ -110,7 +116,8 @@
                                 <dt class="ftype_select">留言内容</dt>
                                 <dd class="ftype_textarea">
                                     <div class="fbox">
-                                        <textarea name="Message" id="Message" data-required=1 placeholder="留言内容"></textarea>
+                                        <textarea name="Message" id="Message" data-required=1
+                                            placeholder="留言内容"></textarea>
                                     </div>
                                     <span class="tips"></span>
                                 </dd>
@@ -119,7 +126,8 @@
                                 <dt>&nbsp;</dt>
                                 <dd>
                                     <!--<input type="submit" name="submit" value="提交信息" class="submit" />-->
-                                    <input type="button" id="commit" onclick="SendMessage();" name="submit" value="提交信息" class="submit" />
+                                    <input type="button" id="commit" onclick="SendMessage();" name="submit" value="提交信息"
+                                        class="submit" />
                                 </dd>
                             </dl>
                         </div>
@@ -172,6 +180,7 @@
     </footer>
     <!--底部结束-->
 </body>
+
 </html>
 <script>
     //留言
@@ -195,24 +204,24 @@
 
 
         $.ajax({
-           url: "http://120.55.195.2:8002/Service1.svc/LeavingMessage",
-           type: "POST",
-           dataType: "json",
-           contentType: "application/json; charset=utf-8",
-           data: JSON.stringify({
-               "Name":$('#Name').val(),
-               "Tel": $('#Tel').val(),
-               "Email": $('#Email').val(),
-               "OtherWay": $('#OtherWay').val(),
-               "Message": $('#Message').val()
-           }),
-           timeout: 3000,
-           success: function (res) {
-               console.log(JSON.stringify(res));
-           },
-           error: function () {
-               console.log("网络延迟，请稍后再试，或联系我们!");
-           }
+            url: "http://120.55.195.2:8002/Service1.svc/LeavingMessage",
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({
+                "Name": $('#Name').val(),
+                "Tel": $('#Tel').val(),
+                "Email": $('#Email').val(),
+                "OtherWay": $('#OtherWay').val(),
+                "Message": $('#Message').val()
+            }),
+            timeout: 3000,
+            success: function (res) {
+                alert(res.d);
+            },
+            error: function () {
+                alert("网络延迟，请稍后再试，或联系我们!");
+            }
         });
 
         //$.getJSON("http://localhost:63345/Service1.svc/GetData?jsoncallback=?",
