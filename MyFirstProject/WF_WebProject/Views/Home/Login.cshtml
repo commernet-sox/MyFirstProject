@@ -9,6 +9,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="WF" name="author" />
     <title>AdminLTE 3 | Log in</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,7 +28,7 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="../../index2.html"><b>Admin</b>LTE</a>
+            <a href="#"><b>建造师信息管理系统</b></a>
         </div>
         <!-- /.login-logo -->
         <div class="card">
@@ -35,9 +36,10 @@
                 <p class="login-box-msg">登录你的账户</p>
 
                 @*<form asp-controller="Home" asp-action="Login" method="post" >*@
-                @using (Html.BeginForm("Login", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Get, true,
-                                                                  new { @class = "login-form", role = "form" }))
+                @using (Html.BeginForm("Login", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, true,
+                                                                 new { @class = "login-form", role = "form" }))
                 {
+                    @Html.AntiForgeryToken()
                     <div class="form-group has-feedback">
                         <input type="text" class="form-control" name="Tel" placeholder="账号">
                         <span class="fa fa-envelope form-control-feedback"></span>
@@ -52,7 +54,7 @@
                         <div class="col-8">
                             <div class="checkbox icheck">
                                 <label>
-                                    <input type="checkbox" asp-for="RememberMe"> 记住我
+                                    <input type="checkbox" asp-for="RememberMe" name="RememberMe"> 记住我
                                 </label>
                             </div>
                         </div>
@@ -68,14 +70,14 @@
                 @*</form>*@
                 @*<form action="@Url.Action("Login","Home")" method="get">
 
-                    </form>*@
+        </form>*@
                 <!-- /.social-auth-links -->
                 @*<p class="mb-1">
-                        <a href="#">I forgot my password</a>
-                    </p>
-                    <p class="mb-0">
-                        <a href="register.html" class="text-center">Register a new membership</a>
-                    </p>*@
+            <a href="#">I forgot my password</a>
+        </p>
+        <p class="mb-0">
+            <a href="register.html" class="text-center">Register a new membership</a>
+        </p>*@
             </div>
             <!-- /.login-card-body -->
         </div>

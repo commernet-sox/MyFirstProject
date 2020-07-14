@@ -1,4 +1,4 @@
 ﻿项目说明：
 1.Properties&launchSettings.json 是一个启动配置文件，其用于应用的启动准备工作，包括环境变量，开发端口等。
 2.wwwroot是一个用于存放静态内容的文件夹（例如存放css、js、图片等文件）。
-3._ViewStart.cshtml是MVC框架中View的启动文件，这是MVC框架中必需要有的，我们可以在这里指定母版页_Layout.cshtml的路径。
+3._ViewStart.cshtml是MVC框架中View的启动文件，这是MVC框架中必需要有的，我们可以在这里指定母版页_Layout.cshtml的路径.

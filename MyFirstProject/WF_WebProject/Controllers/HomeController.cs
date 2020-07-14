@@ -37,7 +37,16 @@ namespace WFWebProject.Controllers
                 return RedirectToAction("Login","Home");
             return View();
         }
+
         [AllowAnonymous]
+        public IActionResult Login(string ReturnUrl = null)
+        {
+            ViewBag.ReturnUrl = ReturnUrl;
+            return View();
+        }
+        [AllowAnonymous]
+        [HttpPost("Login")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(Login model,string ReturnUrl=null)
         {
             try
@@ -72,8 +81,8 @@ namespace WFWebProject.Controllers
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, userPrincipal, new AuthenticationProperties
                     {
                         ExpiresUtc = DateTime.UtcNow.AddMinutes(20),
-                        IsPersistent = false,
-                        AllowRefresh = false
+                        IsPersistent = model.RememberMe,
+                        AllowRefresh = false,
                     });
                     HttpContext.Session.SetString("User", model.Tel);
                     #endregion
@@ -99,8 +108,9 @@ namespace WFWebProject.Controllers
 
         public async Task<IActionResult> Logout()
         {
+            HttpContext.Session.Remove("User");
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Login", "Home");
+            return RedirectToAction("Index", "Home");
         }
 
         public IActionResult Privacy()
