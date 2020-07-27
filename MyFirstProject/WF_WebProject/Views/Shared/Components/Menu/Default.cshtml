@@ -14,7 +14,7 @@
                 <ul class="nav nav-treeview">
                     @if (Model.MenuName.Where(t => t.ToString() == "菜单管理").FirstOrDefault() != null)
                     {
-                        <li class="nav-item">
+                        <li class="nav-item" >
                             <a href="@Url.Action("Menu", "Home")" class="nav-link ">
                                 <i class="fa fa-circle-o nav-icon"></i>
                                 <p>菜单管理</p>

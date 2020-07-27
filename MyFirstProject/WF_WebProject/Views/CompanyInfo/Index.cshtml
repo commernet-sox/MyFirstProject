@@ -2,9 +2,6 @@
     table.dataTable {
         border-collapse: collapse !important;
     }
-    th {
-        width:auto;
-    }
 </style>
 <div class="page-content-body" onselectstart="return false">
     <section class="content">
@@ -40,11 +37,12 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped" style="width:100%">
+                        <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th>ID</th>
                                     <th>公司名称</th>
+                                    <th>备注</th>
                                     <th>行业</th>
                                     <th>法定代表人</th>
                                     <th>成立日期</th>
@@ -75,13 +73,14 @@
                                     <th>曾用名</th>
                                     <th>英文名称</th>
                                     <th>注册地址</th>
-                                    <th>备注</th>
+
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
                                     <th>ID</th>
                                     <th>公司名称</th>
+                                    <th>备注</th>
                                     <th>行业</th>
                                     <th>法定代表人</th>
                                     <th>成立日期</th>
@@ -112,7 +111,7 @@
                                     <th>曾用名</th>
                                     <th>英文名称</th>
                                     <th>注册地址</th>
-                                    <th>备注</th>
+
                                 </tr>
                             </tfoot>
                         </table>
@@ -133,7 +132,7 @@
 
                 </div>
                 <div class="modal-body">
-                    <pre id="issueTableCodeContent" style="width: auto"></pre>
+                    <div id="issueTableCodeContent" style="width:100%; height: auto;word-wrap:break-word;word-break:break-all;overflow:hidden;overflow-y:auto"></div>
                 </div>
             </div>
         </div>
@@ -224,19 +223,31 @@
                     fixedColumnsLeft: 1
                 },
                 serverSide: true,
-                autoWidth: false,
+                //autoWidth: false,
                 columns: [
-                    { data: "Id", title: "ID",  searchable: true, orderable: true, width: "50px",visible:false, responsivePriority: 1 },
+                    { data: "Id", title: "ID",  searchable: true, orderable: true, width: "100px",visible:false, responsivePriority: 1 },
                     {
                         data: "Name", title: "公司名称", searchable: true, orderable: false, width: "100px", responsivePriority: 1,
                         render: function (data, type, row, meta) {
-                            var title = "<a href='javascript:void(0);' onclick='Detail(" + meta.row + ")' title='"+row.Name+"'>" + row.Name.substring(0, 10) + "..." + "</a>";
+                            var title = "<a href='javascript:void(0);' onclick='Detail(" + meta.row + ")' title='"+row.Name+"'>" + row.Name.substring(0, 8) + "..." + "</a>";
                             return title;
                         }
                     },
+                    { data: "Remarks", title: "备注", searchable: true, orderable: true, width: "100px", responsivePriority: 1, className: "editable" },
                     { data: "Industry", title: "行业", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     { data: "LegalPerson", title: "法定代表人",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "CreateDate", title: "成立日期", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    {
+                        data: "CreateDate", title: "成立日期", searchable: true, orderable: true, width: "100px", responsivePriority: 1,
+                        render: function (val, type, row) {
+                            if (val == null) {
+                                return "";
+                            }
+                            else {
+                                val = moment(val).format('YYYY-MM-DD ');
+                                return val;
+                            }
+                        }
+                    },
 
                     //{ data: "CreateDate1", searchable: true, orderable: false, visible: false, width: "80px" },
                     { data: "Tel", title: "联系电话",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
@@ -266,7 +277,7 @@
                     { data: "NameUsedBefore", title: "曾用名", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 1 },
                     { data: "EnglishName", title: "英文名称", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 1 },
                     { data: "RegisterAddress", title: "注册地址", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 1 },
-                    { data: "Remarks", title: "备注", searchable: true, orderable: true, width: "100px", responsivePriority: 1, className: "editable"},
+                    
                 ],
             });
 
@@ -299,23 +310,23 @@
             $("#issueTableCode").modal("show");
             var rows = table.rows(Id).data();
             $("#issueTableCodeContent").html("");
-            var text = "办公地址 : " + (rows[0].Address == null ? "无" : rows[0].Address) + "\n";
-            text += "企业公示的地址 : " + (rows[0].PublicAddress == null ? "无" : rows[0].PublicAddress) + "\n";
-            text += "企业公示的网址 : " + (rows[0].PublicWebSite == null ? "无" : rows[0].PublicWebSite) + "\n";
-            text += "企业公示的邮箱 : " + (rows[0].PublicEmail == null ? "无" : rows[0].PublicEmail) + "\n";
-            text += "经营范围 : " + (rows[0].BusinessScope == null ? "无" : rows[0].BusinessScope) + "\n";
-            text += "实缴资本 : " + (rows[0].PaidCapital == null ? "无" : rows[0].PaidCapital) + "\n";
-            text += "工商注册号 : " + (rows[0].RegistrationNo == null ? "无" : rows[0].RegistrationNo) + "\n";
-            text += "纳税人识别号 : " + (rows[0].IdentificationNumber == null ? "无" : rows[0].IdentificationNumber) + "\n";
-            text += "组织机构代码 : " + (rows[0].OrganizationCode == null ? "无" : rows[0].OrganizationCode) + "\n";
-            text += "登记机关 : " + (rows[0].RegistrationAuthority == null ? "无" : rows[0].RegistrationAuthority) + "\n";
-            text += "营业期限 : " + (rows[0].BusinessTerm == null ? "无" : rows[0].BusinessTerm) + "\n";
-            text += "纳税人资质 : " + (rows[0].TaxpayerQualification == null ? "无" : rows[0].TaxpayerQualification) + "\n";
-            text += "人员规模 : " + (rows[0].PersonnelSize == null ? "无" : rows[0].PersonnelSize) + "\n";
-            text += "参保人数 : " + (rows[0].NumberInsured == null ? "无" : rows[0].NumberInsured) + "\n";
-            text += "曾用名 : " + (rows[0].NameUsedBefore == null ? "无" : rows[0].NameUsedBefore) + "\n";
-            text += "英文名称 : " + (rows[0].EnglishName == null ? "无" : rows[0].EnglishName) + "\n";
-            text += "注册地址 : " + (rows[0].RegisterAddress == null ? "无" : rows[0].RegisterAddress) + "\n";
+            var text = "办公地址 : " + (rows[0].Address == null ? "无" : rows[0].Address) + "</br>";
+            text += "企业公示的地址 : " + (rows[0].PublicAddress == null ? "无" : rows[0].PublicAddress) + "</br>";
+            text += "企业公示的网址 : " + (rows[0].PublicWebSite == null ? "无" : rows[0].PublicWebSite) + "</br>";
+            text += "企业公示的邮箱 : " + (rows[0].PublicEmail == null ? "无" : rows[0].PublicEmail) + "</br>";
+            text += "经营范围 : " + (rows[0].BusinessScope == null ? "无" : rows[0].BusinessScope) + "</br>";
+            text += "实缴资本 : " + (rows[0].PaidCapital == null ? "无" : rows[0].PaidCapital) + "</br>";
+            text += "工商注册号 : " + (rows[0].RegistrationNo == null ? "无" : rows[0].RegistrationNo) + "</br>";
+            text += "纳税人识别号 : " + (rows[0].IdentificationNumber == null ? "无" : rows[0].IdentificationNumber) + "</br>";
+            text += "组织机构代码 : " + (rows[0].OrganizationCode == null ? "无" : rows[0].OrganizationCode) + "</br>";
+            text += "登记机关 : " + (rows[0].RegistrationAuthority == null ? "无" : rows[0].RegistrationAuthority) + "</br>";
+            text += "营业期限 : " + (rows[0].BusinessTerm == null ? "无" : rows[0].BusinessTerm) + "</br>";
+            text += "纳税人资质 : " + (rows[0].TaxpayerQualification == null ? "无" : rows[0].TaxpayerQualification) + "</br>";
+            text += "人员规模 : " + (rows[0].PersonnelSize == null ? "无" : rows[0].PersonnelSize) + "</br>";
+            text += "参保人数 : " + (rows[0].NumberInsured == null ? "无" : rows[0].NumberInsured) + "</br>";
+            text += "曾用名 : " + (rows[0].NameUsedBefore == null ? "无" : rows[0].NameUsedBefore) + "</br>";
+            text += "英文名称 : " + (rows[0].EnglishName == null ? "无" : rows[0].EnglishName) + "</br>";
+            text += "注册地址 : " + (rows[0].RegisterAddress == null ? "无" : rows[0].RegisterAddress) + "</br>";
             
             $("#issueTableCodeContent").html(text);
 
