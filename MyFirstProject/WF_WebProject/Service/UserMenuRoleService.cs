@@ -26,18 +26,16 @@ namespace WFWebProject.Service
         {
             
             var dbcontext = base.Repository.SlaveUnitOfWork.DbContext;
-            var query = from A in dbcontext.UserMenuRole  
-                        join B in dbcontext.User 
-                        on Convert.ToInt32(A.UserId) equals B.Id 
-                        select  new UserMenuRoleDTO
+            var query = dbcontext.UserMenuRole 
+                .GroupBy(t => t.UserId).Select(m => new UserMenuRoleDTO
                 {
-                    UserId = A.UserId,
-                    UserName = B.UserName,
-                    Content = string.Join(",", A.Content.Distinct())
-                };
-
+                    UserId = m.FirstOrDefault().UserId,
+                    //UserName = m.FirstOrDefault().UserId,
+                    Content = string.Join(",", m.Select(x => x.Content.ToString()).Distinct())
+                });
             var result = base.PageDataWithQuery(core_request, query);
             List<UserMenuRoleDTO> list = result.DtResponse.data as List<UserMenuRoleDTO>;
+
             if (list != null && list.Count > 0)
             {
                 //List<string> p_list = new List<string>();
@@ -93,6 +91,10 @@ namespace WFWebProject.Service
                 }
                 var users = this._userService.GetAll()
                     .Select(t => new { value = t.Id, label = t.UserName }).Distinct().Future();
+                list.ForEach(t =>
+                {
+                    t.UserName = users.Where(p => p.value.ToString() == t.UserId).Select(p => p.label).FirstOrDefault();
+                });
                 Dictionary<string, object> options = new Dictionary<string, object>();
                 options.Add("UserId", users);
                 options.Add("Contents[].ContentId", tuples.Select(s => new { value = s.Item1, label = s.Item2 }));

@@ -1,172 +1,12 @@
-﻿@*<style>
-        table.dataTable {
-            border-collapse: collapse !important;
-        }
-    </style>
-    <div class="page-content-body">
-
-        <section class="content">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">菜单管理</h3>
-                        </div>
-                        <div class="card-body">
-                            <table id="example1" class="table table-bordered table-striped nowrap ">
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <div id="customForm" style="padding-left: 17px;">
-            <fieldset class="userinfo">
-                <legend>用户信息</legend>
-                <div data-editor-template="Id"></div>
-                <div data-editor-template="UserName"></div>
-
-            </fieldset>
-            <fieldset class="permissioninfo">
-                <legend>权限信息</legend>
-                <div data-editor-template=""></div>
-            </fieldset>
-        </div>
-    </div>
-
-    @section scripts{
-
-        <script>
-            function filterColumn(i) {
-                $('#example1').DataTable().column(i).search(
-                    $('#col' + i + '_filter').val(),
-                    false,
-                    false
-                ).draw();
-            }
-            var editor, table, isdisposed;
-            var curWarehouseId, curType, curStorerId; // use a global for the submit and return data rendering in the examples
-            $(document).ready(function () {
-                isdisposed = false;
-                App.initResizeHandler();
-                Layout.initAjaxContentSuccessCallback();
-                App.addResizeHandler(Resize);
-                Layout.addAjaxContentSuccessCallback(AjaxDispose);
-                //创建编辑
-                editor = new $.fn.dataTable.Editor({
-                    idSrc: "Id",
-                    ajax: {
-                        create: {
-                            type: 'POST',
-                            url: '@Url.Action("UserDataRoleIndexCreate", "UserDataRole")'
-                        },
-                        edit: {
-                            type: 'POST',
-                            url: '@Url.Action("UserDataRoleIndexUpdate", "UserDataRole")'
-                        }
-                    },
-                    table: "#example1",
-                    template: '#customForm',
-                    fields: [
-                        {
-                            label: "用户名:",
-                            name: "UserName",
-                            type: "select2",
-                            opts: {
-                                theme: "classic",
-                                ajax: {
-                                    type: 'GET',
-                                    url: "@Url.Action("GetUserInfo", "Infra")",
-                                    cache: false,
-                                    dataType: 'json',
-                                    delay: 250,
-                                    data: function (params) {
-                                        return {
-                                            term: params.term, // search term 请求参数
-                                            page: params.page
-                                        };
-                                    },
-                                    allowClear: false,
-                                    processResults: function (data, params) {
-                                        params.page = params.page || 1;
-                                        return {
-                                            results: data.items,//itemList
-                                            pagination: {
-                                                more: (params.page) < data.total_count
-                                            }
-                                        };
-                                    },
-                                    multiple: false
-                                },
-                                tags: false,
-                                escapeMarkup: function (markup) { return markup; },
-                                formatResult: function formatRepo(repo) { return repo.text; },
-                                formatSelection: function formatRepoSelection(repo) { return repo.text; }
-                            }
-                        },
-                    ]
-                });
-                //查询
-                table = $('#example1').DataTable({
-
-                    lengthMenu: [[10, 25, 50, 100, 500], [10, 25, 50, 100, 500]],
-                    search:false,
-                    ajax: {
-                        url: "@Url.Action("Index", "Home")",
-                        type: "post"
-                    },
-                    order: [[0, 'asc']],//一定要添加
-                    colReorder: {
-                        fixedColumnsLeft: 1
-                    },
-                    serverSide:true,//启用服务端必须要加上
-                    columns: [
-                        { data: "Id", title: "主键", searchable: true, orderable: true, width: "50px",visible:false, responsivePriority: 1 },
-                        { data: "UserName", title: "用户名", searchable: true, orderable: false, width: "100px", responsivePriority: 1 },
-                        { data: "Tel", title: "手机号码", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    ],
-                    buttons: [
-                        { extend: "create", editor: editor },
-                        { extend: "edit",   editor: editor },
-                        { extend: "remove", editor: editor }
-                    ]
-
-                });
-
-            });
-            //调整窗口大小
-            function Resize() {
-                $('#example1').DataTable()
-                    .columns.adjust()
-                    .responsive.recalc();
-            }
-            //页面数据注销
-            function AjaxDispose() {
-                if (!isdisposed) {
-                    isdisposed = true;
-
-                    try {
-                             table.destroy();
-
-                    }
-                    catch
-                    {
-                        console.log("释放失败");
-                    }
-                }
-            }
-
-        </script>
-    }*@
-
-
-
+﻿
 @{
     ViewBag.Title = "权限管理";
     
 }
 <style type="text/css">
-    
+    .modal-header {
+        display:block;
+    }
 </style>
 <div class="page-content-body">
     <div class="row">
@@ -176,7 +16,7 @@
                     <div class="caption">
                         <i class="fa fa-search"></i>
                         <span class="caption-subject bold font-grey-gallery uppercase">权限管理查询</span>
-                        <span class="caption-helper">查询可以收缩</span>
+                        @*<span class="caption-helper">查询可以收缩</span>*@
                     </div>
                     <div class="tools">
                         <a href="" class="collapse" data-original-title="" title=""> </a>
@@ -185,10 +25,10 @@
                 <div class="portlet-body">
                     <div class="booking-search">
                         <div class="row form-group">
-                            <div class="fiter col-md-4 col-xs-6" data-column="0" data-name="UserName">
+                            <div class="fiter col-md-4 col-xs-6" data-column="1" data-name="UserId">
                                 <label class="control-label">用户姓名:</label>
                                 <div class="input-icon">
-                                    <select class="form-control" id="col0_filter"></select>
+                                    <select class="form-control" id="col1_filter"></select>
                                 </div>
                             </div>
                         </div>
@@ -383,7 +223,7 @@
                     type: "post"
                 },
                 serverSide:true,
-                "searching": false,
+                //"searching": false,//允许搜索
                 order: [[0, 'asc']],//一定要添加
                 colReorder: {
                     fixedColumnsLeft: 1
@@ -431,35 +271,6 @@
                 }
             });
 
-            @*table1 = $('#myDetailTable').DataTable({
-                    paging: false,
-                    ajax: {
-                        url: "@Url.Action("UserDataRoleDetailData", "UserDataRole")",
-                        type: "post"
-                    },
-                    order: [[0, 'asc']],//一定要添加
-                    colReorder: {
-                        fixedColumnsLeft: 1
-                    },
-                    columns: [
-                        { data: "WarehouseId", title: "仓库ID", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                        { data: "WarehouseName", title: "仓库名称", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                        { data: "StorerId", title: "货主ID", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                        { data: "StorerName", title: "货主名称", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                        { data: "DepartmentId", title: "部门ID", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                        { data: "DepartmentName", title: "部门名称", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                        { data: "Memo", title: "备注", searchable: true, orderable: true, width: "100px", responsivePriority: 2 },
-                        { data: "Creator", title: "创建人", searchable: true, orderable: true, width: "100px", responsivePriority: 2 },
-                        { data: "CreateTime", title: "创建时间", searchable: true, orderable: true, width: "100px", responsivePriority: 2 },
-                        { data: "Modifier", title: "修改人", searchable: true, orderable: true, width: "100px", responsivePriority: 2 },
-                        { data: "ModifyTime", title: "修改时间", searchable: true, orderable: true, width: "100px", responsivePriority: 2 },
-                        { data: "UserId", title: "用户ID", searchable: false, orderable: false, visible: false, width: "100px", responsivePriority: 2 }
-                    ],
-                    buttons: [
-                    ]
-                });*@
-
-            
 
             $('#Search').click(function () {
                 var items = $(this).parents('.booking-search').find('.fiter');
@@ -492,7 +303,7 @@
                 $('#myDetailTable').DataTable().columns().search().draw();
             });
 
-            $("#col0_filter").select2({
+            $("#col1_filter").select2({
                 ajax: {
                     type: 'GET',
                     url: "@Url.Action("GetUserInfo", "CommonMethods")",

@@ -73,6 +73,7 @@
                                     <th>ID</th>
                                     <th>企业编号</th>
                                     <th>企业名称</th>
+                                    <th>备注</th>
                                     <th>经济类型</th>
                                     <th>注册地（省/市）</th>
                                     <th>注册地（市/区）</th>
@@ -92,7 +93,7 @@
                                     <th>安全生产许可证范围</th>
                                     <th>组织机构代码</th>
                                     <th>信用综合评分</th>
-                                    <th>备注</th>
+
                                 </tr>
                             </thead>
                             <tfoot>
@@ -100,6 +101,7 @@
                                     <th>ID</th>
                                     <th>企业编号</th>
                                     <th>企业名称</th>
+                                    <th>备注</th>
                                     <th>经济类型</th>
                                     <th>注册地（省/市）</th>
                                     <th>注册地（市/区）</th>
@@ -119,7 +121,7 @@
                                     <th>安全生产许可证范围</th>
                                     <th>组织机构代码</th>
                                     <th>信用综合评分</th>
-                                    <th>备注</th>
+
                                 </tr>
                             </tfoot>
                         </table>
@@ -140,7 +142,7 @@
 
                 </div>
                 <div class="modal-body">
-                    <pre id="issueTableCodeContent" style="width: auto"></pre>
+                    <div id="issueTableCodeContent" style="width:100%; height: auto;word-wrap:break-word;word-break:break-all;overflow:hidden;overflow-y:auto"></div>
                 </div>
             </div>
         </div>
@@ -265,18 +267,31 @@
                 serverSide:true,
                 columns: [
                     { data: "Id", title: "主键", searchable: true, orderable: true, width: "50px",visible:false, responsivePriority: 1 },
-                    { data: "Code", title: "企业编号", searchable: true, orderable: false, width: "100px", responsivePriority: 1 },
+                    { data: "Code", title: "企业编号", searchable: true, orderable: false, visible: false, width: "100px", responsivePriority: 1 },
                     {
                         data: "Name", title: "企业名称", searchable: true, orderable: true, width: "100px", responsivePriority: 1,
                         render: function (data, type, row, meta) {
-                            var title = "<a href='javascript:void(0);' onclick='Detail(" + meta.row + ")' title='" + row.Name + "'>" + row.Name.substring(0, 10) + "..." + "</a>";
+                            var title = "<a href='javascript:void(0);' onclick='Detail(" + meta.row + ")' title='" + row.Name + "'>" + row.Name.substring(0, 8) + "..." + "</a>";
                             return title;
                         }
                     },
+                    { data: "Remarks", title: "备注", searchable: true, orderable: true, width: "100px", responsivePriority: 1, className: "editable" },
                     { data: "EconomicType", title: "经济类型", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 1 },
                     { data: "Province", title: "注册地（省/市）", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     { data: "City", title: "注册地（市/区）", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "Time", title: "时间", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    {
+                        data: "Time", title: "时间", searchable: true, orderable: true, width: "100px", responsivePriority: 1,
+                        render: function (val, type, row) {
+                            if (val == null) {
+                                return "";
+                            }
+                            else {
+                                val = moment(val).format('YYYY-MM-DD ');
+                                return val;
+                            }
+
+                        }
+                    },
                     { data: "Time1", title: "", searchable: true, orderable: false, visible: false, width: "80px" },
                     { data: "Email", title: "邮箱", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 1 },
                     { data: "WebSite", title: "企业网址", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 1 },
@@ -290,7 +305,7 @@
                                 return "";
                             }
                             else {
-                                val = moment(val).format('YYYY-MM-DD hh:mm:ss');
+                                val = moment(val).format('YYYY-MM-DD ');
                                 return val;
                             }
 
@@ -303,7 +318,7 @@
                                 return "";
                             }
                             else {
-                                val = moment(val).format('YYYY-MM-DD hh:mm:ss');
+                                val = moment(val).format('YYYY-MM-DD ');
                                 return val;
                             }
                         }
@@ -313,7 +328,7 @@
                     { data: "ScopeLicense", title: "安全生产许可证范围", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     { data: "OrganizationCode", title: "组织机构代码", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     { data: "ComprehensiveScore", title: "信用综合评分", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "Remarks", title: "备注", searchable: true, orderable: true, width: "100px", responsivePriority: 1, className: "editable" },
+                    
                 ],
             });
             //条件搜索
@@ -347,13 +362,14 @@
             $("#issueTableCode").modal("show");
             var rows = table.rows(Id).data();
             $("#issueTableCodeContent").html("");
-            var text = "经济类型 : " + (rows[0].EconomicType == null ? "无" : rows[0].EconomicType) + "\n";
-            text += "邮箱 : " + (rows[0].Email == null ? "无" : rows[0].Email) + "\n";
-            text += "企业网址 : " + (rows[0].WebSite == null ? "无" : rows[0].WebSite) + "\n";
-            text += "资质联系地址 : " + (rows[0].ContactAddress == null ? "无" : rows[0].ContactAddress) + "\n";
-            text += "邮编 : " + (rows[0].ZipCode == null ? "无" : rows[0].ZipCode) + "\n";
-            text += "安全生产许可证编号 : " + (rows[0].SafetyLicenseNo == null ? "无" : rows[0].SafetyLicenseNo) + "\n";
-            text += "发证机构 : " + (rows[0].IssuingAuthority == null ? "无" : rows[0].IssuingAuthority) + "\n";
+            var text = "经济类型 : " + (rows[0].EconomicType == null ? "无" : rows[0].EconomicType) + "</br>";
+            text += "企业编号 : " + (rows[0].Code == null ? "无" : rows[0].Code) + "</br>";
+            text += "邮箱 : " + (rows[0].Email == null ? "无" : rows[0].Email) + "</br>";
+            text += "企业网址 : " + (rows[0].WebSite == null ? "无" : rows[0].WebSite) + "</br>";
+            text += "资质联系地址 : " + (rows[0].ContactAddress == null ? "无" : rows[0].ContactAddress) + "</br>";
+            text += "邮编 : " + (rows[0].ZipCode == null ? "无" : rows[0].ZipCode) + "</br>";
+            text += "安全生产许可证编号 : " + (rows[0].SafetyLicenseNo == null ? "无" : rows[0].SafetyLicenseNo) + "</br>";
+            text += "发证机构 : " + (rows[0].IssuingAuthority == null ? "无" : rows[0].IssuingAuthority) + "</br>";
 
             $("#issueTableCodeContent").html(text);
 

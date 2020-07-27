@@ -55,6 +55,7 @@
                                     <th>ID</th>
                                     <th>省份</th>
                                     <th>企业名称</th>
+                                    <th>备注</th>
                                     <th>建造师</th>
                                     <th>注册号</th>
                                     <th>执业印章号</th>
@@ -65,7 +66,7 @@
                                     <th>注册专业</th>
                                     <th>注册有效期</th>
                                     <th>注册有效期1</th>
-                                    <th>备注</th>
+
                                 </tr>
                             </thead>
                             <tfoot>
@@ -73,6 +74,7 @@
                                     <th>ID</th>
                                     <th>省份</th>
                                     <th>企业名称</th>
+                                    <th>备注</th>
                                     <th>建造师</th>
                                     <th>注册号</th>
                                     <th>执业印章号</th>
@@ -83,7 +85,7 @@
                                     <th>注册专业</th>
                                     <th>注册有效期</th>
                                     <th>注册有效期1</th>
-                                    <th>备注</th>
+
                                 </tr>
                             </tfoot>
                         </table>
@@ -104,7 +106,7 @@
 
                 </div>
                 <div class="modal-body">
-                    <pre id="issueTableCodeContent" style="width: auto"></pre>
+                    <div id="issueTableCodeContent" style="width:100%; height: auto;word-wrap:break-word;word-break:break-all;overflow:hidden;overflow-y:auto"></div>
                 </div>
             </div>
         </div>
@@ -216,21 +218,44 @@
                     {
                         data: "CompanyName", title: "企业名称", searchable: true, orderable: true, width: "100px", responsivePriority: 1,
                         render: function (data, type, row, meta) {
-                            var title = "<a href='javascript:void(0);' onclick='Detail(" + meta.row + ")' title='" + row.CompanyName + "'>" + row.CompanyName.substring(0, 10) + "..." + "</a>";
+                            var title = "<a href='javascript:void(0);' onclick='Detail(" + meta.row + ")' title='" + row.CompanyName + "'>" + row.CompanyName.substring(0, 8) + "..." + "</a>";
                             return title;
                         }
                     },
+                    { data: "Remarks", title: "备注", searchable: true, orderable: true, width: "100px", responsivePriority: 1, className: "editable" },
                     { data: "Constructor", title: "建造师",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     { data: "RegisterNumber", title: "注册号",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     { data: "PracticeSealNo", title: "执业印章号",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     { data: "RegisterCertNo", title: "注册证书编号",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     { data: "QualificationCertNo", title: "执业资格证书编号",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "DateIssue", title: "发证日期", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    {
+                        data: "DateIssue", title: "发证日期", searchable: true, orderable: true, width: "100px", responsivePriority: 1,
+                        render: function (val, type, row) {
+                            if (val == null) {
+                                return "";
+                            }
+                            else {
+                                val = moment(val).format('YYYY-MM-DD ');
+                                return val;
+                            }
+                        }
+                    },
                     { data: "DateIssue1", title: "",  searchable: true, orderable: false, visible: false, width: "80px" },
                     { data: "RegisterMajor", title: "注册专业",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "ValidityRegistration", title: "注册有效期", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    {
+                        data: "ValidityRegistration", title: "注册有效期", searchable: true, orderable: true, width: "100px", responsivePriority: 1,
+                        render: function (val, type, row) {
+                            if (val == null) {
+                                return "";
+                            }
+                            else {
+                                val = moment(val).format('YYYY-MM-DD ');
+                                return val;
+                            }
+                        }
+                    },
                     { data: "ValidityRegistration1", title: "",  searchable: true, orderable: false, visible: false, width: "80px" },
-                    { data: "Remarks", title: "备注", searchable: true, orderable: true, width: "100px", responsivePriority: 1, className: "editable" },
+                    
                 ],
 
 
@@ -266,7 +291,7 @@
             $("#issueTableCode").modal("show");
             var rows = table.rows(Id).data();
             $("#issueTableCodeContent").html("");
-            var text = "省份 : " + (rows[0].Province == null ? "无" : rows[0].Province) + "\n";
+            var text = "省份 : " + (rows[0].Province == null ? "无" : rows[0].Province) + "</br>";
   
             
 

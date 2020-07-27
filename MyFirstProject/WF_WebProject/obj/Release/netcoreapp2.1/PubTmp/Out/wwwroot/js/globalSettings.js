@@ -98,49 +98,49 @@
                 "sSortAscending": ": 以升序排列此列",
                 "sSortDescending": ": 以降序排列此列"
             },
-            //"select": {
-            //    "rows": {
-            //        "_": "选择 %d 行",
-            //        "0": "",
-            //        "1": "选择 1 行"
-            //    },
-            //    "columns": {
-            //        "_": "选择 %d 列",
-            //        "0": "",
-            //        "1": "选择 1 列"
-            //    },
-            //    "cells": {
-            //        "_": "选择 %d 单元格",
-            //        "0": "",
-            //        "1": "选择 1 单元格"
-            //    }
-            //}
+            "select": {
+                "rows": {
+                    "_": "选择 %d 行",
+                    "0": "",
+                    "1": "选择 1 行"
+                },
+                "columns": {
+                    "_": "选择 %d 列",
+                    "0": "",
+                    "1": "选择 1 列"
+                },
+                "cells": {
+                    "_": "选择 %d 单元格",
+                    "0": "",
+                    "1": "选择 1 单元格"
+                }
+            }
         },
-        //fixedHeader: {
-        //    header: true,
-        //    footer: false
-        //},
+        fixedHeader: {
+            header: true,
+            footer: false
+        },
         lengthMenu: [[10, 25, 50, 100, 500, -1], [10, 25, 50, 100, 500, "All"]],
-        //select: true,
-        //autoWidth: false,
-        //dom: "<'row'<'col-sm-10'B><'col-sm-2 text-right'l>>" +
-        //    "<'row'<'col-sm-12'tr>>" +
-        //    "<'row'<'col-sm-5'i><'col-sm-7'p>>",
-        //colReorder: true,
-        //searching: true,
-        //responsive: {
-        //    breakpoints: [
-        //        { name: 'bigdesktop', width: Infinity },
-        //        { name: 'meddesktop', width: 1480 },
-        //        { name: 'smalldesktop', width: 1280 },
-        //        { name: 'medium', width: 1188 },
-        //        { name: 'tabletl', width: 1024 },
-        //        { name: 'btwtabllandp', width: 848 },
-        //        { name: 'tabletp', width: 768 },
-        //        { name: 'mobilel', width: 480 },
-        //        { name: 'mobilep', width: 320 }
-        //    ]
-        //},
+        select: true,
+        //autoWidth: true,
+        dom: "<'row'<'col-sm-10'B><'col-sm-2 text-right'l>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+        colReorder: true,
+        searching: true,
+        responsive: {
+            breakpoints: [
+                { name: 'bigdesktop', width: Infinity },
+                { name: 'meddesktop', width: 1480 },
+                { name: 'smalldesktop', width: 1280 },
+                { name: 'medium', width: 1188 },
+                { name: 'tabletl', width: 1024 },
+                { name: 'btwtabllandp', width: 848 },
+                { name: 'tabletp', width: 768 },
+                { name: 'mobilel', width: 480 },
+                { name: 'mobilep', width: 320 }
+            ]
+        },
         serverSide: true,
         processing: true,
     });

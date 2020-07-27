@@ -34,7 +34,7 @@
         }
     </style>
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini ">
     <div class="wrapper">
 
 
@@ -139,7 +139,25 @@
             //App.setAssetsPath("http://hrms.ruyicang.com/RES/Content/assets/");
             App.init();
             Layout.init();
+            
             //CustomScript.init();
+            //$('.nav-link').click(function () {
+            //    console.log("nav-link:"+$(this).hasClass('active'));
+            //    if (!$(this).hasClass('active')) {//没有展开的情况
+            //        $(this).addClass('active');
+            //        console.log("has-treeview:" + $(this).parent().hasClass('has-treeview'));
+            //        if ($(this).parent().hasClass('has-treeview')) {//一级节点
+            //            $(this).parent().siblings().each(function (index, element) {
+            //                console.log("element:" + element);
+            //                $(element).removeClass('menu-open');
+            //                $(element).children('a').removeClass('active');
+            //            });
+            //        }
+            //    }
+            //    else {//展开的情况
+            //        $(this).removeClass('active');
+            //    }
+            //})
         });
     </script>
     @RenderSection("scripts", required: false)
