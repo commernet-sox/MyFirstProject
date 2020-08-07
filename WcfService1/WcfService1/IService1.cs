@@ -15,9 +15,7 @@ namespace WcfService1
     {
 
         [OperationContract]
-        //[WebGet(ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]//WebInvoke
         [WebInvoke( Method = "GET", BodyStyle = WebMessageBodyStyle.WrappedRequest, RequestFormat =WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-        //[WebGet(UriTemplate = "/GetData/{value}", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
         string GetData(string value);
 
         [OperationContract]
@@ -36,6 +34,22 @@ namespace WcfService1
         string LeavingMessage(string Name,string Tel,string Email,string OtherWay,string Message);
 
         // TODO: 在此添加您的服务操作
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.WrappedRequest, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        string GetGetStandardDetailById(string id);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        string CreateStandard(string Id,string Title,string Description,string Content,string Img, string Type, string CreateTime);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.WrappedRequest, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        string GetAllStandard();
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.WrappedRequest, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        string GetAllPolicyList();
     }
 
 
@@ -59,5 +73,17 @@ namespace WcfService1
             get { return stringValue; }
             set { stringValue = value; }
         }
+    }
+
+    [DataContract]
+    public class Standard 
+    { 
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public string Content { get; set; }
+        public string Img { get; set; }
+        public int Type { get; set; }
+        public DateTime CreateTime { get; set; }
     }
 }

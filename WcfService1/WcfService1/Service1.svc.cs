@@ -1,8 +1,10 @@
 ﻿using MailKit.Net.Smtp;
 using MimeKit;
 using MimeKit.Text;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Net.Mime;
@@ -12,6 +14,8 @@ using System.ServiceModel;
 using System.ServiceModel.Activation;
 using System.ServiceModel.Web;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Web;
 
 namespace WcfService1
 {
@@ -56,7 +60,124 @@ namespace WcfService1
         {
             return WcfService1.Email.Sendmail(Name, Tel, Email, OtherWay, Message);
         }
+        /// <summary>
+        /// 获取资质信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public string GetGetStandardDetailById(string id)
+        {
+            try
+            {
+                string sql = " select * from dbo.Standard where Id='{0}'";
+                sql = string.Format(sql,id);
+                DataTable dt = SqlHelpClass.GetReadOnlyDataTable(sql);
+                List<Dictionary<string, string>> list = new List<Dictionary<string, string>>();
+                Dictionary<string, string> dic = new Dictionary<string, string>();
+                if (dt.Rows.Count > 0)
+                {
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        
+                        dic.Add("Id", dr["Id"].ToString());
+                        dic.Add("Title", dr["Title"].ToString());
+                        dic.Add("Description", dr["Description"].ToString());
+                        dic.Add("Content", dr["Content"].ToString());
+                        dic.Add("Type", dr["Type"].ToString());
+                        dic.Add("Img", "");
+                        dic.Add("CreateTime", dr["CreateTime"].ToString());
+                        list.Add(dic);
+                    }
+                    return JsonConvert.SerializeObject(dic);
+                }
+                else
+                {
+                    return JsonConvert.SerializeObject("");
+                }
+            }
+            catch (Exception ex)
+            {
+                return JsonConvert.SerializeObject(ex.Message);
+            }
 
+            //Dictionary<string, string> dic = new Dictionary<string, string>();
+            //dic.Add("Title", "建筑工程施工总承包");
+            //dic.Add("Description", "【摘要】：建筑工程施工总承包资质分为特级、一级、二级、三级。");
+            //dic.Add("Content", "建筑工程施工总承包资质分为特级、一级、二级、三级" +
+            //    "特级资质标准：" +
+            //    "一、企业资信能力" +
+            //    "1、企业注册资本金3亿元以上。" +
+            //    "2、企业净资产3.6亿元以上。" +
+            //    "3、企业近三年上缴建筑业营业税均在5000万元以上。" +
+            //    "4、企业银行授信额度近三年均在5亿元以上。");
+            //return Newtonsoft.Json.JsonConvert.SerializeObject(dic);
+        }
+
+        public string CreateStandard(string Id, string Title, string Description, string Content, string Img, string Type, string CreateTime)
+        {
+            try
+            {
+                string sql = " INSERT INTO dbo.Standard (Title,Description,Content,Type,CreateTime) VALUES ('{0}','{1}','{2}','{3}','" + DateTime.Now + "') ";
+                sql = string.Format(sql,Title,Description,Content,Type);
+                int res = SqlHelpClass.ExecuteNonQueryTypeText(sql);
+                if (res > 0)
+                {
+                    return "true";
+                }
+                else
+                {
+                    return "false";
+                }
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+        public string GetAllStandard()
+        {
+            try
+            {
+                string sql = " select top 10 * from dbo.Standard order by Id desc";
+                DataTable dt = SqlHelpClass.GetReadOnlyDataTable(sql);
+                List<Dictionary<string, string>> list = new List<Dictionary<string, string>>();
+                if (dt.Rows.Count > 0)
+                {
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        Dictionary<string, string> dic = new Dictionary<string, string>();
+                        dic.Add("Id", dr["Id"].ToString());
+                        dic.Add("Title", dr["Title"].ToString());
+                        dic.Add("Description", dr["Description"].ToString());
+                        dic.Add("Content", dr["Content"].ToString());
+                        dic.Add("Type", dr["Type"].ToString());
+                        dic.Add("Img", "");
+                        dic.Add("CreateTime", dr["CreateTime"].ToString());
+                        list.Add(dic);
+                    }
+                    return JsonConvert.SerializeObject(list);
+                }
+                else
+                {
+                    return JsonConvert.SerializeObject("");
+                }
+            }
+            catch (Exception ex)
+            {
+                return JsonConvert.SerializeObject(ex.Message);
+            }
+            
+        }
+
+        public string GetAllPolicyList()
+        {
+            string html = HttpRequestMiddleware.SendRequest("http://www.coc.gov.cn/coc/webview/titleList.jspx?channel=1&pageNo=1",new Dictionary<string, string>(), HttpMethod.Get,new Dictionary<string, string>(),5000);
+            string list = Regex.Match(html, "var\\stitleList=JSON\\.parse\\(\'.*").Value;
+            list = Regex.Replace(list, "var\\stitleList=JSON\\.parse\\(\'","");
+            list = Regex.Replace(list,"\'\\);","");
+            return list;
+        }
     }
     public class Email
     {
