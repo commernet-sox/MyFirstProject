@@ -13,18 +13,46 @@
                         <h3 class="card-title">企业资质信息</h3>
                         <div class="portlet-body">
                             <div class="booking-search">
-                                <div class="row form-group">
+                                @*<div class="row form-group">
 
+            <div class="fiter col-md-6 col-xs-8">
+                <div class=" input-group input-large date-picker input-daterange" data-date-format="yyyy-mm-dd" style="margin-top:21px;">
+                    <div class="fiter" data-column="03" data-name="Time">
+                        <input type="text" id="col03_filter" class="form-control" placeholder="时间开始-日期" autocomplete="off">
+                    </div>
+                    <span class="input-group-addon">
+                        到
+                    </span>
+                    <div class="fiter" data-column="04" data-name="Time1">
+                        <input type="text" id="col04_filter" class="form-control" placeholder="时间结束-日期" autocomplete="off">
+                    </div>
+                </div>
+            </div>
+        </div>*@
+                                <div class="row form-group">
                                     <div class="fiter col-md-6 col-xs-8">
                                         <div class=" input-group input-large date-picker input-daterange" data-date-format="yyyy-mm-dd" style="margin-top:21px;">
-                                            <div class="fiter" data-column="03" data-name="Time">
-                                                <input type="text" id="col03_filter" class="form-control" placeholder="时间开始-日期" autocomplete="off">
+                                            <div class="fiter" data-column="05" data-name="StartDate">
+                                                <input type="text" id="col05_filter" class="form-control" placeholder="资质生效日期" autocomplete="off">
                                             </div>
                                             <span class="input-group-addon">
                                                 到
                                             </span>
-                                            <div class="fiter" data-column="04" data-name="Time1">
-                                                <input type="text" id="col04_filter" class="form-control" placeholder="时间结束-日期" autocomplete="off">
+                                            <div class="fiter" data-column="06" data-name="StartDate1">
+                                                <input type="text" id="col06_filter" class="form-control" placeholder="资质生效日期" autocomplete="off">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="fiter col-md-6 col-xs-8">
+                                        <div class=" input-group input-large date-picker input-daterange" data-date-format="yyyy-mm-dd" style="margin-top:21px;">
+                                            <div class="fiter" data-column="07" data-name="EndDate">
+                                                <input type="text" id="col07_filter" class="form-control" placeholder="资质到期日期" autocomplete="off">
+                                            </div>
+                                            <span class="input-group-addon">
+                                                到
+                                            </span>
+                                            <div class="fiter" data-column="08" data-name="EndDate1">
+                                                <input type="text" id="col08_filter" class="form-control" placeholder="资质到期日期" autocomplete="off">
                                             </div>
                                         </div>
                                     </div>
@@ -32,27 +60,27 @@
                                 <div class="row form-group">
                                     <div class="fiter col-md-6 col-xs-8">
                                         <div class=" input-group input-large date-picker input-daterange" data-date-format="yyyy-mm-dd" style="margin-top:21px;">
-                                            <div class="fiter" data-column="05" data-name="StartDate">
-                                                <input type="text" id="col05_filter" class="form-control" placeholder="有效期开始-日期" autocomplete="off">
+                                            <div class="fiter" data-column="09" data-name="SafetyLicenseStartTime">
+                                                <input type="text" id="col09_filter" class="form-control" placeholder="安许证生效日期" autocomplete="off">
                                             </div>
                                             <span class="input-group-addon">
                                                 到
                                             </span>
-                                            <div class="fiter" data-column="06" data-name="StartDate1">
-                                                <input type="text" id="col06_filter" class="form-control" placeholder="有效期开始-日期" autocomplete="off">
+                                            <div class="fiter" data-column="10" data-name="SafetyLicenseStartTime1">
+                                                <input type="text" id="col10_filter" class="form-control" placeholder="安许证生效日期" autocomplete="off">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="fiter col-md-6 col-xs-8">
                                         <div class=" input-group input-large date-picker input-daterange" data-date-format="yyyy-mm-dd" style="margin-top:21px;">
-                                            <div class="fiter" data-column="07" data-name="EndDate">
-                                                <input type="text" id="col07_filter" class="form-control" placeholder="有效期结束-日期" autocomplete="off">
+                                            <div class="fiter" data-column="11" data-name="SafetyLicenseEndTime">
+                                                <input type="text" id="col11_filter" class="form-control" placeholder="安许证到期日期" autocomplete="off">
                                             </div>
                                             <span class="input-group-addon">
                                                 到
                                             </span>
-                                            <div class="fiter" data-column="08" data-name="EndDate1">
-                                                <input type="text" id="col08_filter" class="form-control" placeholder="有效期结束-日期" autocomplete="off">
+                                            <div class="fiter" data-column="12" data-name="SafetyLicenseEndTime1">
+                                                <input type="text" id="col12_filter" class="form-control" placeholder="安许证到期日期" autocomplete="off">
                                             </div>
                                         </div>
                                     </div>
@@ -74,26 +102,24 @@
                                     <th>企业编号</th>
                                     <th>企业名称</th>
                                     <th>备注</th>
-                                    <th>经济类型</th>
-                                    <th>注册地（省/市）</th>
-                                    <th>注册地（市/区）</th>
-                                    <th>时间</th>
-                                    <th>时间1</th>
-                                    <th>邮箱</th>
-                                    <th>企业网址</th>
+                                    <th>所属省份</th>
+                                    <th>所属市区</th>
                                     <th>资质类型</th>
-                                    <th>资质联系地址</th>
-                                    <th>邮编</th>
+                                    <th>二级资质细分</th>
+                                    <th>三级资质细分</th>
+                                    <th>资质等级</th>
+                                    <th>资质编号</th>
+                                    <th>资质生效日期</th>
+                                    <th>资质生效日期1</th>
+                                    <th>资质到期日期</th>
+                                    <th>资质到期日期1</th>
                                     <th>安全生产许可证编号</th>
-                                    <th>有效期（起始）</th>
-                                    <th>有效期（起始）1</th>
-                                    <th>有效期（截止）</th>
-                                    <th>有效期（截止）1</th>
-                                    <th>发证机构</th>
+                                    <th>安许证生效日期</th>
+                                    <th>安许证生效日期1</th>
+                                    <th>安许证到期日期</th>
+                                    <th>安许证到期日期1</th>
                                     <th>安全生产许可证范围</th>
-                                    <th>组织机构代码</th>
-                                    <th>信用综合评分</th>
-
+                                    <th>发证机构</th>
                                 </tr>
                             </thead>
                             <tfoot>
@@ -102,26 +128,24 @@
                                     <th>企业编号</th>
                                     <th>企业名称</th>
                                     <th>备注</th>
-                                    <th>经济类型</th>
-                                    <th>注册地（省/市）</th>
-                                    <th>注册地（市/区）</th>
-                                    <th>时间</th>
-                                    <th>时间1</th>
-                                    <th>邮箱</th>
-                                    <th>企业网址</th>
+                                    <th>所属省份</th>
+                                    <th>所属市区</th>
                                     <th>资质类型</th>
-                                    <th>资质联系地址</th>
-                                    <th>邮编</th>
+                                    <th>二级资质细分</th>
+                                    <th>三级资质细分</th>
+                                    <th>资质等级</th>
+                                    <th>资质编号</th>
+                                    <th>资质生效日期</th>
+                                    <th>资质生效日期1</th>
+                                    <th>资质到期日期</th>
+                                    <th>资质到期日期1</th>
                                     <th>安全生产许可证编号</th>
-                                    <th>有效期（起始）</th>
-                                    <th>有效期（起始）1</th>
-                                    <th>有效期（截止）</th>
-                                    <th>有效期（截止）1</th>
-                                    <th>发证机构</th>
+                                    <th>安许证生效日期</th>
+                                    <th>安许证生效日期1</th>
+                                    <th>安许证到期日期</th>
+                                    <th>安许证到期日期1</th>
                                     <th>安全生产许可证范围</th>
-                                    <th>组织机构代码</th>
-                                    <th>信用综合评分</th>
-
+                                    <th>发证机构</th>
                                 </tr>
                             </tfoot>
                         </table>
@@ -172,48 +196,48 @@
             //时间插件配置
             if (jQuery().datepicker) {
 
-                $('#col03_filter').datepicker({
-                    language: 'zh-CN',
-                    autoclose: true,
-                    todayHighlight: true,
-                    format: 'yyyy-mm-dd 00:00:00',
-                    clearBtn: true
-                });
-                $('#col04_filter').datepicker({
-                    language: 'zh-CN',
-                    autoclose: true,
-                    todayHighlight: true,
-                    format: 'yyyy-mm-dd 23:59:59',
-                    clearBtn: true
-                });
-                $('#col05_filter').datepicker({
-                    language: 'zh-CN',
-                    autoclose: true,
-                    todayHighlight: true,
-                    format: 'yyyy-mm-dd 00:00:00',
-                    clearBtn: true
-                });
-                $('#col06_filter').datepicker({
-                    language: 'zh-CN',
-                    autoclose: true,
-                    todayHighlight: true,
-                    format: 'yyyy-mm-dd 23:59:59',
-                    clearBtn: true
-                });
-                $('#col07_filter').datepicker({
-                    language: 'zh-CN',
-                    autoclose: true,
-                    todayHighlight: true,
-                    format: 'yyyy-mm-dd 00:00:00',
-                    clearBtn: true
-                });
-                $('#col08_filter').datepicker({
-                    language: 'zh-CN',
-                    autoclose: true,
-                    todayHighlight: true,
-                    format: 'yyyy-mm-dd 23:59:59',
-                    clearBtn: true
-                });
+                //$('#col03_filter').datepicker({
+                //    language: 'zh-CN',
+                //    autoclose: true,
+                //    todayHighlight: true,
+                //    format: 'yyyy-mm-dd 00:00:00',
+                //    clearBtn: true
+                //});
+                //$('#col04_filter').datepicker({
+                //    language: 'zh-CN',
+                //    autoclose: true,
+                //    todayHighlight: true,
+                //    format: 'yyyy-mm-dd 23:59:59',
+                //    clearBtn: true
+                //});
+                //$('#col05_filter').datepicker({
+                //    language: 'zh-CN',
+                //    autoclose: true,
+                //    todayHighlight: true,
+                //    format: 'yyyy-mm-dd 00:00:00',
+                //    clearBtn: true
+                //});
+                //$('#col06_filter').datepicker({
+                //    language: 'zh-CN',
+                //    autoclose: true,
+                //    todayHighlight: true,
+                //    format: 'yyyy-mm-dd 23:59:59',
+                //    clearBtn: true
+                //});
+                //$('#col07_filter').datepicker({
+                //    language: 'zh-CN',
+                //    autoclose: true,
+                //    todayHighlight: true,
+                //    format: 'yyyy-mm-dd 00:00:00',
+                //    clearBtn: true
+                //});
+                //$('#col08_filter').datepicker({
+                //    language: 'zh-CN',
+                //    autoclose: true,
+                //    todayHighlight: true,
+                //    format: 'yyyy-mm-dd 23:59:59',
+                //    clearBtn: true
+                //});
                 $('.date-picker').datepicker({
                     rtl: App.isRTL(),
                     orientation: "left",
@@ -267,7 +291,7 @@
                 serverSide:true,
                 columns: [
                     { data: "Id", title: "主键", searchable: true, orderable: true, width: "50px",visible:false, responsivePriority: 1 },
-                    { data: "Code", title: "企业编号", searchable: true, orderable: false, visible: false, width: "100px", responsivePriority: 1 },
+                    { data: "Code", title: "企业编号", searchable: true, orderable: false, visible: true, width: "100px", responsivePriority: 1 },
                     {
                         data: "Name", title: "企业名称", searchable: true, orderable: true, width: "100px", responsivePriority: 1,
                         render: function (data, type, row, meta) {
@@ -276,30 +300,15 @@
                         }
                     },
                     { data: "Remarks", title: "备注", searchable: true, orderable: true, width: "100px", responsivePriority: 1, className: "editable" },
-                    { data: "EconomicType", title: "经济类型", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 1 },
-                    { data: "Province", title: "注册地（省/市）", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "City", title: "注册地（市/区）", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "Province", title: "所属省份", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "City", title: "所属市区", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "QualificationType", title: "资质名称", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "SecondQualificationDetail", title: "二级资质细分", searchable: true, orderable: true, visible: true, width: "100px", responsivePriority: 1 },
+                    { data: "ThirdQualificationDetail", title: "三级资质细分", searchable: true, orderable: true, visible: true, width: "100px", responsivePriority: 1 },
+                    { data: "QualificationLevel", title: "资质等级", searchable: true, orderable: true, visible: true, width: "100px", responsivePriority: 1 },
+                    { data: "QualificationNumber", title: "资质编号", searchable: true, orderable: true, visible: true, width: "100px", responsivePriority: 1 },
                     {
-                        data: "Time", title: "时间", searchable: true, orderable: true, width: "100px", responsivePriority: 1,
-                        render: function (val, type, row) {
-                            if (val == null) {
-                                return "";
-                            }
-                            else {
-                                val = moment(val).format('YYYY-MM-DD ');
-                                return val;
-                            }
-
-                        }
-                    },
-                    { data: "Time1", title: "", searchable: true, orderable: false, visible: false, width: "80px" },
-                    { data: "Email", title: "邮箱", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 1 },
-                    { data: "WebSite", title: "企业网址", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 1 },
-                    { data: "QualificationType", title: "资质类型", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "ContactAddress", title: "资质联系地址", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 1 },
-                    { data: "ZipCode", title: "邮编", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 1 },
-                    { data: "SafetyLicenseNo", title: "安全生产许可证编号", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 1 },
-                    { data: "StartDate", title: "有效期（起始）", searchable: true, orderable: true, width: "100px", responsivePriority: 1 ,
+                        data: "StartDate", title: "资质生效日期", searchable: true, orderable: true, width: "100px", responsivePriority: 1,
                         render: function (val, type, row) {
                             if (val == null) {
                                 return "";
@@ -312,7 +321,8 @@
                         }
                     },
                     { data: "StartDate1", title: "", searchable: true, orderable: false, visible: false, width: "80px" },
-                    { data: "EndDate", title: "有效期（截止）", searchable: true, orderable: true, width: "100px", responsivePriority: 1 ,
+                    {
+                        data: "EndDate", title: "资质到期日期", searchable: true, orderable: true, width: "100px", responsivePriority: 1,
                         render: function (val, type, row) {
                             if (val == null) {
                                 return "";
@@ -324,11 +334,36 @@
                         }
                     },
                     { data: "EndDate1", title: "", searchable: true, orderable: false, visible: false, width: "80px" },
-                    { data: "IssuingAuthority", title: "发证机构", searchable: true, orderable: true, visible: false, width: "500px", responsivePriority: 1 },
+                    { data: "SafetyLicenseNo", title: "安全生产许可证编号", searchable: true, orderable: true, visible: true, width: "100px", responsivePriority: 1 },
+                    {
+                        data: "SafetyLicenseStartTime", title: "安许证生效日期", searchable: true, orderable: true, width: "100px", responsivePriority: 1,
+                        render: function (val, type, row) {
+                            if (val == null) {
+                                return "";
+                            }
+                            else {
+                                val = moment(val).format('YYYY-MM-DD ');
+                                return val;
+                            }
+                        }
+                    },
+                    { data: "SafetyLicenseStartTime1", title: "", searchable: true, orderable: false, visible: false, width: "80px" },
+                    {
+                        data: "SafetyLicenseEndTime", title: "安许证到期日期", searchable: true, orderable: true, width: "100px", responsivePriority: 1,
+                        render: function (val, type, row) {
+                            if (val == null) {
+                                return "";
+                            }
+                            else {
+                                val = moment(val).format('YYYY-MM-DD ');
+                                return val;
+                            }
+                        }
+                    },
+                    { data: "SafetyLicenseEndTime1", title: "", searchable: true, orderable: false, visible: false, width: "80px" },
                     { data: "ScopeLicense", title: "安全生产许可证范围", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "OrganizationCode", title: "组织机构代码", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "ComprehensiveScore", title: "信用综合评分", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    
+                    { data: "IssuingAuthority", title: "发证机构", searchable: true, orderable: true, visible: true, width: "500px", responsivePriority: 1 },
+
                 ],
             });
             //条件搜索
@@ -362,12 +397,8 @@
             $("#issueTableCode").modal("show");
             var rows = table.rows(Id).data();
             $("#issueTableCodeContent").html("");
-            var text = "经济类型 : " + (rows[0].EconomicType == null ? "无" : rows[0].EconomicType) + "</br>";
+            var text = "企业名称 : " + (rows[0].Name == null ? "无" : rows[0].Name) + "</br>";
             text += "企业编号 : " + (rows[0].Code == null ? "无" : rows[0].Code) + "</br>";
-            text += "邮箱 : " + (rows[0].Email == null ? "无" : rows[0].Email) + "</br>";
-            text += "企业网址 : " + (rows[0].WebSite == null ? "无" : rows[0].WebSite) + "</br>";
-            text += "资质联系地址 : " + (rows[0].ContactAddress == null ? "无" : rows[0].ContactAddress) + "</br>";
-            text += "邮编 : " + (rows[0].ZipCode == null ? "无" : rows[0].ZipCode) + "</br>";
             text += "安全生产许可证编号 : " + (rows[0].SafetyLicenseNo == null ? "无" : rows[0].SafetyLicenseNo) + "</br>";
             text += "发证机构 : " + (rows[0].IssuingAuthority == null ? "无" : rows[0].IssuingAuthority) + "</br>";
 

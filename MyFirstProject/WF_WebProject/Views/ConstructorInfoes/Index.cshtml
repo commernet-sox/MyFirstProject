@@ -53,39 +53,53 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>省份</th>
-                                    <th>企业名称</th>
-                                    <th>备注</th>
-                                    <th>建造师</th>
-                                    <th>注册号</th>
-                                    <th>执业印章号</th>
-                                    <th>注册证书编号</th>
+                                    <th>建造师姓名</th>
+                                    <th>跟进记录</th>
+                                    <th>考证省份</th>
+                                    <th>职称</th>
+                                    <th>执业证书</th>
                                     <th>执业资格证书编号</th>
+                                    <th>执业印章号</th>
                                     <th>发证日期</th>
                                     <th>发证日期1</th>
+                                    <th>注册状况</th>
                                     <th>注册专业</th>
+                                    <th>注册证书编号</th>
+                                    <th>注册号</th>
                                     <th>注册有效期</th>
                                     <th>注册有效期1</th>
-
+                                    <th>性别</th>
+                                    <th>所在地区</th>
+                                    <th>手机</th>
+                                    <th>微信</th>
+                                    <th>邮箱</th>
+                                    <th>QQ</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
                                     <th>ID</th>
-                                    <th>省份</th>
-                                    <th>企业名称</th>
-                                    <th>备注</th>
-                                    <th>建造师</th>
-                                    <th>注册号</th>
-                                    <th>执业印章号</th>
-                                    <th>注册证书编号</th>
+                                    <th>建造师姓名</th>
+                                    <th>跟进记录</th>
+                                    <th>考证省份</th>
+                                    <th>职称</th>
+                                    <th>执业证书</th>
                                     <th>执业资格证书编号</th>
+                                    <th>执业印章号</th>
                                     <th>发证日期</th>
                                     <th>发证日期1</th>
+                                    <th>注册状况</th>
                                     <th>注册专业</th>
+                                    <th>注册证书编号</th>
+                                    <th>注册号</th>
                                     <th>注册有效期</th>
                                     <th>注册有效期1</th>
-
+                                    <th>性别</th>
+                                    <th>所在地区</th>
+                                    <th>手机</th>
+                                    <th>微信</th>
+                                    <th>邮箱</th>
+                                    <th>QQ</th>
                                 </tr>
                             </tfoot>
                         </table>
@@ -213,21 +227,25 @@
                 },
                 serverSide:true,
                 columns: [
-                    { data: "Id", title:"ID",  searchable: true, orderable: true, width: "50px", visible: false, responsivePriority: 1 },
-                    { data: "Province", title: "省份", searchable: true, orderable: false, visible: false, width: "100px", responsivePriority: 1 },
+                    { data: "Id", title: "ID", searchable: true, orderable: true, width: "50px", visible: false, responsivePriority: 1 },
                     {
-                        data: "CompanyName", title: "企业名称", searchable: true, orderable: true, width: "100px", responsivePriority: 1,
+                        data: "Constructor", title: "建造师姓名", searchable: true, orderable: true, width: "100px", responsivePriority: 1,
                         render: function (data, type, row, meta) {
-                            var title = "<a href='javascript:void(0);' onclick='Detail(" + meta.row + ")' title='" + row.CompanyName + "'>" + row.CompanyName.substring(0, 8) + "..." + "</a>";
+                            if (row.Constructor != null && row.Constructor != "") {
+                                var title = "<a href='javascript:void(0);' onclick='Detail(" + meta.row + ")' title='" + row.Constructor + "'>" + row.Constructor + "</a>";
+                            }
+                            else {
+                                var title = "暂无";
+                            }
                             return title;
                         }
                     },
-                    { data: "Remarks", title: "备注", searchable: true, orderable: true, width: "100px", responsivePriority: 1, className: "editable" },
-                    { data: "Constructor", title: "建造师",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "RegisterNumber", title: "注册号",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "PracticeSealNo", title: "执业印章号",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "RegisterCertNo", title: "注册证书编号",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "QualificationCertNo", title: "执业资格证书编号",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "Remarks", title: "跟进记录", searchable: true, orderable: true, width: "100px", responsivePriority: 1, className: "editable" },
+                    { data: "Province", title: "考证省份", searchable: true, orderable: false, visible: true, width: "100px", responsivePriority: 1 },
+                    { data: "Thetitle", title: "职称", searchable: true, orderable: false, visible: true, width: "100px", responsivePriority: 1 },
+                    { data: "Practicecertificate", title: "执业证书", searchable: true, orderable: false, visible: true, width: "100px", responsivePriority: 1 },
+                    { data: "QualificationCertNo", title: "执业资格证书编号", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "PracticeSealNo", title: "执业印章号", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     {
                         data: "DateIssue", title: "发证日期", searchable: true, orderable: true, width: "100px", responsivePriority: 1,
                         render: function (val, type, row) {
@@ -240,8 +258,11 @@
                             }
                         }
                     },
-                    { data: "DateIssue1", title: "",  searchable: true, orderable: false, visible: false, width: "80px" },
-                    { data: "RegisterMajor", title: "注册专业",  searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "DateIssue1", title: "", searchable: true, orderable: false, visible: false, width: "80px" },
+                    { data: "Registrationstatus", title: "注册状况", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "RegisterMajor", title: "注册专业", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "RegisterCertNo", title: "注册证书编号", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "RegisterNumber", title: "注册号", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     {
                         data: "ValidityRegistration", title: "注册有效期", searchable: true, orderable: true, width: "100px", responsivePriority: 1,
                         render: function (val, type, row) {
@@ -254,11 +275,15 @@
                             }
                         }
                     },
-                    { data: "ValidityRegistration1", title: "",  searchable: true, orderable: false, visible: false, width: "80px" },
-                    
+                    { data: "ValidityRegistration1", title: "", searchable: true, orderable: false, visible: false, width: "80px" },
+                    { data: "Sex", title: "性别", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "Location", title: "所在地区", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "Mobile", title: "手机", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "Wechat", title: "微信", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "Email", title: "邮箱", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "QQ", title: "QQ", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+
                 ],
-
-
             });
 
             //查询事件
@@ -291,7 +316,7 @@
             $("#issueTableCode").modal("show");
             var rows = table.rows(Id).data();
             $("#issueTableCodeContent").html("");
-            var text = "省份 : " + (rows[0].Province == null ? "无" : rows[0].Province) + "</br>";
+            var text = "考证省份 : " + (rows[0].Province == null ? "暂无" : rows[0].Province) + "</br>";
   
             
 

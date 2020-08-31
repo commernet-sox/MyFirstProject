@@ -21,23 +21,24 @@ namespace WFWebProject.Service
         }
         protected override CoreResponse PageData(CoreRequest core_request)
         {
-            var dbcontext = base.Repository.SlaveUnitOfWork.DbContext;
-            var query = from item in dbcontext.ConstructorInfo
-                        select new ConstructorInfoDTO
-                        {
-                            Id = item.Id,
-                            CompanyName = item.CompanyName,
-                            Constructor = item.Constructor,
-                            DateIssue = item.DateIssue,
-                            PracticeSealNo = item.PracticeSealNo,
-                            Province = item.Province,
-                            QualificationCertNo = item.QualificationCertNo,
-                            RegisterCertNo = item.RegisterCertNo,
-                            RegisterMajor = item.RegisterMajor,
-                            RegisterNumber = item.RegisterNumber,
-                            ValidityRegistration = item.ValidityRegistration,
-                            Remarks=item.Remarks,
-                        };
+            //var dbcontext = base.Repository.SlaveUnitOfWork.DbContext;
+            //var query = from item in dbcontext.ConstructorInfo_new
+            //            select new ConstructorInfoDTO
+            //            {
+            //                Id = item.Id,
+            //                CompanyName = item.CompanyName,
+            //                Constructor = item.Constructor,
+            //                DateIssue = item.DateIssue,
+            //                PracticeSealNo = item.PracticeSealNo,
+            //                Province = item.Province,
+            //                QualificationCertNo = item.QualificationCertNo,
+            //                RegisterCertNo = item.RegisterCertNo,
+            //                RegisterMajor = item.RegisterMajor,
+            //                RegisterNumber = item.RegisterNumber,
+            //                ValidityRegistration = item.ValidityRegistration,
+            //                Remarks=item.Remarks,
+            //            };
+            var query = this.GetAll();
             var result = base.PageDataWithQuery<ConstructorInfoDTO>(core_request, query);
             List<ConstructorInfoDTO> itemList = result.DtResponse.data as List<ConstructorInfoDTO>;
             result.DtResponse.data = itemList;

@@ -56,5 +56,68 @@ namespace WFWebProject.DTO
         public Nullable<DateTime> ModifyTime { get; set; }
         //修改人
         public string Modifier { get; set; }
+        //职称
+        [MappingExpression(PropertyName = "Thetitle", DefaultOperator = ExpressionOperator.Contains)]
+        public string Thetitle { get; set; }
+        //执业证书
+        [MappingExpression(PropertyName = "Practicecertificate", DefaultOperator = ExpressionOperator.Contains)]
+        public string Practicecertificate { get; set; }
+        //注册状况
+        [MappingExpression(PropertyName = "Registrationstatus", DefaultOperator = ExpressionOperator.Contains)]
+        public string Registrationstatus { get; set; }
+        //性别
+        [MappingExpression(PropertyName = "Sex", DefaultOperator = ExpressionOperator.Contains)]
+        public string Sex { get; set; }
+        //出生年月
+        [MappingExpression(PropertyName = "Birthmonth", DefaultOperator = ExpressionOperator.Contains)]
+        public string Birthmonth { get; set; }
+        //身份证号
+        [MappingExpression(PropertyName = "Idcard", DefaultOperator = ExpressionOperator.Contains)]
+        public string Idcard { get; set; }
+        //学历
+        [MappingExpression(PropertyName = "Educationbackground", DefaultOperator = ExpressionOperator.Contains)]
+        public string Educationbackground { get; set; }
+        //专业
+        [MappingExpression(PropertyName = "Major", DefaultOperator = ExpressionOperator.Contains)]
+        public string Major { get; set; }
+        //毕业院校
+        [MappingExpression(PropertyName = "GraduateSchool", DefaultOperator = ExpressionOperator.Contains)]
+        public string GraduateSchool { get; set; }
+        //工作年限
+        [MappingExpression(PropertyName = "Workyear", DefaultOperator = ExpressionOperator.Contains)]
+        public string Workyear { get; set; }
+        //所在地区
+        [MappingExpression(PropertyName = "Location", DefaultOperator = ExpressionOperator.Contains)]
+        public string Location { get; set; }
+        //手机
+        [MappingExpression(PropertyName = "Mobile", DefaultOperator = ExpressionOperator.Contains)]
+        public string Mobile { get; set; }
+        //微信
+        [MappingExpression(PropertyName = "Wechat", DefaultOperator = ExpressionOperator.Contains)]
+        public string Wechat { get; set; }
+        //邮箱
+        [MappingExpression(PropertyName = "Email", DefaultOperator = ExpressionOperator.Contains)]
+        public string Email { get; set; }
+        //qq
+        [MappingExpression(PropertyName = "QQ", DefaultOperator = ExpressionOperator.Contains)]
+        public string QQ { get; set; }
+        //求职省份
+        [MappingExpression(PropertyName = "Jobprovinces", DefaultOperator = ExpressionOperator.Contains)]
+        public string Jobprovinces { get; set; }
+        //求职性质
+        [MappingExpression(PropertyName = "Jobnature", DefaultOperator = ExpressionOperator.Contains)]
+        public string Jobnature { get; set; }
+        //证书状态
+        [MappingExpression(PropertyName = "Certificatestatus", DefaultOperator = ExpressionOperator.Contains)]
+        public string Certificatestatus { get; set; }
+        //期望薪资
+        [MappingExpression(PropertyName = "Expectedsalary", DefaultOperator = ExpressionOperator.Contains)]
+        public string Expectedsalary { get; set; }
+        //是否可以转社保
+        [MappingExpression(PropertyName = "Socialsecurity", DefaultOperator = ExpressionOperator.Contains)]
+        public string Socialsecurity { get; set; }
+        //求职说明
+        [MappingExpression(PropertyName = "Jobapply", DefaultOperator = ExpressionOperator.Contains)]
+        public string Jobapply { get; set; }
     }
 }

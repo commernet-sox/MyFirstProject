@@ -14,10 +14,10 @@ namespace WFWebProject.Models
         {
             
         }
-        public DbSet<CompanyInfo> CompanyInfo { get; set; }
+        public DbSet<CompanyInfo> CompanyInfo_new { get; set; }
         public DbSet<CodeMaster> CodeMaster { get; set; }
-        public DbSet<CompanyQualification> CompanyQualification { get; set; }
-        public DbSet<ConstructorInfo> ConstructorInfo { get; set; }
+        public DbSet<CompanyQualification> CompanyQualification_new { get; set; }
+        public DbSet<ConstructorInfo> ConstructorInfo_new { get; set; }
         public DbSet<User> User { get; set; }
         public DbSet<MenuInfo> MenuInfo { get; set; }
         public DbSet<UserMenuRole> UserMenuRole { get; set; }
