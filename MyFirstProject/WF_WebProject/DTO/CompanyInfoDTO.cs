@@ -11,6 +11,8 @@ namespace WFWebProject.DTO
     public class CompanyInfoDTO:BaseDTO
     {
         public System.Int32 Id { get; set; }
+        //公司编码
+        public string Code { get; set; }
         //所属省份
         [MappingExpression(PropertyName = "Province", DefaultOperator = ExpressionOperator.Contains)]
         public System.String Province { get; set; }
@@ -109,9 +111,9 @@ namespace WFWebProject.DTO
         public System.String RegisterAddress { get; set; }
 
 
-        //企业编号
-        [MappingExpression(PropertyName = "Code", DefaultOperator = ExpressionOperator.Contains)]
-        public string Code { get; set; }
+        ////企业编号
+        //[MappingExpression(PropertyName = "Code", DefaultOperator = ExpressionOperator.Contains)]
+        //public string Code { get; set; }
         //企业名称
         //[MappingExpression(PropertyName = "Name", DefaultOperator = ExpressionOperator.Contains)]
         //public string Name { get; set; }

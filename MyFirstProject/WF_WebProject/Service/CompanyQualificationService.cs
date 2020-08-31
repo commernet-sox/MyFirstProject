@@ -21,32 +21,33 @@ namespace WFWebProject.Service
         }
         protected override CoreResponse PageData(CoreRequest core_request)
         {
-            var dbcontext = base.Repository.SlaveUnitOfWork.DbContext;
-            var query = from item in dbcontext.CompanyQualification
-                        select new CompanyQualificationDTO
-                        {
-                            Id = item.Id,
-                            City = item.City,
-                            Code = item.Code,
-                            ComprehensiveScore = item.ComprehensiveScore,
-                            ContactAddress = item.ContactAddress,
-                            EconomicType = item.EconomicType,
-                            Email = item.Email,
-                            EndDate = item.EndDate,
-                            IssuingAuthority = item.IssuingAuthority,
-                            Name = item.Name,
-                            OrganizationCode = item.OrganizationCode,
-                            Province = item.Province,
-                            QualificationType = item.QualificationType,
-                            SafetyLicenseNo = item.SafetyLicenseNo,
-                            ScopeLicense = item.ScopeLicense,
-                            StartDate = item.StartDate,
-                            Time = item.Time,
-                            WebSite = item.WebSite,
-                            ZipCode = item.ZipCode,
-                            Remarks=item.Remarks,
+            var query = this.GetAll();
+            //var dbcontext = base.Repository.SlaveUnitOfWork.DbContext;
+            //var query = from item in dbcontext.CompanyQualification_new
+            //            select new CompanyQualificationDTO
+            //            {
+            //                Id = item.Id,
+            //                City = item.City,
+            //                Code = item.Code,
+            //                ComprehensiveScore = item.ComprehensiveScore,
+            //                ContactAddress = item.ContactAddress,
+            //                EconomicType = item.EconomicType,
+            //                Email = item.Email,
+            //                EndDate = item.EndDate,
+            //                IssuingAuthority = item.IssuingAuthority,
+            //                Name = item.Name,
+            //                OrganizationCode = item.OrganizationCode,
+            //                Province = item.Province,
+            //                QualificationType = item.QualificationType,
+            //                SafetyLicenseNo = item.SafetyLicenseNo,
+            //                ScopeLicense = item.ScopeLicense,
+            //                StartDate = item.StartDate,
+            //                Time = item.Time,
+            //                WebSite = item.WebSite,
+            //                ZipCode = item.ZipCode,
+            //                Remarks=item.Remarks,
 
-                        };
+            //            };
             var result = base.PageDataWithQuery<CompanyQualificationDTO>(core_request, query);
             List<CompanyQualificationDTO> itemList = result.DtResponse.data as List<CompanyQualificationDTO>;
             result.DtResponse.data = itemList;

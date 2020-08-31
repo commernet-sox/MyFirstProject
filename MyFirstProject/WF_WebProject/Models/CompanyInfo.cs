@@ -9,6 +9,8 @@ namespace WFWebProject.Models
     public class CompanyInfo
     {
         public int Id { get; set; }
+        //公司编码
+        public string Code { get; set; }
         //所属省份
         public string Province { get; set; }
         //所属市区

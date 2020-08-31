@@ -24,43 +24,44 @@ namespace WFWebProject.Service
         {
             try
             {
-                var dbcontext = base.Repository.SlaveUnitOfWork.DbContext;
-                var query = from item in dbcontext.CompanyInfo
-                            select new CompanyInfoDTO
-                            {
-                                Id = item.Id,
-                                Address = item.Address,
-                                BusinessScope = item.BusinessScope,
-                                BusinessStatus = item.BusinessStatus,
-                                BusinessTerm = item.BusinessTerm,
-                                City = item.City,
-                                CreateDate = item.CreateDate,
-                                CreditCode = item.CreditCode,
-                                District = item.District,
-                                EnglishName = item.EnglishName,
-                                IdentificationNumber = item.IdentificationNumber,
-                                Industry = item.Industry,
-                                LegalPerson = item.LegalPerson,
-                                Name = item.Name,
-                                NameUsedBefore = item.NameUsedBefore,
-                                NumberInsured = item.NumberInsured,
-                                OrganizationCode = item.OrganizationCode,
-                                PaidCapital = item.PaidCapital,
-                                PersonnelSize = item.PersonnelSize,
-                                Province = item.Province,
-                                PublicAddress = item.PublicAddress,
-                                PublicEmail = item.PublicEmail,
-                                PublicTel = item.PublicTel,
-                                PublicWebSite = item.PublicWebSite,
-                                RegisterAddress = item.RegisterAddress,
-                                RegisteredCapital = item.RegisteredCapital,
-                                RegistrationAuthority = item.RegistrationAuthority,
-                                RegistrationNo = item.RegistrationNo,
-                                TaxpayerQualification = item.TaxpayerQualification,
-                                Tel = item.Tel,
-                                Type = item.Type,
-                                Remarks = item.Remarks,
-                            };
+                var query = this.GetAll();
+                //var dbcontext = base.Repository.SlaveUnitOfWork.DbContext;
+                //var query = from item in dbcontext.CompanyInfo
+                //            select new CompanyInfoDTO
+                //            {
+                //                Id = item.Id,
+                //                Address = item.Address,
+                //                BusinessScope = item.BusinessScope,
+                //                BusinessStatus = item.BusinessStatus,
+                //                BusinessTerm = item.BusinessTerm,
+                //                City = item.City,
+                //                CreateDate = item.CreateDate,
+                //                CreditCode = item.CreditCode,
+                //                District = item.District,
+                //                EnglishName = item.EnglishName,
+                //                IdentificationNumber = item.IdentificationNumber,
+                //                Industry = item.Industry,
+                //                LegalPerson = item.LegalPerson,
+                //                Name = item.Name,
+                //                NameUsedBefore = item.NameUsedBefore,
+                //                NumberInsured = item.NumberInsured,
+                //                OrganizationCode = item.OrganizationCode,
+                //                PaidCapital = item.PaidCapital,
+                //                PersonnelSize = item.PersonnelSize,
+                //                Province = item.Province,
+                //                PublicAddress = item.PublicAddress,
+                //                PublicEmail = item.PublicEmail,
+                //                PublicTel = item.PublicTel,
+                //                PublicWebSite = item.PublicWebSite,
+                //                RegisterAddress = item.RegisterAddress,
+                //                RegisteredCapital = item.RegisteredCapital,
+                //                RegistrationAuthority = item.RegistrationAuthority,
+                //                RegistrationNo = item.RegistrationNo,
+                //                TaxpayerQualification = item.TaxpayerQualification,
+                //                Tel = item.Tel,
+                //                Type = item.Type,
+                //                Remarks = item.Remarks,
+                //            };
                 var result = base.PageDataWithQuery<CompanyInfoDTO>(core_request, query);
                 List<CompanyInfoDTO> itemList = result.DtResponse.data as List<CompanyInfoDTO>;
                 result.DtResponse.data = itemList;
