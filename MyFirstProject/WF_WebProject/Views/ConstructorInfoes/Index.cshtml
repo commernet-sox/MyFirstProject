@@ -49,7 +49,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped">
+                        <table id="example1" class="table table-bordered table-striped nowrap">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -76,7 +76,7 @@
                                     <th>QQ</th>
                                 </tr>
                             </thead>
-                            <tfoot>
+                            @*<tfoot>
                                 <tr>
                                     <th>ID</th>
                                     <th>建造师姓名</th>
@@ -101,7 +101,7 @@
                                     <th>邮箱</th>
                                     <th>QQ</th>
                                 </tr>
-                            </tfoot>
+                            </tfoot>*@
                         </table>
                     </div>
                 </div>
@@ -194,27 +194,27 @@
                 editor.inline(this);
             });
 
-            $('#example1 tfoot th').each(function () {
-                var title = $(this).text();
-                $(this).html('<input type="text" placeholder="Search ' + title + '" />');
-            });
+            //$('#example1 tfoot th').each(function () {
+            //    var title = $(this).text();
+            //    $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+            //});
             //查询
             table = $('#example1').DataTable({
 
-                initComplete: function () {
-                    // Apply the search
-                    this.api().columns().every(function () {
-                        var that = this;
+                //initComplete: function () {
+                //    // Apply the search
+                //    this.api().columns().every(function () {
+                //        var that = this;
 
-                        $('input', this.footer()).on('keyup change clear', function () {
-                            if (that.search() !== this.value) {
-                                that
-                                    .search(this.value)
-                                    .draw();
-                            }
-                        });
-                    });
-                },
+                //        $('input', this.footer()).on('keyup change clear', function () {
+                //            if (that.search() !== this.value) {
+                //                that
+                //                    .search(this.value)
+                //                    .draw();
+                //            }
+                //        });
+                //    });
+                //},
                 "scrollX": true,
                 lengthMenu: [[10, 25, 50, 100, 500], [10, 25, 50, 100, 500]],
                 ajax: {
@@ -225,7 +225,8 @@
                 colReorder: {
                     fixedColumnsLeft: 1
                 },
-                serverSide:true,
+                serverSide: true,
+                autoWidth: false,
                 columns: [
                     { data: "Id", title: "ID", searchable: true, orderable: true, width: "50px", visible: false, responsivePriority: 1 },
                     {
@@ -241,13 +242,17 @@
                         }
                     },
                     { data: "Remarks", title: "跟进记录", searchable: true, orderable: true, width: "100px", responsivePriority: 1, className: "editable" },
-                    { data: "Province", title: "考证省份", searchable: true, orderable: false, visible: true, width: "100px", responsivePriority: 1 },
-                    { data: "Thetitle", title: "职称", searchable: true, orderable: false, visible: true, width: "100px", responsivePriority: 1 },
-                    { data: "Practicecertificate", title: "执业证书", searchable: true, orderable: false, visible: true, width: "100px", responsivePriority: 1 },
-                    { data: "QualificationCertNo", title: "执业资格证书编号", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "PracticeSealNo", title: "执业印章号", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "Mobile", title: "手机", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "Wechat", title: "微信", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "Email", title: "邮箱", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "QQ", title: "QQ", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "Province", title: "考证省份", searchable: true, orderable: false, visible: true, width: "100px", responsivePriority: 2 },
+                    { data: "Thetitle", title: "职称", searchable: true, orderable: false, visible: true, width: "100px", responsivePriority: 2 },
+                    { data: "Practicecertificate", title: "执业证书", searchable: true, orderable: false, visible: true, width: "100px", responsivePriority: 2 },
+                    { data: "QualificationCertNo", title: "执业资格证书编号", searchable: true, orderable: true, width: "100px", responsivePriority: 2 },
+                    { data: "PracticeSealNo", title: "执业印章号", searchable: true, orderable: true, width: "100px", responsivePriority: 2 },
                     {
-                        data: "DateIssue", title: "发证日期", searchable: true, orderable: true, width: "100px", responsivePriority: 1,
+                        data: "DateIssue", title: "发证日期", searchable: true, orderable: true, width: "100px", responsivePriority: 2,
                         render: function (val, type, row) {
                             if (val == null) {
                                 return "";
@@ -259,12 +264,12 @@
                         }
                     },
                     { data: "DateIssue1", title: "", searchable: true, orderable: false, visible: false, width: "80px" },
-                    { data: "Registrationstatus", title: "注册状况", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "RegisterMajor", title: "注册专业", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "RegisterCertNo", title: "注册证书编号", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "RegisterNumber", title: "注册号", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "Registrationstatus", title: "注册状况", searchable: true, orderable: true, width: "100px", responsivePriority: 2 },
+                    { data: "RegisterMajor", title: "注册专业", searchable: true, orderable: true, width: "100px", responsivePriority: 2 },
+                    { data: "RegisterCertNo", title: "注册证书编号", searchable: true, orderable: true, width: "100px", responsivePriority: 2 },
+                    { data: "RegisterNumber", title: "注册号", searchable: true, orderable: true, width: "100px", responsivePriority: 2 },
                     {
-                        data: "ValidityRegistration", title: "注册有效期", searchable: true, orderable: true, width: "100px", responsivePriority: 1,
+                        data: "ValidityRegistration", title: "注册有效期", searchable: true, orderable: true, width: "100px", responsivePriority: 2,
                         render: function (val, type, row) {
                             if (val == null) {
                                 return "";
@@ -276,13 +281,8 @@
                         }
                     },
                     { data: "ValidityRegistration1", title: "", searchable: true, orderable: false, visible: false, width: "80px" },
-                    { data: "Sex", title: "性别", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "Location", title: "所在地区", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "Mobile", title: "手机", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "Wechat", title: "微信", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "Email", title: "邮箱", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "QQ", title: "QQ", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-
+                    { data: "Sex", title: "性别", searchable: true, orderable: true, width: "100px", responsivePriority: 2 },
+                    { data: "Location", title: "所在地区", searchable: true, orderable: true, width: "100px", responsivePriority: 2 },
                 ],
             });
 
