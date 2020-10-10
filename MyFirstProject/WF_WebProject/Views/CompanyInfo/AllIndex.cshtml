@@ -77,7 +77,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped">
+                        <table id="example1" class="table table-bordered table-striped nowrap">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -140,7 +140,7 @@
                                     <th>修改人</th>
                                 </tr>
                             </thead>
-                            <tfoot>
+                            @*<tfoot>
                                 <tr>
                                     <th>ID</th>
                                     <th>公司名称</th>
@@ -201,7 +201,7 @@
                                     <th>修改时间</th>
                                     <th>修改人</th>
                                 </tr>
-                            </tfoot>
+                            </tfoot>*@
                         </table>
                     </div>
                 </div>
@@ -323,25 +323,25 @@
                 editor.inline(this);
             });
 
-            $('#example1 tfoot th').each(function () {
-                var title = $(this).text();
-                $(this).html('<input type="text" placeholder="Search ' + title + '" />');
-            });
+            //$('#example1 tfoot th').each(function () {
+            //    var title = $(this).text();
+            //    $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+            //});
             //查询
             table = $('#example1').DataTable({
-                initComplete: function () {
-                    // Apply the search
-                    this.api().columns().every(function () {
-                        var that = this;
-                        $('input', this.footer()).on('keyup change clear', function () {
-                            if (that.search() !== this.value) {
-                                that
-                                    .search(this.value)
-                                    .draw();
-                            }
-                        });
-                    });
-                },
+                //initComplete: function () {
+                //    // Apply the search
+                //    this.api().columns().every(function () {
+                //        var that = this;
+                //        $('input', this.footer()).on('keyup change clear', function () {
+                //            if (that.search() !== this.value) {
+                //                that
+                //                    .search(this.value)
+                //                    .draw();
+                //            }
+                //        });
+                //    });
+                //},
                 "scrollX": true,
                 lengthMenu: [[10, 25, 50, 100, 500], [10, 25, 50, 100, 500]],
                 ajax: {
@@ -352,7 +352,8 @@
                 colReorder: {
                     fixedColumnsLeft: 1
                 },
-                serverSide:true,
+                serverSide: true,
+                autoWidth:false,
                 columns: [
                     { data: "Id", title: "主键", searchable: true, orderable: true, width: "50px",visible:false, responsivePriority: 1 },
                     {
@@ -382,36 +383,36 @@
                     { data: "Province", title: "所属省份", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     { data: "City", title: "所属市区", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     { data: "District", title: "所属区县", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "Type", title: "公司类型", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "Address", title: "办公地址", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 1 },
-                    { data: "PublicTel", title: "企业公示的联系电话（更多号码）", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "PublicAddress", title: "企业公示的地址", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 1 },
-                    { data: "PublicWebSite", title: "企业公示的网址", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 1 },
-                    { data: "PublicEmail", title: "企业公示的邮箱", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 1 },
-                    { data: "BusinessScope", title: "经营范围", searchable: true, orderable: true, visible: false, width: "800px", responsivePriority: 1 },
-                    { data: "RegisteredCapital", title: "注册资本", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "PaidCapital", title: "实缴资本", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 1 },
-                    { data: "BusinessStatus", title: "经营状态", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "CreditCode", title: "统一社会信用代码", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "RegistrationNo", title: "工商注册号", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 1 },
-                    { data: "IdentificationNumber", title: "纳税人识别号", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 1 },
-                    { data: "OrganizationCode", title: "组织机构代码", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 1 },
-                    { data: "RegistrationAuthority", title: "登记机关", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 1 },
-                    { data: "BusinessTerm", title: "营业期限", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 1 },
-                    { data: "TaxpayerQualification", title: "纳税人资质", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 1 },
-                    { data: "PersonnelSize", title: "人员规模", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 1 },
-                    { data: "NumberInsured", title: "参保人数", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 1 },
-                    { data: "NameUsedBefore", title: "曾用名", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 1 },
-                    { data: "EnglishName", title: "英文名称", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 1 },
-                    { data: "RegisterAddress", title: "注册地址", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 1 },
+                    { data: "Type", title: "公司类型", searchable: true, orderable: true, width: "100px", responsivePriority: 2 },
+                    { data: "Address", title: "办公地址", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 2 },
+                    { data: "PublicTel", title: "企业公示的联系电话（更多号码）", searchable: true, orderable: true, width: "100px", responsivePriority: 2 },
+                    { data: "PublicAddress", title: "企业公示的地址", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 2 },
+                    { data: "PublicWebSite", title: "企业公示的网址", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 2 },
+                    { data: "PublicEmail", title: "企业公示的邮箱", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 2 },
+                    { data: "BusinessScope", title: "经营范围", searchable: true, orderable: true, visible: false, width: "800px", responsivePriority: 2 },
+                    { data: "RegisteredCapital", title: "注册资本", searchable: true, orderable: true, width: "100px", responsivePriority: 2 },
+                    { data: "PaidCapital", title: "实缴资本", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 2 },
+                    { data: "BusinessStatus", title: "经营状态", searchable: true, orderable: true, width: "100px", responsivePriority: 2 },
+                    { data: "CreditCode", title: "统一社会信用代码", searchable: true, orderable: true, width: "100px", responsivePriority: 2 },
+                    { data: "RegistrationNo", title: "工商注册号", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 2 },
+                    { data: "IdentificationNumber", title: "纳税人识别号", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 2 },
+                    { data: "OrganizationCode", title: "组织机构代码", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 2 },
+                    { data: "RegistrationAuthority", title: "登记机关", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 2 },
+                    { data: "BusinessTerm", title: "营业期限", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 2 },
+                    { data: "TaxpayerQualification", title: "纳税人资质", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 2 },
+                    { data: "PersonnelSize", title: "人员规模", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 2 },
+                    { data: "NumberInsured", title: "参保人数", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 2 },
+                    { data: "NameUsedBefore", title: "曾用名", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 2 },
+                    { data: "EnglishName", title: "英文名称", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 2 },
+                    { data: "RegisterAddress", title: "注册地址", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 2 },
 
 
-                    { data: "Code", title: "企业编号", searchable: true, orderable: false, width: "100px", responsivePriority: 1 },
-                    { data: "EconomicType", title: "经济类型", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 1 },
-                    { data: "Province1", title: "注册地（省/市）", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "City1", title: "注册地（市/区）", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "Code", title: "企业编号", searchable: true, orderable: false, width: "100px", responsivePriority: 2 },
+                    { data: "EconomicType", title: "经济类型", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 2 },
+                    { data: "Province1", title: "注册地（省/市）", searchable: true, orderable: true, width: "100px", responsivePriority: 2 },
+                    { data: "City1", title: "注册地（市/区）", searchable: true, orderable: true, width: "100px", responsivePriority: 2 },
                     {
-                        data: "Time", title: "时间", searchable: true, orderable: true, width: "100px", responsivePriority: 1,
+                        data: "Time", title: "时间", searchable: true, orderable: true, width: "100px", responsivePriority: 2,
                         render: function (val, type, row) {
                             if (val == null) {
                                 return "";
@@ -422,33 +423,33 @@
                             }
                         }},
                     { data: "Time1", title: "", searchable: true, orderable: false, visible: false, width: "80px" },
-                    { data: "Email", title: "邮箱", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 1 },
-                    { data: "WebSite", title: "企业网址", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 1 },
-                    { data: "QualificationType", title: "资质类型", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "Email", title: "邮箱", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 2 },
+                    { data: "WebSite", title: "企业网址", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 2 },
+                    { data: "QualificationType", title: "资质类型", searchable: true, orderable: true, width: "100px", responsivePriority: 2 },
                     { data: "ContactAddress", title: "资质联系地址", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 1 },
-                    { data: "ZipCode", title: "邮编", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 1 },
+                    { data: "ZipCode", title: "邮编", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 2 },
                     { data: "SafetyLicenseNo", title: "安全生产许可证编号", searchable: true, orderable: true, visible: false, width: "100px", responsivePriority: 1 },
-                    { data: "StartDate", title: "有效期（起始）", searchable: true, orderable: true, width: "100px", responsivePriority: 1 ,
+                    { data: "StartDate", title: "有效期（起始）", searchable: true, orderable: true, width: "100px", responsivePriority: 2 ,
                         render: function (val, type, row) {
                             val =val==""||val==null?"": moment(val).format('YYYY-MM-DD ');
                             return val;
                         }
                     },
                     { data: "StartDate1", title: "", searchable: true, orderable: false, visible: false, width: "80px" },
-                    { data: "EndDate", title: "有效期（截止）", searchable: true, orderable: true, width: "100px", responsivePriority: 1 ,
+                    { data: "EndDate", title: "有效期（截止）", searchable: true, orderable: true, width: "100px", responsivePriority: 2 ,
                         render: function (val, type, row) {
                             val =val==""||val==null?"": moment(val).format('YYYY-MM-DD ');
                             return val;
                         }
                     },
                     { data: "EndDate1", title: "", searchable: true, orderable: false, visible: false, width: "80px" },
-                    { data: "IssuingAuthority", title: "发证机构", searchable: true, orderable: true, visible: false, width: "500px", responsivePriority: 1 },
-                    { data: "ScopeLicense", title: "安全生产许可证范围", searchable: true, orderable: true,  width: "100px", responsivePriority: 1 },
-                    { data: "OrganizationCode1", title: "组织机构代码", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "ComprehensiveScore", title: "信用综合评分", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
+                    { data: "IssuingAuthority", title: "发证机构", searchable: true, orderable: true, visible: false, width: "500px", responsivePriority: 2 },
+                    { data: "ScopeLicense", title: "安全生产许可证范围", searchable: true, orderable: true,  width: "100px", responsivePriority: 2 },
+                    { data: "OrganizationCode1", title: "组织机构代码", searchable: true, orderable: true, width: "100px", responsivePriority: 2 },
+                    { data: "ComprehensiveScore", title: "信用综合评分", searchable: true, orderable: true, width: "100px", responsivePriority: 2 },
                     
-                    { data: "ModifyTime", title: "修改时间", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "Modifier", title: "修改人", searchable: true, orderable: true, width: "100px", responsivePriority: 1},
+                    { data: "ModifyTime", title: "修改时间", searchable: true, orderable: true, width: "100px", responsivePriority: 2 },
+                    { data: "Modifier", title: "修改人", searchable: true, orderable: true, width: "100px", responsivePriority: 2},
                 ],
             });
 

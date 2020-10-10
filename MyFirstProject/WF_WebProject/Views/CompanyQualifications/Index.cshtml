@@ -95,7 +95,7 @@
                     </div>
 
                     <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped">
+                        <table id="example1" class="table table-bordered table-striped nowrap">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -122,7 +122,7 @@
                                     <th>发证机构</th>
                                 </tr>
                             </thead>
-                            <tfoot>
+                            @*<tfoot>
                                 <tr>
                                     <th>ID</th>
                                     <th>企业编号</th>
@@ -147,7 +147,7 @@
                                     <th>安全生产许可证范围</th>
                                     <th>发证机构</th>
                                 </tr>
-                            </tfoot>
+                            </tfoot>*@
                         </table>
                     </div>
                 </div>
@@ -256,27 +256,27 @@
                 editor.inline(this);
             });
 
-            $('#example1 tfoot th').each(function () {
-                var title = $(this).text();
-                $(this).html('<input type="text" placeholder="Search ' + title + '" />');
-            });
+            //$('#example1 tfoot th').each(function () {
+            //    var title = $(this).text();
+            //    $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+            //});
             //查询
             table = $('#example1').DataTable({
 
-                initComplete: function () {
-                    // Apply the search
-                    this.api().columns().every(function () {
-                        var that = this;
+                //initComplete: function () {
+                //    // Apply the search
+                //    this.api().columns().every(function () {
+                //        var that = this;
 
-                        $('input', this.footer()).on('keyup change clear', function () {
-                            if (that.search() !== this.value) {
-                                that
-                                    .search(this.value)
-                                    .draw();
-                            }
-                        });
-                    });
-                },
+                //        $('input', this.footer()).on('keyup change clear', function () {
+                //            if (that.search() !== this.value) {
+                //                that
+                //                    .search(this.value)
+                //                    .draw();
+                //            }
+                //        });
+                //    });
+                //},
                 "scrollX": true,
                 lengthMenu: [[10, 25, 50, 100, 500], [10, 25, 50, 100, 500]],
 
@@ -288,7 +288,8 @@
                 colReorder: {
                     fixedColumnsLeft: 1
                 },
-                serverSide:true,
+                serverSide: true,
+                autoWidth: false,
                 columns: [
                     { data: "Id", title: "主键", searchable: true, orderable: true, width: "50px",visible:false, responsivePriority: 1 },
                     { data: "Code", title: "企业编号", searchable: true, orderable: false, visible: true, width: "100px", responsivePriority: 1 },
@@ -305,10 +306,10 @@
                     { data: "QualificationType", title: "资质名称", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
                     { data: "SecondQualificationDetail", title: "二级资质细分", searchable: true, orderable: true, visible: true, width: "100px", responsivePriority: 1 },
                     { data: "ThirdQualificationDetail", title: "三级资质细分", searchable: true, orderable: true, visible: true, width: "100px", responsivePriority: 1 },
-                    { data: "QualificationLevel", title: "资质等级", searchable: true, orderable: true, visible: true, width: "100px", responsivePriority: 1 },
-                    { data: "QualificationNumber", title: "资质编号", searchable: true, orderable: true, visible: true, width: "100px", responsivePriority: 1 },
+                    { data: "QualificationLevel", title: "资质等级", searchable: true, orderable: true, visible: true, width: "100px", responsivePriority: 2 },
+                    { data: "QualificationNumber", title: "资质编号", searchable: true, orderable: true, visible: true, width: "100px", responsivePriority: 2 },
                     {
-                        data: "StartDate", title: "资质生效日期", searchable: true, orderable: true, width: "100px", responsivePriority: 1,
+                        data: "StartDate", title: "资质生效日期", searchable: true, orderable: true, width: "100px", responsivePriority: 2,
                         render: function (val, type, row) {
                             if (val == null) {
                                 return "";
@@ -322,7 +323,7 @@
                     },
                     { data: "StartDate1", title: "", searchable: true, orderable: false, visible: false, width: "80px" },
                     {
-                        data: "EndDate", title: "资质到期日期", searchable: true, orderable: true, width: "100px", responsivePriority: 1,
+                        data: "EndDate", title: "资质到期日期", searchable: true, orderable: true, width: "100px", responsivePriority: 2,
                         render: function (val, type, row) {
                             if (val == null) {
                                 return "";
@@ -334,9 +335,9 @@
                         }
                     },
                     { data: "EndDate1", title: "", searchable: true, orderable: false, visible: false, width: "80px" },
-                    { data: "SafetyLicenseNo", title: "安全生产许可证编号", searchable: true, orderable: true, visible: true, width: "100px", responsivePriority: 1 },
+                    { data: "SafetyLicenseNo", title: "安全生产许可证编号", searchable: true, orderable: true, visible: true, width: "100px", responsivePriority: 2 },
                     {
-                        data: "SafetyLicenseStartTime", title: "安许证生效日期", searchable: true, orderable: true, width: "100px", responsivePriority: 1,
+                        data: "SafetyLicenseStartTime", title: "安许证生效日期", searchable: true, orderable: true, width: "100px", responsivePriority: 2,
                         render: function (val, type, row) {
                             if (val == null) {
                                 return "";
@@ -349,7 +350,7 @@
                     },
                     { data: "SafetyLicenseStartTime1", title: "", searchable: true, orderable: false, visible: false, width: "80px" },
                     {
-                        data: "SafetyLicenseEndTime", title: "安许证到期日期", searchable: true, orderable: true, width: "100px", responsivePriority: 1,
+                        data: "SafetyLicenseEndTime", title: "安许证到期日期", searchable: true, orderable: true, width: "100px", responsivePriority: 2 ,
                         render: function (val, type, row) {
                             if (val == null) {
                                 return "";
@@ -361,8 +362,8 @@
                         }
                     },
                     { data: "SafetyLicenseEndTime1", title: "", searchable: true, orderable: false, visible: false, width: "80px" },
-                    { data: "ScopeLicense", title: "安全生产许可证范围", searchable: true, orderable: true, width: "100px", responsivePriority: 1 },
-                    { data: "IssuingAuthority", title: "发证机构", searchable: true, orderable: true, visible: true, width: "500px", responsivePriority: 1 },
+                    { data: "ScopeLicense", title: "安全生产许可证范围", searchable: true, orderable: true, width: "100px", responsivePriority: 2 },
+                    { data: "IssuingAuthority", title: "发证机构", searchable: true, orderable: true, visible: true, width: "500px", responsivePriority: 2 },
 
                 ],
             });
