@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 namespace SDT.Service
 {
+    /// <summary>
+    /// Swagger控制器基类
+    /// </summary>
     [Route("[controller]"), ApiExplorerSettings(IgnoreApi = true)]
     public class BaseSwaggerApiController : RestApiController
     {

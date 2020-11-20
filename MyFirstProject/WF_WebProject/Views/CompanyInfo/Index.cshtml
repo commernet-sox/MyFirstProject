@@ -190,7 +190,8 @@
                 rowId = table.row($(this).closest('tr')).data().Id;
                 console.log("rowId=" + rowId);
                 initeditor();
-                editor.inline(this);
+                //editor.inline(this);
+                editor.bubble(this);
             });
             //显示tfoot部分
             //$('#example1 tfoot th').each(function () {
@@ -212,6 +213,28 @@
                 //        });
                 //    });
                 //},
+                //dom: 't<"dataTables_info"il>p',
+                //initComplete: function (settings) {
+                //    var _$this = this;
+                //    var searchHTML = '<label><span>搜索:</span> <input type="search" placeholder="请输入搜索内容" aria-controls="datatable1"></label>';
+                //    //快捷操作的HTML DOM
+                //    $(_$this.selector + '_wrapper .dataTables_filter').append(searchHTML);
+
+                //    //重写搜索事件
+                //    $(_$this.selector + '_wrapper .dataTables_filter input').bind('keyup',
+                //        function (e) {
+                //            if (e.keyCode == 13 || (e.keyCode == 8 && (this.value.length == 0))) {
+                //                _$this.api().search(this.value).draw();
+                //            }
+                //        });
+                //},
+                "columnDefs": [
+                    {
+                        //设置第一列不参与搜索
+                        "targets": [1],
+                        "searchable": true
+                    }
+                ],
                 "scrollX": true,
                 lengthMenu: [[10, 25, 50, 100, 500], [10, 25, 50, 100, 500]],
                 ajax: {
@@ -222,6 +245,11 @@
                 colReorder: {
                     fixedColumnsLeft: 1
                 },
+                //"search": {
+                //    "smart": true,
+                //},
+                //dom: 'lBrtip',//影藏搜索框
+                searchDelay: 350,
                 serverSide: true,
                 autoWidth: true,
                 columns: [

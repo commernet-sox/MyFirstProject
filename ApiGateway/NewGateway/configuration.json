@@ -1,0 +1,61 @@
+{
+  //全局配置
+  "GlobalConfiguration": {
+    //使用Consul服务治理
+    "ServiceDiscoveryProvider": {
+      "Host": "127.0.0.1",
+      "Port": 8500,
+      "ConfigurationKey": "Oceolot_A" //存储在Consul上的Key
+    },
+    "BaseUrl": "http://localhost:5000/" //网关暴露的的地址。
+  },
+  //路由配置
+  "Routes": [
+    // 第一个api
+    {
+      /** 万能配置
+         "UpstreamPathTemplate": "/first/{url}",
+         "DownstreamPathTemplate": "/{url}", 
+      **/
+      "UpstreamPathTemplate": "/first/{controller}/{action}", //上游Api请求路由规则
+      "DownstreamPathTemplate": "/{controller}/{action}", //网关转发到下游路由规则
+      "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ], //上下游支持请求方法
+      "DownstreamScheme": "http", //下游服务配置
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost", //下游地址
+          "Port": 5001 //下游端口号
+        }
+      ]
+    },
+    // 第二个api
+    {
+      /** 万能配置
+         "UpstreamPathTemplate": "/first/{url}",
+         "DownstreamPathTemplate": "/{url}", 
+      **/
+      "UpstreamPathTemplate": "/second/{controller}/{action}", //上游Api请求路由规则
+      "DownstreamPathTemplate": "/{controller}/{action}", //网关转发到下游路由规则
+      "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ], //上下游支持请求方法
+      "DownstreamScheme": "http", //下游服务配置
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost", //下游地址
+          "Port": 5002 //下游端口号
+        }
+      ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/{url}",
+      "DownstreamScheme": "http",
+      "ServiceName": "Good",
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      },
+      "UpstreamPathTemplate": "/a/{url}",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "ReRoutesCaseSensitive": false
+    }
+  ]
+}

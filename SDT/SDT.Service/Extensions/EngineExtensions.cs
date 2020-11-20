@@ -16,7 +16,7 @@ namespace SDT.Service
         public static IHostBuilder UseEngine(this IHostBuilder host) => host.UseServiceProviderFactory(new ServiceContextProviderFactory());
 
         /// <summary>
-        /// 获取配置的对象
+        /// 获取json配置的对象
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="configuration"></param>
@@ -33,7 +33,12 @@ namespace SDT.Service
             configuration.Bind(key, data);
             return data;
         }
-
+        /// <summary>
+        /// json序列化配置
+        /// </summary>
+        /// <param name="builder"></param>
+        /// <param name="setupAction"></param>
+        /// <returns></returns>
         public static IMvcBuilder AddJsonEx(this IMvcBuilder builder, Action<JsonSerializerSettings> setupAction = null) => builder.AddNewtonsoftJson(options =>
         {
             options.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Local;

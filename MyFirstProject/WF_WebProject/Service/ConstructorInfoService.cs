@@ -39,6 +39,11 @@ namespace WFWebProject.Service
             //                Remarks=item.Remarks,
             //            };
             var query = this.GetAll();
+            if (!string.IsNullOrEmpty(core_request.DtRequest.Search.Value))
+            {
+                var search = core_request.DtRequest.Search.Value;
+                query = query.Where(t => t.Constructor.Contains(search) || t.Remarks.Contains(search) || t.Mobile.Contains(search) || t.Wechat.Contains(search) || t.Email.Contains(search) || t.QQ.Contains(search) || t.Thetitle.Contains(search)||t.Practicecertificate.Contains(search));
+            }
             var result = base.PageDataWithQuery<ConstructorInfoDTO>(core_request, query);
             List<ConstructorInfoDTO> itemList = result.DtResponse.data as List<ConstructorInfoDTO>;
             result.DtResponse.data = itemList;

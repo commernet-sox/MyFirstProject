@@ -4,6 +4,9 @@ using System;
 
 namespace SDT.Service
 {
+    /// <summary>
+    /// Swagger配置
+    /// </summary>
     public class OpenServiceAppOptions
     {
         /// <summary>

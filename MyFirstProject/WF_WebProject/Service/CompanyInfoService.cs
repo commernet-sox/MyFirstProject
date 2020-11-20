@@ -21,10 +21,28 @@ namespace WFWebProject.Service
             _companyQualificationService=companyQualificationService;
         }
         protected override CoreResponse PageData(CoreRequest core_request)
+        
         {
             try
             {
-                var query = this.GetAll();
+                var query= this.GetAll();
+                if (!string.IsNullOrEmpty(core_request.DtRequest.Search.Value))
+                {
+                    var search = core_request.DtRequest.Search.Value;
+                    query = query.Where(t => t.Name.Contains(search)||t.Remarks.Contains(search)||t.Industry.Contains(search)||t.Tel.Contains(search)||t.Type.Contains(search)||t.PublicTel.Contains(search));
+                }
+                
+                //if (!string.IsNullOrEmpty(core_request.DtRequest.Search.Value))
+                //{
+                //    foreach (var item in core_request.DtRequest.Columns)
+                //    {
+                //        if (item.Data.Contains("Time") || item.Data.Contains("Date") || item.Data.Contains("Id"))
+                //        {
+                //            continue;
+                //        }
+                //        item.Search.Value = core_request.DtRequest.Search.Value;
+                //    }
+                //}
                 //var dbcontext = base.Repository.SlaveUnitOfWork.DbContext;
                 //var query = from item in dbcontext.CompanyInfo
                 //            select new CompanyInfoDTO

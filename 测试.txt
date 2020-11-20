@@ -1,3 +1,0 @@
-WcfService1     :  是zjshow网站的wcf服务。
-MyFirstProject  :  是建造师后台管理系统。
-CompanyWebSite  : 是zjshow官网。vue项目。
