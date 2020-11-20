@@ -10,8 +10,10 @@ namespace WFWebProject.DTO
 {
     public class CompanyInfoDTO:BaseDTO
     {
+        [MappingExpression(PropertyName = "Id", DefaultOperator = ExpressionOperator.Contains)]
         public System.Int32 Id { get; set; }
         //公司编码
+        [MappingExpression(PropertyName = "Code", DefaultOperator = ExpressionOperator.Contains)]
         public string Code { get; set; }
         //所属省份
         [MappingExpression(PropertyName = "Province", DefaultOperator = ExpressionOperator.Contains)]

@@ -22,6 +22,11 @@ namespace WFWebProject.Service
         protected override CoreResponse PageData(CoreRequest core_request)
         {
             var query = this.GetAll();
+            if (!string.IsNullOrEmpty(core_request.DtRequest.Search.Value))
+            {
+                var search = core_request.DtRequest.Search.Value;
+                query = query.Where(t => t.Name.Contains(search) || t.Remarks.Contains(search) || t.Tel.Contains(search) || t.QualificationType.Contains(search) || t.SecondQualificationDetail.Contains(search) || t.ThirdQualificationDetail.Contains(search)||t.ScopeLicense.Contains(search));
+            }
             //var qualificationList = this._companyQualificationService.GetAll().Select(t=>new { t.Name,t.Tel}).ToList();
             //var dbcontext = base.Repository.SlaveUnitOfWork.DbContext;
             //var query = from item in dbcontext.CompanyQualification_new

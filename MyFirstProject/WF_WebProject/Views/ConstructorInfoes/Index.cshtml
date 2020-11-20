@@ -191,7 +191,8 @@
                 rowId = table.row($(this).closest('tr')).data().Id;
                 console.log("rowId=" + rowId);
                 initeditor();
-                editor.inline(this);
+                //editor.inline(this);
+                editor.bubble(this);
             });
 
             //$('#example1 tfoot th').each(function () {

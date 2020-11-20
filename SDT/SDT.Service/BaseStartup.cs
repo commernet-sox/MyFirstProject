@@ -48,7 +48,10 @@ namespace SDT.Service
         protected virtual void ConfigureContext(IServiceContext services)
         {
         }
-
+        /// <summary>
+        /// 配置服务实体的映射
+        /// </summary>
+        /// <param name="services"></param>
         public virtual void ConfigureContainer(IServiceContext services)
         {
             ConfigureContext(services);

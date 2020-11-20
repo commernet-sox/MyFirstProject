@@ -1,0 +1,7 @@
+WcfService1     :  是zjshow网站的wcf服务。
+MyFirstProject  :  是建造师后台管理系统。
+CompanyWebSite  : 是zjshow官网。vue项目。
+ApiGateway：    是api网关项目，测试用，用到了consul+ocelot
+SDT：               服务开发工具，api项目可以引用，快速开发
+WF：                网关+身份验证项目。
+MyWebApi：    网上下载的api项目模板

@@ -15,6 +15,11 @@ namespace SDT.Service
 {
     public static class OpenServiceExtensions
     {
+        /// <summary>
+        /// 添加swagger服务说明
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="configure"></param>
         public static void AddOpenService(this IServiceCollection services, OpenServiceOptions configure = null)
         {
             configure ??= new OpenServiceOptions();
@@ -72,6 +77,11 @@ namespace SDT.Service
             }
         }
 
+        /// <summary>
+        /// 使用swagger中间件服务
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="appOptionsSetup"></param>
         public static void UseOpenService(this IApplicationBuilder app, Action<OpenServiceAppOptions> appOptionsSetup = null)
         {
             app.UseRouting();
