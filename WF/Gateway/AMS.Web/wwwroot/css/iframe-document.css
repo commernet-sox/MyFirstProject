@@ -1,0 +1,11 @@
+﻿html, body {
+    padding: 0;
+    margin: 0;
+    overflow: auto;
+    overflow: hidden;
+    height: 100%;
+}
+.mCSB_container 
+{
+    min-height: 100%;
+}

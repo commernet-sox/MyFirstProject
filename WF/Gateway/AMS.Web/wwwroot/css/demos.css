@@ -1,0 +1,143 @@
+﻿.pie-chart {
+    height: 440px;
+}
+
+.state-tooltip {
+    height: 95px;
+    font-size: 12px;
+}
+
+.state-tooltip > img {
+    width: 60px;
+    height: 40px;
+    display: block;
+    margin: 0 5px 0 0;
+    float: left;
+}
+
+.state-tooltip > h4 {
+    line-height: 40px;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.state-tooltip sup {
+    font-size: 0.8em;
+    vertical-align: middle;
+    line-height: 0;
+}
+
+.chart-legend {
+    fill: #ffffff;
+    stroke-width: 1px;
+    stroke: #767676; 
+}
+
+.btn.more-info {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.grid-custom-header-button th > div {
+    display: table;
+    width: 100%;
+}
+
+.grid-custom-header-button th > div > a {
+    display: table-cell;
+}
+
+.grid-custom-header-button th > div > div {
+    display: table-cell;
+    text-align: right;
+}
+
+.cards-custom-header-button .dxbs-header-panel > .card > .card-body > div {
+    display: table;
+    width: 100%
+}
+
+.cards-custom-header-button .dxbs-header-panel > .card > .card-body > div > a {
+    display: table-cell;
+    padding-right: 5px;
+}
+
+.cards-custom-header-button .dxbs-header-panel > .card > .card-body > div > div {
+    display: table-cell;
+    text-align: right;
+}
+
+.cards-custom-header-button .dxbs-header-panel > .card > .card-body > div > div > button {
+    opacity: 1 !important;
+}
+
+.grid-custom-header-button th > div > div > button {
+    opacity: 1 !important;
+}
+
+.grid-centered-header .card-header {
+    text-align: center;
+}
+
+.hide-editbuttons .dxbs-editform div.row > div:last-child {
+    display: none;
+}
+
+.item-pointers .media {
+    cursor: pointer;
+}
+
+.item-pointers .media:hover,
+.item-pointers .media:hover .media-heading,
+.item-pointers li.active .media,
+.item-pointers li.active .media-heading {
+    font-weight: bold;
+}
+
+.marked-item-caption em {
+    font-weight: normal;
+}
+
+.nav-templated ul.nav.nav-tabs > li > a > .dropdown-toggle.float-right:not(:last-child) {
+    margin-right: 0;
+}
+
+.nav-templated ul.nav.nav-tabs > li > a > .dropdown-toggle:empty:after {
+    margin-left: 0.255em;
+}
+
+.nav-templated ul.nav > li > a.nav-link > span.image:not(:last-child) {
+    margin: 0;
+}
+
+.nav-templated .dropdown-menu .media {
+    max-width: 500px;
+}
+
+.nav-templated .dropdown-menu h4,
+.nav-templated .dropdown-menu .media {
+    padding: .4em;
+}
+
+.nav-templated .flex-column h4,
+.nav-templated .flex-column .media p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.nav-templated .badge {
+    color: #fff;
+    background-color: #d9534f;
+}
+
+.nav-templated h4 {
+    display: inline-block;
+}
+
+.nav-templated .card-body > .card {
+    border: 0;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    background: none;
+}

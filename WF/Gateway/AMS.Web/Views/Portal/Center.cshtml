@@ -1,0 +1,62 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>@ViewBag.Title</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <style>
+        #sidebar-hide-btn {
+            background: url(../images/hide_arrow_f5369.png) no-repeat scroll 0 0 transparent;
+        }
+            #sidebar-hide-btn:hover {
+                background: url(../images/hide_arrow_hover_68873.png) no-repeat;
+            }
+        .clickstat {
+            position: absolute;
+            top: 50%;
+            width: 12px;
+            height: 138px;
+            margin-top: -69px;
+            cursor: pointer;
+        }
+        #sidebar-show-btn {
+            background: url(../images/show_arrow_e7c41.png) no-repeat scroll 0 0 transparent;
+        }
+            #sidebar-show-btn:hover {
+                background: url(../images/show_arrow_hover_c192c.png) no-repeat;
+            }
+    </style>
+    <script src="~/js/jquery.min.js"></script>
+</head>
+<body style="background-color: #1470cc;margin:0px;">
+    <span id="sidebar-hide-btn" class="arrow-btn clickstat" eid="click/zuoce/open" eid_desc="点击/左导航/展开" onClick="changeWin()" title="折叠/展开菜单"
+          style="cursor:pointer"></span>
+    <span id="sidebar-show-btn" class="arrow-btn clickstat" eid="click/zuoce/open" eid_desc="点击/左导航/展开" onClick="changeWin()" title="折叠/展开菜单"
+          style="cursor:pointer;display:none"></span>
+    <script>
+        function changeWin() {
+            if (window.parent.mainView.cols == "65,12,*") {
+                top.mainView.cols = "0,12,*";
+                $('#sidebar-show-btn').attr("style", "display:block");
+                $('#sidebar-hide-btn').attr("style", "display:none");
+                //document.getElementById('menuSwitch').innerHTML = "<img src='./1m3-ico3.png' width=6 height=50>";
+            }
+            else {
+                top.mainView.cols = "65,12,*";
+                $('#sidebar-show-btn').attr("style", "display:none");
+                $('#sidebar-hide-btn').attr("style", "display:block");
+                //document.getElementById('menuSwitch').innerHTML = "<img src='./1m3-ico3-on.png' width=6 height=50>";
+            }
+        }
+    </script>
+</body>
+
+</html>

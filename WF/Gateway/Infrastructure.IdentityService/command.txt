@@ -1,0 +1,1 @@
+Scaffold-DbContext -Connection "Host=10.27.1.58;UserName=wmsadmin;Password=123qwe!@#;Database=ams;Port=3306;CharSet=utf8;Convert Zero Datetime=true;SslMode=none" -Provider "Pomelo.EntityFrameworkCore.MySql" -OutputDir "Models" -Context "AMSContext" -force -v

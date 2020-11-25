@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>IdentityService</name>
+    </assembly>
+    <members>
+        <member name="M:IdentityService.Controllers.AppController.Get(System.String)">
+            <summary>
+            根据ID获取APP的信息
+            </summary>
+            <param name="appKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IdentityService.Controllers.AppController.GetList(Data.IdentityService.Model.AppModel)">
+            <summary>
+            根据ID获取APP的信息
+            </summary>
+            <param name="appKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IdentityService.Controllers.AppController.Post(Data.IdentityService.AuthAppDTO)">
+            <summary>
+            创建APP的一条信息
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="T:IdentityService.Controllers.OAuth2Controller">
+            <summary>
+            oauth2 协议相关接口
+            </summary>
+        </member>
+        <member name="M:IdentityService.Controllers.OAuth2Controller.Get(CPC.Service.JwtManager,Data.IdentityService.OAuth2GetRequest)">
+            <summary>
+            获取临时凭证（access_token）
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IdentityService.Controllers.OAuth2Controller.GetCode(System.String)">
+            <summary>
+            获取登录用户授权码
+            </summary>
+            <param name="userId">用户ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:IdentityService.Controllers.UserController.GetRole(System.String)">
+            <summary>
+            获取当前登录用户的功能权限
+            </summary>
+            <param name="sysCode">系统编码</param>
+            <returns></returns>
+        </member>
+        <member name="P:IdentityService.RequestEntities.OAuth2CodeResponse.Code">
+            <summary>
+            授权码
+            </summary>
+        </member>
+        <member name="P:IdentityService.RequestEntities.OAuth2CodeResponse.Expires">
+            <summary>
+            有效时间（秒）
+            </summary>
+        </member>
+        <member name="P:IdentityService.RequestEntities.OAuth2GetRequest.ClientId">
+            <summary>
+            应用ID
+            </summary>
+        </member>
+        <member name="P:IdentityService.RequestEntities.OAuth2GetRequest.ClientSecret">
+            <summary>
+            应用密钥
+            </summary>
+        </member>
+        <member name="P:IdentityService.RequestEntities.OAuth2GetRequest.GrantType">
+            <summary>
+            授权类型（client_credential,password_credential,authorization_code,refresh_token）
+            </summary>
+        </member>
+        <member name="P:IdentityService.RequestEntities.OAuth2GetRequest.Scope">
+            <summary>
+            授权范围（默认为：scope）
+            </summary>
+        </member>
+        <member name="P:IdentityService.RequestEntities.OAuth2GetRequest.UserName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:IdentityService.RequestEntities.OAuth2GetRequest.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:IdentityService.RequestEntities.OAuth2GetRequest.Code">
+            <summary>
+            authorization_code
+            </summary>
+        </member>
+        <member name="P:IdentityService.RequestEntities.OAuth2GetRequest.RefreshToken">
+            <summary>
+            refresh_token
+            </summary>
+        </member>
+        <member name="P:IdentityService.RequestEntities.OAuth2GetResponse.Token">
+            <summary>
+            access token
+            </summary>
+        </member>
+        <member name="P:IdentityService.RequestEntities.OAuth2GetResponse.Expires">
+            <summary>
+            过期时间（秒）
+            </summary>
+        </member>
+        <member name="P:IdentityService.RequestEntities.OAuth2GetResponse.RefreshToken">
+            <summary>
+            刷新Token，当授权类型为password_credential和refresh_token返回
+            </summary>
+        </member>
+        <member name="P:IdentityService.RequestEntities.OAuth2GetResponse.Scope">
+            <summary>
+            范围
+            </summary>
+        </member>
+    </members>
+</doc>

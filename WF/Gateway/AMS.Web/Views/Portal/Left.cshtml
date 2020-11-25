@@ -1,0 +1,330 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>@ViewBag.Title</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <style>
+        .appListContainer {
+            overflow-y: hidden;
+            position: relative;
+        }
+
+        .appListContainer, .windowContainer {
+            left: 0;
+            min-height: 100px;
+            min-width: 100px;
+            overflow-y: auto;
+            top: 0;
+            width: 100%;
+        }
+
+        .appButton:hover, .appButtonEditState .appButton, .appButtonEditState .addQuickLinkButton:hover {
+            background: url(../images/appbutton_mouseover_bg3.png) no-repeat scroll 1px 0 transparent;
+        }
+
+        .appListContainer .appButton {
+            position: absolute;
+        }
+
+        .appButton {
+            color: white;
+            cursor: pointer;
+            display: inline;
+            float: left;
+            font-size: 12px;
+            height: 88px;
+            position: relative;
+            width: 88px;
+        }
+
+        .appListContainer .appButton_appIcon {
+            margin-top: 6px;
+        }
+
+        .appListContainer .appButton_appName {
+            overflow: visible;
+        }
+
+        .appButton_appName_inner_right {
+            display: none;
+        }
+
+        .appButton_appIcon {
+            background-position: center center;
+            background-repeat: no-repeat;
+            cursor: pointer;
+            height: 48px;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+            width: 48px;
+            border-radius:10px;
+        }
+
+        .appButton_appIconImg {
+            background-position: center center;
+            background-repeat: no-repeat;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+        }
+
+        img {
+            border: none;
+        }
+
+        .appButton_appName_table_left {
+            display: inline-block;
+            height: 20px;
+            line-height: 18px;
+            max-width: 78px;
+            overflow: hidden;
+            padding: 0;
+            position: relative;
+            text-indent: 10px;
+            vertical-align: middle;
+            width: auto;
+        }
+
+        .appButton_appName_table_right {
+            width: 10px;
+            display: inline-block;
+            height: 20px;
+            line-height: 18px;
+            max-width: 78px;
+            overflow: hidden;
+            padding: 0;
+            position: relative;
+            text-indent: 10px;
+            vertical-align: middle;
+        }
+
+        #leftBar {
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: -12px;
+            width: 0;
+        }
+
+        .dock_container {
+            height: 576px;
+            left: 0;
+            margin: -290px 0 0;
+            position: absolute;
+            top: 50%;
+            width: 73px;
+        }
+
+            .dock_container .appButton_appIcon, .aMg_dock_container .appButton_appIcon {
+                margin: 5px auto 0;
+            }
+
+        /*.dock_pos_left .dock_middle {
+            background: url(../images/dock_l.png ) no-repeat scroll 0 0 transparent;
+        }*/
+
+        .dock_middle {
+            height: 566px;
+            padding-top: 10px;
+        }
+
+        .dock_container .appButton {
+            height: 58px;
+            margin: 2px 3px 2px 4px;
+            padding: 0;
+            width: 58px;
+        }
+
+        .dock_container .appButton_appName {
+            display: none;
+        }
+
+        .appButton_appName {
+            color: white;
+            cursor: pointer;
+            height: 20px;
+            margin: 8px 0 0 0;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .appButton_appName_inner {
+            margin: auto;
+            overflow: hidden;
+            width: 50px;
+            -webkit-user-select: none;
+            word-break: break-all;
+            display: inline-block;
+        }
+
+        .appButton_appName_inner_right {
+            display: none;
+        }
+
+        .dock_pos_left .dock_tool_list {
+            left: 0;
+        }
+
+        .dock_tool_list {
+            bottom: 5px;
+            height: 115px;
+            position: absolute;
+            width: 65px;
+        }
+
+        .dock_tool_item {
+            height: 31px;
+            margin: 0 auto;
+            width: 50px;
+        }
+        
+    </style>
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/busjs/http.js" asp-append-version="true"></script>
+    <script src="~/busjs/left.js" asp-append-version="true"></script>
+</head>
+<body style="background-color: #1470cc">
+    <div id="leftBar">
+        <div id="dockContainer" class="dock_container  dock_pos_left" style="z-index: 10;">
+            <div class="dock_middle ui-sortable" style=" background: rgba(0,0,0,0.1);">
+                <div class="appButton" title="AMS">
+                    <div class="appButton_appIcon">
+                        <a href="javascript:void(0);" onclick="subSystemClick('AMS')">
+                            <img alt="AMS" src="~/icons/AMS.png" class="appButton_appIconImg">
+                        </a>
+                    </div>
+                    <div class="appButton_appName">
+                        <div class="appButton_appName_inner">AMS</div>
+                        <div class="appButton_appName_inner_right"></div>
+                    </div>
+                </div>
+                @*<div class="appButton" title="HWMS">
+                        <div class="appButton_appIcon">
+                            <a href="javascript:void(0);" target="main" onclick="subSystemClick('HWMS')">
+                                <img alt="HWMS-WEB" src="~/icons/16.png" class="appButton_appIconImg">
+                            </a>
+                        </div>
+                        <div class="appButton_appName">
+                            <div class="appButton_appName_inner">HWMS-WEB</div>
+                            <div class="appButton_appName_inner_right"></div>
+                        </div>
+                    </div>*@
+                <div class="appButton" title="HRMS">
+                    <div class="appButton_appIcon">
+                        <a href="javascript:void(0);" onclick="subSystemClick('HRMS')">
+                            <img alt="HRMS" src="~/icons/HRMS.png" class="appButton_appIconImg">
+                        </a>
+                    </div>
+                    <div class="appButton_appName">
+                        <div class="appButton_appName_inner">HRMS</div>
+                        <div class="appButton_appName_inner_right"></div>
+                    </div>
+                </div>
+                <div class="appButton" title="RPTMS">
+                    <div class="appButton_appIcon">
+                        <a href="javascript:void(0);" onclick="subSystemClick('RPTMS')">
+                            <img alt="运营监控系统" src="~/icons/BI.png" class="appButton_appIconImg">
+                        </a>
+                    </div>
+                    <div class="appButton_appName">
+                        <div class="appButton_appName_inner">运营监控系统</div>
+                        <div class="appButton_appName_inner_right"></div>
+                    </div>
+                </div>
+                <div class="appButton" title="WOMS">
+                    <div class="appButton_appIcon">
+                        <a href="javascript:void(0);" onclick="subSystemClick('WOMS')">
+                            <img alt="WOMS" src="~/icons/WOMS.png" class="appButton_appIconImg">
+                        </a>
+                    </div>
+                    <div class="appButton_appName">
+                        <div class="appButton_appName_inner">WOMS</div>
+                        <div class="appButton_appName_inner_right"></div>
+                    </div>
+                </div>
+                <div class="appButton" title="BIMS">
+                    <div class="appButton_appIcon">
+                        <a href="javascript:void(0);" onclick="subSystemClick('BIMS')">
+                            <img alt="BIMS" src="~/icons/BI3.png" class="appButton_appIconImg">
+                        </a>
+                    </div>
+                    <div class="appButton_appName">
+                        <div class="appButton_appName_inner">BIMS</div>
+                        <div class="appButton_appName_inner_right"></div>
+                    </div>
+                </div>
+                <div class="appButton" title="BSWMS">
+                    <div class="appButton_appIcon">
+                        <a href="javascript:void(0);" onclick="subSystemClick('BSWMS')">
+                            <img alt="BSWMS" src="~/icons/BSWMS.png" class="appButton_appIconImg">
+                        </a>
+                    </div>
+                    <div class="appButton_appName">
+                        <div class="appButton_appName_inner">BSWMS</div>
+                        <div class="appButton_appName_inner_right"></div>
+                    </div>
+                </div>
+                <div class="appButton" title="TMS">
+                    <div class="appButton_appIcon">
+                        <a href="javascript:void(0);" onclick="subSystemClick('TMS')">
+                            <img alt="TMS" src="~/icons/lTMS.png" class="appButton_appIconImg">
+                        </a>
+                    </div>
+                    <div class="appButton_appName">
+                        <div class="appButton_appName_inner">TMS</div>
+                        <div class="appButton_appName_inner_right"></div>
+                    </div>
+                </div>
+                <div class="dock_tool_list" id="dockToolList">
+                    <div class="dock_tool_item" style="        float: none;
+        height: 40px;
+        width: 40px;
+        position: relative;
+        cursor: pointer;
+        margin: 70px auto 0;" id="fullScreen">
+                        <img src="../images/fullscreen.jpg" width="40" height="40" id="imgFullScreen" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        $(document).ready(function () {
+            console.log("left...");
+            console.log("url1=" + window.parent.location.href);
+            console.log("url2=" + window.parent.location.search.substring(1));
+            var query = window.parent.location.search.substring(1);
+            var vars = query.split("&");
+            var redirect = "";
+            for (var i = 0; i < vars.length; i++) {
+                var pair = vars[i].split("=");
+                if (pair[0] == "redirect") { redirect = pair[1]; }
+            }
+            //window.parent.frames["main"].location.href = "http://www.baidu.com";
+            console.log("redirect=" + redirect);
+            if (redirect != "") {
+                console.log("跳转中。。。");
+                window.parent.frames["main"].location.href = decodeURIComponent(redirect);
+            }
+        });
+            
+        
+        
+    </script>
+</body>
+
+</html>

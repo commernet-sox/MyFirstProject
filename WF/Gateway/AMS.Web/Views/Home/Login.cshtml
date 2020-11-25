@@ -1,0 +1,330 @@
+﻿@{
+    Layout = null;
+    var redirect= ViewData["redirect"];
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMS登录</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style type="text/css">
+        body {
+            background: url(../images/LoginBG.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .signin {
+            width: 477px;
+            height: 479px;
+            margin: 0 auto;
+            position: absolute;
+            top: 55%;
+            left: 80%;
+            margin-top: -239px;
+            margin-left: -238px;
+        }
+
+        .signin-head {
+            margin: 0 auto;
+            padding-top: 30px;
+            width: 300px;
+        }
+
+        .form-signin {
+            max-width: 330px;
+            padding: 23px 15px 15px 15px;
+            margin: 0 auto;
+        }
+
+            .form-signin .checkbox {
+                margin-left: 20px;
+                margin-bottom: 10px;
+            }
+
+            .form-signin .checkbox {
+                font-weight: normal;
+                color: white
+            }
+
+            .form-signin .form-control {
+                position: relative;
+                font-size: 16px;
+                height: auto;
+                padding: 10px;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+
+                .form-signin .form-control:focus {
+                    z-index: 2;
+                }
+
+            .form-signin input[type="text"] {
+                margin-bottom: 14px;
+                border-radius: 0;
+                background: url(../images/login_user.png) 0 0 #bdbdbd no-repeat;
+                padding-left: 60px;
+                color: #FFFFFF;
+            }
+
+            .form-signin input[type="password"] {
+                margin-bottom: 10px;
+                border-radius: 0;
+                background: url(../images/login_pas.png) 0 0 #bdbdbd no-repeat;
+                padding-left: 60px;
+                color: #FFFFFF;
+            }
+
+            .form-signin select[id="workCenter"] {
+                margin-bottom: 10px;
+                border-radius: 0;
+                background: url(../images/login_user.png) 0 0 #bdbdbd no-repeat;
+                padding-left: 60px;
+                color: #FFFFFF;
+            }
+
+            .form-signin button {
+                margin-top: 10px;
+                border-radius: 0;
+            }
+
+        .container, .cp-workbench-header .cn-tars-announcement {
+            width: 100%;
+        }
+
+        .next-message.next-medium.next-inline, .next-message.next-medium.next-toast {
+            border-radius: 2px;
+        }
+
+        .next-message.next-message-warning.next-inline {
+            background-color: #fff5cc;
+            border-color: #fff5cc;
+            box-shadow: none;
+            border-style: solid;
+        }
+
+        .next-message.next-medium {
+            border-width: 1px;
+            padding: 12px;
+        }
+
+        .cn-tars-announcement .announcement-banner {
+            position: relative;
+        }
+
+
+        .next-message.next-message-warning.next-inline .next-message-symbol {
+            color: #ffd119;
+        }
+
+        .next-message.next-medium .next-message-symbol {
+            float: left;
+            line-height: 20px;
+        }
+
+        .cn-tars-announcement .announcement-banner .next-icon-tars {
+            position: relative;
+            top: -1px;
+        }
+
+        .next-message.next-medium.next-only-content .next-message-content, .next-message.next-medium.next-title-content .next-message-title {
+            line-height: 20px;
+        }
+
+        .next-message.next-medium .next-message-symbol + .next-message-content {
+            margin-top: 0;
+        }
+
+        .next-message.next-message-warning.next-inline .next-message-content {
+            color: #475466;
+        }
+
+        .cn-tars-announcement .announcement-banner .announcement-content {
+            position: relative;
+        }
+
+        .next-slick, .next-slick *, .next-slick :after, .next-slick :before {
+            box-sizing: border-box;
+        }
+
+        .next-slick {
+            position: relative;
+            display: block;
+            -webkit-touch-callout: none;
+            user-select: none;
+            -ms-touch-action: pan-y;
+            touch-action: pan-y;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+            .next-slick, .next-slick *, .next-slick :after, .next-slick :before {
+                box-sizing: border-box;
+            }
+
+        .next-slick-list {
+            position: relative;
+            overflow: hidden;
+            display: block;
+            margin: 0;
+            padding: 0;
+            transform: translateZ(0);
+        }
+
+        .next-slick, .next-slick *, .next-slick :after, .next-slick :before {
+            box-sizing: border-box;
+        }
+
+        .next-slick-track {
+            position: relative;
+            top: 0;
+            left: 0;
+            display: block;
+            transform: translateZ(0);
+        }
+
+        .cn-tars-announcement .announcement-banner .announcement-content .announcement-slider .announcement-item {
+            position: relative;
+            padding-right: 15em;
+            cursor: pointer;
+            width: 100% !important;
+        }
+
+            .cn-tars-announcement .announcement-banner .announcement-content .announcement-slider .announcement-item .announcement-summary {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                word-break: keep-all;
+                white-space: nowrap;
+            }
+
+            .cn-tars-announcement .announcement-banner .announcement-content .announcement-slider .announcement-item .announcement-time {
+                position: absolute;
+                right: 0;
+                top: 0;
+                text-align: right;
+                padding-right: 4px;
+            }
+
+                .cn-tars-announcement .announcement-banner .announcement-content .announcement-slider .announcement-item .announcement-time .announcement-more {
+                    margin-left: 4px;
+                }
+    </style>
+    <script src="~/js/jquery.js"></script>
+    <script src="~/busjs/tools.js"></script>
+</head>
+<body>
+    <div class="cn-tars-announcement" style="display:none;">
+        <div class="next-message next-message-warning next-inline next-medium next-only-content announcement-banner">
+            <a href="javascript:;">
+                <i class="next-icon next-icon-close next-medium"></i>
+            </a><i class="next-icon next-icon-tars horn next-medium next-message-symbol false"></i>
+            <div class="next-message-content">
+                <div class="announcement-content">
+                    <div class="next-slick next-slick-inner next-slick-ver announcement-slider">
+                        <div class="next-slick-container next-slick-initialized">
+                            <div class="next-slick-list" style="height: 20px;">
+                                <div class="next-slick-track" style="opacity: 1; height: 60px; transform: translate3d(0px, 0px, 0px);">
+                                    <div class="next-slick-slide next-slick-active announcement-item " data-index="-1" style="width: 100%;">
+                                        <div class="announcement-summary"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="announcement-panel-layer">
+        <div class="announcement-panel-mask hide" style="top: 48px; height: calc(100% - 47px); z-index: 100;"></div><div class="announcement-panel hide" style="top: 48px; width: 500px; height: calc(100% - 48px); z-index: 101;"></div>
+    </div>
+    </div>
+    <div class="signin">
+        <div class="signin-head"><img src="~/images/logo.png" alt="" class="img-circle"><span style="font-size: 24px;color:white;margin-left: 10px;">权限管理系统AMS</span></div>
+        <form class="form-signin" role="form">
+            <input id="userId" type="text" class="form-control" placeholder="用户名" required autofocus />
+            <input id="userPwd" type="password" class="form-control" placeholder="密码" required />
+            <input id="btnLogin" type="button" class="btn btn-lg btn-warning btn-block" value="登录" />
+            <label class="checkbox">
+                <input id="chkRemeber" type="checkbox" value="remember-me">记住我
+            </label>
+        </form>
+    </div>
+    <div id="browserInfo" style="height:50px;color:#ffffff;bottom:0px;position:fixed;font-size:18px;"></div>
+    <div id="redirect" class="@redirect" hidden="hidden"></div>
+</body>
+</html>
+<script type="text/javascript">
+    console.log("login...");
+    var storage = window.localStorage;
+    var redirect = $('#redirect').attr('class');
+    console.log("href:" + window.parent.location.href);
+    //退出后跳转到登录页面
+    if (window.parent.location.href.includes("portal")) {
+        console.log("portal...");
+        window.parent.location.href = "@Url.Action("Login", "Home")";
+    }
+    $(function () {
+        if (storage.userId != null && storage.userId != undefined) {
+            if (storage.remeberMe=="true") {
+                $("#userId").val(storage.userId);
+            }
+            $("#chkRemeber").attr("checked", storage.remeberMe=="true");
+        }
+
+        $("#userId").keydown(function (event) {
+            var keynum = (event.keyCode ? event.keyCode : event.which);
+            if (keynum == '13' || keynum == '9') {
+                if ($("#userId").val().length > 0) {
+                } else {
+                    alert("用户名不能为空");
+                    $("#userId").focus();
+                }
+            }
+        });
+
+        $("#userPwd").keydown(function (event) {
+            var keynum = (event.keyCode ? event.keyCode : event.which);
+            if (keynum == '13') {
+                $("#btnLogin").click();
+            }
+        });
+
+        $("#btnLogin").click(function () {
+            if ($("#userId").val().length < 1) {
+                alert("用户名不能为空");
+                $("#userId").focus();
+                return;
+            }
+            if ($("#userPwd").val().length < 1) {
+                alert("密码不能为空");
+                $("#userPwd").focus();
+                return;
+            }
+            $.post("@Url.Action("checklogin", "home")", {
+                UserId: $("#userId").val(), UserPwd: $("#userPwd").val()
+            }, function (result) {
+                if (result.code == 0) {
+                    storage.userId = $("#userId").val();
+                    storage.remeberMe = $("#chkRemeber").prop("checked");
+                    //window.parent.location.href = "@Url.Action("portal", "portal")";
+                    //window.parent.location.href = "http://localhost:23099/bi/Home/index";
+                    window.parent.location.href = "@Url.Action("portal", "portal", new { redirect= redirect })";
+                } else {
+                    alert(result.data + "[" + result.message + "]");
+                    console.log(result.data + "[" + result.message + "]");
+                }
+            },"json");
+        });
+    });
+
+    var brower = getBrowserInfo();
+    if (brower != "chrome") {
+        $(".cn-tars-announcement").attr("style", "");
+        $(".announcement-summary").html("<b>【警告】友情提醒：</b><span>当前使用的浏览器是： " + brower + "， 推荐使用 chrome 浏览器，效果达到最佳</span>");
+    }
+</script>

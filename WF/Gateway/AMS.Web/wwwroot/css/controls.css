@@ -1,0 +1,113 @@
+﻿/* Demos specific */
+.ctrl-fixed-width,
+.ctrl-fixed-width-lg {
+    width: 100%;
+}
+
+@media(min-width: 768px) {
+    .ctrl-fixed-width {
+        width: 320px;
+    }
+
+    .ctrl-fixed-width-lg {
+        width: 480px;
+    }
+}
+
+.grid-nowrap-row > td {
+    white-space: nowrap;
+}
+.grid-borderless > .card {
+    border: 0;
+    box-shadow: none;
+}
+
+.animated-card
+{
+    position: relative;
+}
+.animated-card img
+{
+    display: block;
+    margin: auto;
+    height: 170px;
+}
+.animated-card .info
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    color: white;
+    background-color: black;
+    opacity: 0;
+    text-align: center;
+    transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -ms-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+}
+.animated-card:hover .info
+{
+    opacity: 0.8;
+}
+.info .address
+{
+    padding-top: 20px;
+}
+.info p
+{
+    margin-top: 45px;
+}
+.animated-card .info p,
+.animated-card .info span
+{
+    font-size: 15pt;
+    color: white;
+    opacity: 0;
+    -webkit-transition:all 0.3s ease-out;
+    -moz-transition:all 0.3s ease-out;
+    -ms-transition:all 0.3s ease-out;
+    -o-transition:all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+    -moz-transform: scale(0);
+    -webkit-transform: scale(0);
+    -o-transform: scale(0);
+    -ms-transform: scale(0);
+    transform: scale(0);
+}
+.animated-card .info .address span
+{
+    font-size: 10pt;
+}
+.animated-card:hover .info p,
+.animated-card:hover .info span
+{
+    opacity: 1;
+    -moz-transform: scale(1);
+    -webkit-transform: scale(1);
+    -o-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+}
+
+.callback-panel
+{
+    margin-bottom: 20px;
+}
+
+.sparkline-demo
+{
+	margin: 0 auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 50%;
+	height: 50px;
+}
+.bootstrapDemoContainerItem h2
+{
+	margin-top: 20px;
+	font-size: 1rem;
+}

@@ -2,13 +2,44 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Nullable>warnings</Nullable>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>IdentityService.xml</DocumentationFile>
+    <NoWarn>1701;1702;1591</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CPC.DBCore" Version="1.0.4.3" />
-    <PackageReference Include="CPC.Redis" Version="1.0.4.3" />
-    <PackageReference Include="CPC.Service" Version="1.0.4.3" />
+    <Compile Remove="logs\**" />
+    <Content Remove="logs\**" />
+    <EmbeddedResource Remove="logs\**" />
+    <None Remove="logs\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CPC.DBCore" Version="1.0.4.6" />
+    <PackageReference Include="CPC.Redis" Version="1.0.4.6" />
+    <PackageReference Include="CPC.Service" Version="1.0.4.6" />
+    <PackageReference Include="SkyAPM.Agent.AspNetCore" Version="1.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
     <PackageReference Include="NLog.Web.AspNetCore" Version="4.9.3" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Data.IdentityService\Data.IdentityService.csproj" />
+    <ProjectReference Include="..\Domain.IdentityService\Domain.IdentityService.csproj" />
+    <ProjectReference Include="..\Infrastructure.IdentityService\Infrastructure.IdentityService.csproj" />
+  </ItemGroup>
+
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties appsettings_1json__JsonSchema="" />
+    </VisualStudio>
+  </ProjectExtensions>
 
 </Project>

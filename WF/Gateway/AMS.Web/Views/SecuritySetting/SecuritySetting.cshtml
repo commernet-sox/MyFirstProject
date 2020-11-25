@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "安全设置";
+}
+<div class="demo-container">
+    
+    <div id="popup">
+        <div class="popup"></div>
+    </div>
+    <div id="content" style="display: none;">
+        <div id="detailForm" style="width:100%;">
+        </div>
+        <div id="detailToolbar"></div>
+    </div>
+</div>
+@section FooterScript{
+    <script src="~/busjs/common.js" asp-append-version="true"></script>
+    <script src="~/busjs/base/securitysetting.js" asp-append-version="true"></script>
+}

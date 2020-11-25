@@ -1,0 +1,36 @@
+1.进到自己的本地项目文件下，右键-选择git bash here
+2.输入命令：  git init 初始化，
+初始化成功后你会发现项目里多了一个隐藏文件夹.git（.git是隐藏文件，可通过设置显示隐藏文件夹令其显示）
+3.然后，将项目中所有文件添加到仓库
+输入指令： git add .
+注意： git是不能管理空的文件夹的，文件夹里必须有文件才能add
+4.接着，把文件提交到仓库，双引号内是提交注释。
+输入指令： git commit -m "注释内容"
+5.创建github仓库，选择 New repository,
+关联github仓库
+复制github sell仓库的仓库地址，这里选择的是http地址，这样比较简单，没有选择ssh，如有需要，可自行百度设置ssh，
+6.获取到github仓库地址后，将本地仓库与github仓库关联
+输入指令： git remote add origin http://github.com/Reda011/sell.git
+7.接下来弹出对话框输入自己github帐号密码；
+8.上传本地项目
+输入指令： git push -u origin master
+
+如果这时不成功。看第九步
+9.删除 .ssh 文件夹【C:\Users\(本地用户名)\.ssh】 中的 known_hosts(直接删除即可)
+10.在下载好的Git中的bin目录下（一般是 C:\Program Files\Git\bin）打开bash.exe输入命令ssh-keygen -t rsa -C "username" (注：username为你git上的用户名)，如果执行成功。返回：
+       Generating public/private rsa key pair.
+       Enter file in which to save the key (/Users/username/.ssh/id_rsa): //这里的username是电脑上的用户名，这个地址也是文件的存储地址，然后按回车，
+如果以前有存储地址会返回/Users/your username/.ssh/id_rsa already exists.Overwrite (y/n)?直接输入y回车。
+如果以前没有储存地址就会出现Enter passphrase(empty for no passphrase);也直接回车，
+两种情况回车后都会出现 Enter same passphrase again 然后接着回车会显示
+The key's randomart image is:
++---[RSA 2048]----+
+|    .          . |............................................
+
+
+11.这说明SSH key就已经生成了。文件目录就是：username/.ssh/id_rsa.pub.
+ 然后找到系统自动在.ssh文件夹下生成两个文件，id_rsa和id_rsa.pub，用记事本打开id_rsa.pub将全部的内容复制。
+打开https://github.com/，登陆账户，进入设置（Settings）找到
+然后将你复制的内容粘贴到key中
+再点击Add SSH Key  
+仍然在bash.exe中输入ssh -T git@github.com然后会跳出一堆内容你只需输入yes回车就完事了，然后他会提示你成功了。

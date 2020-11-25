@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Data.IdentityService</name>
+    </assembly>
+    <members>
+        <member name="P:Data.IdentityService.OAuth2CodeResponse.Code">
+            <summary>
+            授权码
+            </summary>
+        </member>
+        <member name="P:Data.IdentityService.OAuth2CodeResponse.Expires">
+            <summary>
+            有效时间（秒）
+            </summary>
+        </member>
+        <member name="P:Data.IdentityService.OAuth2GetRequest.ClientId">
+            <summary>
+            应用ID
+            </summary>
+        </member>
+        <member name="P:Data.IdentityService.OAuth2GetRequest.ClientSecret">
+            <summary>
+            应用密钥
+            </summary>
+        </member>
+        <member name="P:Data.IdentityService.OAuth2GetRequest.GrantType">
+            <summary>
+            授权类型（client_credential,password_credential,authorization_code,refresh_token）
+            </summary>
+        </member>
+        <member name="P:Data.IdentityService.OAuth2GetRequest.Scope">
+            <summary>
+            授权范围（默认为：scope）
+            </summary>
+        </member>
+        <member name="P:Data.IdentityService.OAuth2GetRequest.UserName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:Data.IdentityService.OAuth2GetRequest.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:Data.IdentityService.OAuth2GetRequest.Code">
+            <summary>
+            authorization_code
+            </summary>
+        </member>
+        <member name="P:Data.IdentityService.OAuth2GetRequest.RefreshToken">
+            <summary>
+            refresh_token
+            </summary>
+        </member>
+        <member name="P:Data.IdentityService.OAuth2GetResponse.Token">
+            <summary>
+            access token
+            </summary>
+        </member>
+        <member name="P:Data.IdentityService.OAuth2GetResponse.Expires">
+            <summary>
+            过期时间（秒）
+            </summary>
+        </member>
+        <member name="P:Data.IdentityService.OAuth2GetResponse.RefreshToken">
+            <summary>
+            刷新Token，当授权类型为password_credential和refresh_token返回
+            </summary>
+        </member>
+        <member name="P:Data.IdentityService.OAuth2GetResponse.Scope">
+            <summary>
+            范围
+            </summary>
+        </member>
+    </members>
+</doc>

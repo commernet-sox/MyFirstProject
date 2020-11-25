@@ -88,3 +88,4 @@ C:\Users\FS\source\repos\DXWebApplication1\DXApplication1\obj\Debug\DXApplicatio
 C:\Users\FS\source\repos\DXWebApplication1\DXApplication1\obj\Debug\DXApplication1.csproj.CopyComplete
 C:\Users\FS\source\repos\DXWebApplication1\DXApplication1\obj\Debug\DXApplication1.exe
 C:\Users\FS\source\repos\DXWebApplication1\DXApplication1\obj\Debug\DXApplication1.pdb
+C:\Users\FS\source\repos\DXWebApplication1\DXApplication1\obj\Debug\DXApplication1.csproj.CoreCompileInputs.cache

@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "部门";
+}
+<div class="demo-container">
+    <div id="form-container" style="margin-bottom:-40px">
+        <div class="dx-form-group-with-caption dx-form-group dx-group-colcount-1" style="margin-top:5px;">
+            <span class="dx-form-group-caption">首页>部门</span>
+            <div class="dx-form-group-content">
+                <div id="form" style="width:100%"></div>
+            </div>
+        </div>
+    </div>
+    @*<div>
+        <button type="button" class="btn btn-default btn-sm btn-round item" tabindex="0">
+            <span class="icon icon-close-circle"></span>
+            <span class="filter-text">Answered</span>
+        </button>
+    </div>*@
+    <div id="toolbar" style="margin-bottom:-10px"></div>
+    <div id="gridContainer"></div>
+    <div>
+        <div style="float:left;display:inline-block;">
+            <div style="display:inline-block;vertical-align: middle;margin-top:4px;">每页显示:</div>
+            <span id="pageSize" style="width:60px;vertical-align: middle;display:inline-block;"></span>
+        </div>
+        <div style="float:right;display:inline-block;vertical-align: top;">
+            <ul class="pagination" style="margin-top:8px;"></ul>
+        </div>
+    </div>
+    <div id="popup">
+        <div class="popup"></div>
+    </div>
+    <div id="content" style="display: none;">
+        <div id="detailForm" style="width:100%;">
+        </div>
+    </div>
+</div>
+@section FooterScript{
+    <script src="~/busjs/common.js" asp-append-version="true"></script>
+    <script src="~/busjs/base/department.js" asp-append-version="true"></script>
+}

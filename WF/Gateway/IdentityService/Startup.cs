@@ -33,7 +33,7 @@ namespace IdentityService
                     o.Title = "Identity Authentication API";
                     o.Description = "统一身份认证API";
                 },
-                //XmlComments = new[] { "AMS.IdentityService.xml", "AMS.Data.IdentityService.xml" }
+                //XmlComments = new[] { "IdentityService.xml", "Data.IdentityService.xml" }
             });
 
             //services.AddNoLockDb<AMSContext>(o => o.UseMySql(Configuration.GetConnectionString("AMSConnection")).UseLoggerFactory(new LoggerFactory(new[] { new DebugLoggerProvider() })));

@@ -1,0 +1,159 @@
+html, body, form {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+.demoContainer,
+.demoFrame
+{
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    transition: width 100ms ease-in;
+}
+.demoContainer
+{
+    display: block;
+    margin: 0 auto;
+    overflow: hidden;
+    z-index: 100;
+    position: absolute;
+    left: 0;
+    right: 0;
+    box-shadow: 0 0 15px 0 rgba(0,0,0,.1);
+    border: 1px solid #e3e3e3;
+}
+.demoFrame
+{
+    border: 0;
+    overflow: hidden;
+}
+ .bg {
+     position: absolute;
+     left: 0;
+     right: 0;
+     top: 0;
+     bottom: 0;
+     z-index: 0;
+     opacity: .1;
+ }
+
+.demoContainer.Large {
+    width: 1440px;
+    height: 100%;
+}
+.demoContainer.Medium {
+    width: 1199px;
+    height: 100%;
+}
+.demoContainer.Small {
+    width: 991px;
+    height: 100%;
+}
+.demoContainer.XtraSmall {
+    width: 767px;
+    height: 100%;
+}
+
+body {
+    background: #fff;
+}
+
+.theme-default .bg{
+    background: #eaf1f8;
+}
+
+.theme-cerulean .bg {
+    background: #2fa4e7;
+}
+
+.theme-cosmo .bg {
+    background: #2780e3;
+}
+
+.theme-cyborg .bg {
+    background: #060606;
+}
+
+.theme-darkly .bg {
+    background: #00bc8c;
+}
+
+.theme-flatly .bg {
+    background: #dce4ec;
+}
+
+.theme-journal .bg {
+    background: #eb6864;
+}
+
+.theme-litera .bg {
+    background: #4582ec;
+}
+
+.theme-lumen .bg {
+    background: #158cba;
+}
+
+.theme-lux .bg {
+    background: #1a1a1a;
+}
+
+.theme-materia .bg {
+    background: #2196f3;
+}
+
+.theme-minty .bg {
+    background: #78c2ad;
+}
+
+.theme-paper .bg {
+    background: #2196f3;
+}
+
+.theme-pulse .bg {
+    background: #593196;
+}
+
+.theme-readable .bg {
+    background: #4582ec;
+}
+
+.theme-sandstone .bg {
+    background: #93c54b;
+}
+
+.theme-simplex .bg {
+    background: #d9230f;
+}
+
+.theme-sketchy .bg {
+    background: #333;
+}
+
+.theme-slate .bg {
+    background: #484e55;
+}
+
+.theme-solar .bg {
+    background: #b58900;
+}
+
+.theme-spacelab .bg {
+    background: #446e9b;
+}
+
+.theme-superhero .bg {
+    background: #df691a;
+}
+
+.theme-united .bg {
+    background: #e95420;
+}
+
+.theme-yeti .bg {
+    background: #008cba;
+}

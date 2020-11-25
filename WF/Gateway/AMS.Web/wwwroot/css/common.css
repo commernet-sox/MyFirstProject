@@ -1,0 +1,437 @@
+﻿@font-face {
+    font-family: 'open_sans_condensedbold';
+    src: url('../fonts/OpenSansCondensed/OpenSans-CondBold-webfont.eot');
+    src: url('../fonts/OpenSansCondensed/OpenSans-CondBold-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/OpenSansCondensed/OpenSans-CondBold-webfont.woff') format('woff'), url('../fonts/OpenSansCondensed/OpenSans-CondBold-webfont.ttf') format('truetype'), url('../fonts/OpenSansCondensed/OpenSans-CondBold-webfont.svg#open_sans_condensedbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'overpass';
+    src: url('../fonts/Overpass/overpass-light.eot');
+    src: url('../fonts/Overpass/overpass-light.eot?#iefix') format('embedded-opentype'), url('../fonts/Overpass/overpass-light.woff2') format('woff2'), url('../fonts/Overpass/overpass-light.woff') format('woff'), url('../fonts/Overpass/overpass-light.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'overpass';
+    src: url('../fonts/Overpass/overpass-semibold.eot');
+    src: url('../fonts/Overpass/overpass-semibold.eot?#iefix') format('embedded-opentype'), url('../fonts/Overpass/overpass-semibold.woff2') format('woff2'), url('../fonts/Overpass/overpass-semibold.woff') format('woff'), url('../fonts/Overpass/overpass-semibold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'overpass';
+    src: url('../fonts/Overpass/overpass-regular.eot');
+    src: url('../fonts/Overpass/overpass-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/Overpass/overpass-regular.woff2') format('woff2'), url('../fonts/Overpass/overpass-regular.woff') format('woff'), url('../fonts/Overpass/overpass-regular.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'overpass';
+    src: url('../fonts/Overpass/overpass-bold.eot');
+    src: url('../fonts/Overpass/overpass-bold.eot?#iefix') format('embedded-opentype'), url('../fonts/Overpass/overpass-bold.woff2') format('woff2'), url('../fonts/Overpass/overpass-bold.woff') format('woff'), url('../fonts/Overpass/overpass-bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+html, body, form {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+#navbar {
+    background: #FFF;
+    -webkit-box-shadow: 0px 0px 62px -5px rgba(0,0,0,0.15);
+    -moz-box-shadow: 0px 0px 62px -5px rgba(0,0,0,0.15);
+    box-shadow: 0px 0px 62px -5px rgba(0,0,0,0.15);
+    height: 80px;
+    border: 0;
+    padding: 0;
+}
+
+
+#navbar .navbar-brand > * {
+    vertical-align: top;
+    display: inline-block;
+}
+
+#navbar .navbar-brand {
+    padding: 0;
+}
+
+#navbar .navbar-toggler {
+    width: 80px;
+    height: 80px;
+    background: #593196;
+    border-radius: 0;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    margin-right: 24px;
+}
+
+
+
+#navbar .navbar-toggler:before,
+#navbar .navbar-toggler .navbar-toggler-icon,
+#navbar .navbar-toggler:after {
+    content: '';
+    background: #fff;
+    height: 4px;
+    width: 36px;
+    display: block;
+    margin: 0 auto;
+    transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+}
+#navbar .navbar-toggler .navbar-toggler-icon,
+#navbar .navbar-toggler:after {
+    margin-top: 5px;
+}
+.show-nav #navbar .navbar-toggler:before {
+    transform: translateY(9px) rotate(135deg);
+    -webkit-transform: translateY(9px) rotate(135deg);
+    -moz-transform: translateY(9px) rotate(135deg);
+}
+
+.show-nav #navbar .navbar-toggler-icon {
+    transform: scale(0);
+    -moz-transform: scale(0);
+    -webkit-transform: scale(0);
+}
+
+.show-nav #navbar .navbar-toggler:after {
+    transform: translateY(-9px) rotate(-135deg);
+    -moz-transform: translateY(-9px) rotate(-135deg);
+    -webkit-transform: translateY(-9px) rotate(-135deg);
+}
+
+#navbar .logo h3 {
+    margin-top: 16px;
+    margin-bottom: 0;
+    line-height: 1.1;
+    font-family: open_sans_condensedbold;
+    font-weight: bold;
+    font-size: 29px;
+}
+
+#navbar .logo h3 .badge {
+    font-size: 0.4em;
+    vertical-align: top;
+    margin-left: 0.2em;
+    margin-top: -0.2em;
+}
+
+#navbar .logo h4 {
+    margin-top: 5px;
+    line-height: 1.1;
+    font-family: overpass;
+    font-weight: 400;
+    font-size: 15px;
+}
+
+#navbar .logo h3 a {
+    color: #666666;
+    text-decoration: none;
+}
+
+#navbar .logo h4 a {
+    color: #bababa;
+    text-decoration: none;
+}
+
+#navbar .nav-header .nav-item {
+    margin: 0;
+    height: 80px;
+    overflow: hidden;
+    border-radius: 0;
+    font-family: overpass;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 20px;
+    padding: 31px 20px 21px 20px;
+    border: 0;
+    background-image: none;
+    vertical-align: middle;
+    line-height: 28px !important;
+}
+
+#navbar .nav-header .nav-item:hover {
+    background: transparent;
+}
+
+
+#sidebar {
+    position: fixed;
+    top: 80px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    overflow-x: hidden;
+    padding: 0;
+    background: #fff;
+    display: block;
+    width: 280px;
+    transition: width 500ms;
+}
+
+#sidebar .sidebar-body {
+    padding-top: 30px;
+    padding-bottom: 15px;
+}
+
+@media (max-height: 420px) {
+    #navbar .nav-header {
+        display: flex!important;
+    }
+    body #navbar .nav-header .nav-item {
+        display: block!important;
+    }
+    body #sidebar .sidebar-body {
+        bottom: 0;
+    }
+    #sidebar .sidebar-footer {
+        display: none!important;
+    }
+}
+
+#sidebar .search {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+#sidebar .search * {
+    font-family: overpass;
+}
+
+#sidebar .search .form-control {
+    height: 34px;
+    border: none;
+    border-bottom: 2px solid #e1e1e1;
+    border-radius: 0;
+    box-shadow: none;
+    font-weight: 500;
+    font-size: 16px;
+    padding-left: 2px;
+    background: transparent;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+#sidebar .search .form-control-feedback {
+    line-height: 32px;
+    height: 32px;
+}
+
+#sidebar .search .dxbs-edit-btn,
+#sidebar .search .dxbs-edit-btn .icon {
+    font-size: 14px;
+    line-height: 32px;
+}
+
+#sidebar .search .dxbs-edit-btn:not(.dxbs-clear-btn) {
+    background: transparent;
+    color: #666666;
+    box-shadow: none;
+    text-transform: none;
+    text-shadow: none;
+    line-height: 32px;
+    height: 34px;
+    padding: 0 12px;
+    border: none;
+    border-color: transparent;
+    border-radius: 0;
+    border-bottom: 2px solid #e1e1e1;
+}
+
+
+#sidebar .search .form-control.null-text {
+    color: #c0c0c0 !important;
+}
+
+#sidebar #searchResults #noResultsContainer {
+    padding: 17px;
+}
+
+#sidebar #searchResults {
+    border-top: 1px solid #ededed;
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    transition: height 300ms;
+    display: none;
+    margin-top: 20px;
+}
+
+#sidebar #searchResults ul {
+    padding-left: 17px;
+}
+
+#sidebar #searchResults ul > li {
+    list-style: none;
+    padding-top: 20px;
+}
+
+#sidebar #searchResults ul > li:last-child {
+    padding-bottom: 20px;
+}
+
+#sidebar #searchResults ul > li > a:first-child {
+    font-size: 16px;
+}
+
+#sidebar #searchResults ul > li > a:not(:first-child):hover {
+    text-decoration: none;
+}
+
+#sidebar #searchResults ul > li > a + a,
+#sidebar #searchResults ul > li > span + a {
+    border-bottom: 1px dashed;
+    opacity: .75;
+}
+
+#sidebar #searchResults ul > li > span {
+    opacity: .75;
+}
+
+#sidebar #searchResults ul > li > span:before {
+    vertical-align: text-bottom;
+}
+
+#sidebar #searchResults ul > li > a:first-child {
+    display: block;
+}
+
+#sidebar #navTreeView {
+    margin-top: 30px;
+    font-size: 14px;
+}
+
+#sidebar #navTreeView ul {
+    overflow: hidden;
+}
+
+#sidebar #navTreeView > ul > li:first-child > a {
+    font-weight: 600;
+    font-size: 1.3em;
+}
+
+#sidebar #navTreeView > ul > li > a {
+    font-weight: 500;
+}
+
+#sidebar #navTreeView li > a {
+    border-radius: 0;
+    padding-left: 18px;
+    font-size: 16px;
+    border: 0;
+    background-image: none;
+    text-shadow: none;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+#sidebar #navTreeView li:not(.active) > a:hover {
+    background: #e5e5e5;
+}
+
+#sidebar #navTreeView li.active > a {
+    color: #fff;
+}
+
+#sidebar #navTreeView ul > li ul > li > a {
+    font-size: 14px;
+    padding-left: 65px;
+}
+
+#sidebar #navTreeView > ul.nav ul.nav {
+    margin: 0;
+}
+
+#sidebar #navTreeView .image {
+    font-size: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+#sidebar #navTreeView > .nav > li:first-child > a > .expand-btn { /* Getting Started */
+    display: none !important;
+}
+
+#sidebar #navTreeView li > a > .expand-btn {
+    width: 2em;
+}
+
+#sidebar #navTreeView li > ul > li > .nav-link {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+#submenubar #subMenu .badge,
+#sidebar #navTreeView .badge
+{
+    margin-top: 2px;
+    float: right;
+    text-transform: uppercase;
+}
+
+#sidebar .dxbs-tree > ul.nav li {
+    margin-left: 0;
+}
+
+#sidebar .sidebar-body {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    border-right: 1px solid #e3e3e3;
+}
+
+#sidebar .sidebar-footer {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 114px;
+}
+
+#sidebar #bottomNav a {
+    width: 100%;
+    height: 57px;
+    border-radius: 0;
+    text-align: center;
+    color: #fff;
+    padding-top: 13px;
+    white-space: nowrap;
+    border: none;
+}
+
+#sidebar #bottomNav li + li {
+    margin-top: 0;
+}
+
+#sidebar #bottomNav li:first-child > a {
+    border-bottom: 1px solid rgba(0,0,0,.15);
+    box-shadow: 0px 3px 35px 0px rgba(0, 0, 0, 0.16);
+    z-index: 10;
+}
+
+#sidebar #bottomNav a .image {
+    font-size: 30px;
+}
+
+#sidebar #bottomNav a .image + span {
+    font-size: 18px;
+    font-family: overpass;
+    font-weight: 700;
+    text-transform: uppercase;
+}

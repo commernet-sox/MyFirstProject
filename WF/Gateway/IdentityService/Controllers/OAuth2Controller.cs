@@ -1,22 +1,35 @@
-﻿using System;
+﻿using Data.IdentityService;
+using Domain.IdentityService;
+using Infrastructure.IdentityService.Models;
+using AspectCore.DependencyInjection;
+using CPC;
+using CPC.DBCore;
+using CPC.Redis;
+using CPC.Service;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
-using CPC;
-using CPC.Redis;
-using CPC.Service;
-using IdentityService.RequestEntities;
-using Microsoft.AspNetCore.Mvc;
 
 namespace IdentityService.Controllers
 {
+    /// <summary>
+    /// oauth2 协议相关接口
+    /// </summary>
     public class OAuth2Controller : RestApiController
     {
+        #region Members
+        #endregion
+
+        #region Constructors
         public OAuth2Controller()
         {
 
         }
+        #endregion
+
         /// <summary>
         /// 获取临时凭证（access_token）
         /// </summary>
@@ -29,42 +42,42 @@ namespace IdentityService.Controllers
                 return Custom(ApiCode.NotOpened, "暂不支持该授权类型");
             }
 
-            //using (var db = GlobalContext.Resolve<AMSContext>())
-            //{
-            //    var app = db.AuthApp.FirstOrDefault(t => t.AppKey == request.ClientId && t.AppSecret == request.ClientSecret);
+            using (var db = GlobalContext.Resolve<AMSContext>())
+            {
+                var app = db.AuthApp.FirstOrDefault(t => t.AppKey == request.ClientId && t.AppSecret == request.ClientSecret);
 
-            //    if (app == null)
-            //    {
-            //        return Custom(ApiCode.InvalidData, "client信息不正确");
-            //    }
+                if (app == null)
+                {
+                    return Custom(ApiCode.InvalidData, "client信息不正确");
+                }
 
-            //    if (app.Status.GetValueOrDefault() == false)
-            //    {
-            //        return Custom(ApiCode.AccessLimit, "帐号处于非正常状态");
-            //    }
-            //}
+                if (app.Status.GetValueOrDefault() == false)
+                {
+                    return Custom(ApiCode.AccessLimit, "帐号处于非正常状态");
+                }
+            }
 
             var refreshToken = string.Empty;
 
             switch (request.GrantType)
             {
-                //case JwtGrantType.PasswordCredential:
-                //    {
-                //        if (request.UserName.IsNull() || request.Password.IsNull())
-                //        {
-                //            return Custom(ApiCode.DataMissing, "用户名和密码不能为空");
-                //        }
-                //        using var user = GlobalContext.Resolve<SysUserService>();
-                //        var oc = user.Login(request.UserName, request.Password);
-                //        if (oc.Code != ApiCode.Success)
-                //        {
-                //            return Custom(oc);
-                //        }
+                case JwtGrantType.PasswordCredential:
+                    {
+                        if (request.UserName.IsNull() || request.Password.IsNull())
+                        {
+                            return Custom(ApiCode.DataMissing, "用户名和密码不能为空");
+                        }
+                        using var user = GlobalContext.Resolve<SysUserService>();
+                        var oc = user.Login(request.UserName, request.Password);
+                        if (oc.Code != ApiCode.Success)
+                        {
+                            return Custom(oc);
+                        }
 
-                //        request.UserName = request.UserName.ToUpperInvariant();
-                //        refreshToken = RandomUtility.GuidString();
-                //        break;
-                //    }
+                        request.UserName = request.UserName.ToUpperInvariant();
+                        refreshToken = RandomUtility.GuidString();
+                        break;
+                    }
 
                 case JwtGrantType.AuthorizationCode:
                     {
@@ -86,41 +99,41 @@ namespace IdentityService.Controllers
                         break;
                     }
 
-                //case JwtGrantType.RefreshToken:
-                //    {
-                //        if (request.RefreshToken.IsNull())
-                //        {
-                //            return Custom(ApiCode.DataMissing, "refresh token不能为空");
-                //        }
+                case JwtGrantType.RefreshToken:
+                    {
+                        if (request.RefreshToken.IsNull())
+                        {
+                            return Custom(ApiCode.DataMissing, "refresh token不能为空");
+                        }
 
-                //        var redis = GlobalContext.Resolve<RedisClient>();
+                        var redis = GlobalContext.Resolve<RedisClient>();
 
-                //        var body = redis.String.Get<RefreshTokenBody>("rt_" + request.RefreshToken);
-                //        if (body == null)
-                //        {
-                //            return Custom(ApiCode.InvalidData, "refresh token无效或者已过期");
-                //        }
+                        var body = redis.String.Get<RefreshTokenBody>("rt_" + request.RefreshToken);
+                        if (body == null)
+                        {
+                            return Custom(ApiCode.InvalidData, "refresh token无效或者已过期");
+                        }
 
-                //        if (body.ClientId != request.ClientId)
-                //        {
-                //            return Custom(ApiCode.InvalidData, "refresh token不正确");
-                //        }
+                        if (body.ClientId != request.ClientId)
+                        {
+                            return Custom(ApiCode.InvalidData, "refresh token不正确");
+                        }
 
-                //        refreshToken = RandomUtility.GuidString();
-                //        request.UserName = body.UserName;
-                //        redis.Key.Del("rt_" + request.RefreshToken);
-                //        break;
-                //    }
+                        refreshToken = RandomUtility.GuidString();
+                        request.UserName = body.UserName;
+                        redis.Key.Del("rt_" + request.RefreshToken);
+                        break;
+                    }
                 default:
                     request.UserName = string.Empty;
                     break;
             }
 
-            //if (!refreshToken.IsNull())
-            //{
-            //    var redis = GlobalContext.Resolve<RedisClient>();
-            //    redis.String.Set("rt_" + refreshToken, new RefreshTokenBody { ClientId = request.ClientId, UserName = request.UserName, Scope = request.Scope }, TimeSpan.FromDays(30));
-            //}
+            if (!refreshToken.IsNull())
+            {
+                var redis = GlobalContext.Resolve<RedisClient>();
+                redis.String.Set("rt_" + refreshToken, new RefreshTokenBody { ClientId = request.ClientId, UserName = request.UserName, Scope = request.Scope }, TimeSpan.FromDays(30));
+            }
 
             var claims = new List<Claim>() { new Claim("ClientId", request.ClientId), new Claim("Scope", "scope") };
             if (!request.UserName.IsNull())

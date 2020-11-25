@@ -1,0 +1,177 @@
+﻿[
+  {
+    "SecondLevel": [
+      {
+        "ThirdLevel": [
+          {
+            "MID": "M111",
+            "MName": "公司",
+            "ControlName": "company",
+            "ActionName": "company"
+          },
+          {
+            "MID": "M112",
+            "MName": "部门",
+            "ControlName": "department",
+            "ActionName": "department"
+          },
+          {
+            "MID": "M113",
+            "MName": "员工",
+            "ControlName": "employee",
+            "ActionName": "employee"
+          },
+          {
+            "MID": "M114",
+            "MName": "网关配置",
+            "ControlName": "gateway",
+            "ActionName": "gateway"
+          }
+        ],
+        "MID": "M11",
+        "MName": "公用设置",
+        "ControlName": "",
+        "ActionName": ""
+      },
+      {
+        "ThirdLevel": [
+          {
+            "MID": "M121",
+            "MName": "用户",
+            "ControlName": "user",
+            "ActionName": "user"
+          },
+          {
+            "MID": "M122",
+            "MName": "角色",
+            "ControlName": "role",
+            "ActionName": "role"
+          },
+          {
+            "MID": "M123",
+            "MName": "用户角色",
+            "ControlName": "roleuser",
+            "ActionName": "roleuser"
+          },
+          {
+            "MID": "M1281",
+            "MName": "系统定义",
+            "ControlName": "system",
+            "ActionName": "system"
+          },
+          {
+            "MID": "M128",
+            "MName": "功能菜单",
+            "ControlName": "menu",
+            "ActionName": "menu"
+          },
+          {
+            "MID": "M124",
+            "MName": "功能权限",
+            "ControlName": "rolemenu",
+            "ActionName": "rolemenu"
+          },
+          {
+            "MID": "M126",
+            "MName": "安全设置",
+            "ControlName": "securitysetting",
+            "ActionName": "securitysetting"
+          },
+
+          {
+            "MID": "M129",
+            "MName": "操作日志",
+            "ControlName": "oplog",
+            "ActionName": "oplog"
+          }
+        ],
+        "MID": "M12",
+        "MName": "用户设置",
+        "ControlName": "",
+        "ActionName": ""
+      }
+    ],
+    "MID": "M1",
+    "MName": "系统设置",
+    "ControlName": "",
+    "ActionName": ""
+  },
+  {
+    "SecondLevel": [
+      {
+        "ThirdLevel": [
+          {
+            "MID": "M211",
+            "MName": "应用申请",
+            "ControlName": "",
+            "ActionName": ""
+          },
+          {
+            "MID": "M212",
+            "MName": "应用审核",
+            "ControlName": "",
+            "ActionName": ""
+          },
+          {
+            "MID": "M213",
+            "MName": "应用参数管理",
+            "ControlName": "app",
+            "ActionName": "app"
+          },
+          {
+            "MID": "M214",
+            "MName": "应用参数配置",
+            "ControlName": "",
+            "ActionName": ""
+          },
+          {
+            "MID": "M215",
+            "MName": "权限包管理",
+            "ControlName": "",
+            "ActionName": ""
+          },
+          {
+            "MID": "M216",
+            "MName": "权限包分配",
+            "ControlName": "",
+            "ActionName": ""
+          },
+          {
+            "MID": "M217",
+            "MName": "接口调用管理",
+            "ControlName": "",
+            "ActionName": ""
+          }
+        ],
+        "MID": "M21",
+        "MName": "应用管理",
+        "ControlName": "",
+        "ActionName": ""
+      },
+      {
+        "ThirdLevel": [
+          {
+            "MID": "M221",
+            "MName": "API调用查询",
+            "ControlName": "",
+            "ActionName": ""
+          },
+          {
+            "MID": "M222",
+            "MName": "API调用统计",
+            "ControlName": "",
+            "ActionName": ""
+          }
+        ],
+        "MID": "M22",
+        "MName": "报表查询",
+        "ControlName": "",
+        "ActionName": ""
+      }
+    ],
+    "MID": "M2",
+    "MName": "授权中心",
+    "ControlName": "",
+    "ActionName": ""
+  }
+]

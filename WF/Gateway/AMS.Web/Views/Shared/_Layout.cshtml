@@ -1,0 +1,133 @@
+﻿@using Microsoft.AspNetCore.Http.Extensions;
+@{
+    ViewBag.LoadNarBar = true;
+    var controllerName = ViewContext.RouteData.Values["controller"].ToString().ToLower();
+    var actionName = ViewContext.RouteData.Values["action"].ToString().ToLower();
+    if (Context.Request.Query["t"] == "b")
+    {
+        ViewBag.LoadNarBar = false;
+    }
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>@ViewBag.Title</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-theme.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/css/devextreme/dx.common.css" rel="stylesheet" />
+    <link href="~/css/devextreme/dx.material.blue.light.css" rel="stylesheet" />
+
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/lib/bootstrap/dist/js/paging.js"></script>
+    <script src="~/js/devextreme/cldr.js"></script>
+    <script src="~/js/devextreme/cldr/event.js"></script>
+    <script src="~/js/devextreme/cldr/supplemental.js"></script>
+    <script src="~/js/devextreme/cldr/unresolved.js"></script>
+
+
+    <script src="~/js/devextreme/globalize.js"></script>
+    <script src="~/js/devextreme/globalize.min.js"></script>
+    <script src="~/js/devextreme/globalize/message.js"></script>
+    <script src="~/js/devextreme/globalize/message.min.js"></script>
+    <script src="~/js/devextreme/globalize/number.js"></script>
+    <script src="~/js/devextreme/globalize/number.min.js"></script>
+    <script src="~/js/devextreme/globalize/currency.js"></script>
+    <script src="~/js/devextreme/globalize/currency.min.js"></script>
+    <script src="~/js/devextreme/globalize/date.js"></script>
+    <script src="~/js/devextreme/globalize/date.min.js"></script>
+
+    @* JSZip for client side export *@
+    @*<script src="~/js/devextreme/jszip.js"></script>*@
+
+    @*<script src="~/js/devextreme/dx.all.js"></script>
+        <script src="~/js/devextreme/vectormap-data/world.js"></script>
+        <script src="~/lib/devextreme-aspnet-data/js/dx.aspnet.data.js"></script>
+        <script src="~/js/devextreme/aspnet/dx.aspnet.mvc.js"></script>*@
+
+
+    <script src="~/js/dx.all.js"></script>
+    @{
+        if (ViewBag.LoadNarBar)
+        {
+            <link href="~/import/cn.css" rel="stylesheet" />
+            <link href="~/import/narbar.css" rel="stylesheet" />
+        }
+    }
+    @*<link href="~/css/devextreme/dx.common.css" rel="stylesheet" />
+        <link rel="dx-theme" data-theme="generic.light" href="~/css/devextreme/dx.light.css" />*@
+    @RenderSection("HeaderCss", false)
+</head>
+<body id="body" class="dx-viewport">
+
+    @{
+        if (ViewBag.LoadNarBar)
+        {
+            <nav class="navbar navbar-inverse navbar-fixed-top">
+                <a class="navbar-brand" href="/portal/main" target="main">AMS</a>
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"></button>
+                    </div>
+                    <div id="navbar" class="collapse navbar-collapse">
+                    </div>
+                </div>
+                <div style="display:inline-block; margin-right:20px;margin-top:-45px; float:right;">
+                    <div id="divUser" class="circletop" style="display:inline-block;">
+                        <span>@User.Claims.FirstOrDefault(item => item.Type == "userShortName").Value</span>
+                    </div>
+                </div>
+                <div id="userInfo" style="display:none;">
+                    <div class="next-overlay-inner cp-user-info-overlay" style="position: absolute;right:10px;float:right;top:57px;z-index:1;">
+                        <div class="cp-user-info-overlay-body">
+                            <div class="next-row cp-user-info-row">
+                                <div style="display:inline-block;">
+                                    <a class="cp-user-info-header-icon-large">@User.Claims.FirstOrDefault(item => item.Type == "userShortName").Value</a>
+                                </div>
+                                <div style="display:inline-block;width:150px;margin-left:20px;">
+                                    <ul>
+                                        <li class="cp-user-info-username">@User.Claims.FirstOrDefault(item => item.Type == "userShortName").Value</li>
+                                        <li>账号：@User.Claims.FirstOrDefault(item => item.Type == "userId").Value</li>
+                                        <li>角色：普通员工</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="next-col next-col-12 cp-user-info-information">
+                                    <a href="#">个人资料</a>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" id="btnLogout" class="next-btn next-medium next-btn-normal cp-user-info-logout-btn">退出</button>
+                    </div>
+                </div>
+            </nav>
+        }
+    }
+
+    <div class="container">
+        @RenderBody()
+    </div>
+    <div class="loadpanel"></div>
+</body>
+@{
+    <script src="~/busjs/http.js" asp-append-version="true"></script>
+    if (ViewBag.LoadNarBar)
+    {
+        <script src="~/busjs/navbar.js" asp-append-version="true"></script>
+    }
+}
+@RenderSection("FooterScript", false)
+</html>

@@ -1,0 +1,199 @@
+﻿@{
+    ViewBag.Title = "库存移位单";
+}
+@section HeaderCss{
+    <style>
+        .next-nav, .next-nav *, .next-nav :after, .next-nav :before {
+            box-sizing: border-box;
+        }
+
+            .next-nav.next-normal, .next-nav.next-normal .next-nav-item.next-menu-item {
+                background-color: #fff;
+                color: #15191f;
+                outline: none;
+                text-align: center;
+            }
+
+            .next-nav.next-normal {
+                border-color: #b8c6d9;
+                font-weight: 400;
+                box-shadow: 2px 2px 15px 0 rgba(0,0,0,.1);
+            }
+
+            .next-nav.next-ver {
+                transition: width .3s ease;
+                line-height: 40px;
+                font-size: 14px;
+            }
+
+        .next-menu.next-nav {
+            min-width: auto;
+        }
+
+        .crui-search-page-setting-dialog .setting-nav {
+            box-shadow: none;
+            border-left: none;
+            border-top: none;
+            border-bottom: none;
+        }
+
+        .next-nav.next-normal .next-nav-item.next-menu-item.next-selected {
+            background-color: #e2eaf5;
+            color: #1470cc;
+            font-weight: 400;
+            border-right-color: #1470cc;
+            outline: none;
+            border-right-style: solid;
+        }
+
+        .next-nav.next-ver .next-menu-item-inner {
+            height: 40px;
+            font-size: 14px;
+        }
+
+        .next-menu-item-text {
+            vertical-align: middle;
+        }
+
+        .fieldlist {
+            width: auto;
+            margin: 0 auto;
+            font-family: arial,SimSun;
+            font-size: 0;
+        }
+
+            .fieldlist .item {
+                display: inline-block;
+                width: 150px;
+                height: 30px;
+                margin: 0 0 0 0;
+            }
+
+
+            .fieldlist span {
+                display: block;
+                height: 30px;
+                line-height: 30px;
+                font-size: 18px;
+                text-align: left;
+                border: 1px dashed #a3b4cc;
+                border-radius: 2px;
+                cursor: move;
+            }
+
+    </style>
+}
+<link rel="stylesheet" href="~/css/jquery.dad.css" />
+<div class="demo-container">
+    <div id="form-container" style="margin-bottom:-40px">
+        <div class="dx-form-group-with-caption dx-form-group dx-group-colcount-1" style="margin-top:5px;">
+            <span class="dx-form-group-caption">首页>库存移位单</span>
+            <i class="dx-icon-columnchooser" style="cursor:pointer; float:right"></i>
+            <div class="dx-form-group-content">
+                <div id="form" style="width:100%"></div>
+            </div>
+        </div>
+    </div>
+    @*<div>
+        <button type="button" class="btn btn-default btn-sm btn-round item" tabindex="0">
+            <span class="icon icon-close-circle"></span>
+            <span class="filter-text">Answered</span>
+        </button>
+    </div>*@
+    <div id="toolbar" style="margin-bottom:-10px"></div>
+    <div id="gridContainer"></div>
+    <div>
+        <div style="float:left;display:inline-block;">
+            <div style="display:inline-block;vertical-align: middle;margin-top:4px;">每页显示:</div>
+            <span id="pageSize" style="width:60px;vertical-align: middle;display:inline-block;"></span>
+        </div>
+        <div style="float:right;display:inline-block;vertical-align: top;">
+            <ul class="pagination" style="margin-top:8px;"></ul>
+        </div>
+    </div>
+    <div id="popup">
+        <div class="popup"></div>
+    </div>
+    <div id="content" style="display: none;">
+        <div id="detailForm" style="width:100%;">
+        </div>
+        <div id="detailGrid"></div>
+    </div>
+    <div id="popup_setting">
+        <div class="popup"></div>
+    </div>
+    <div id="setting" style="display: none;">
+        <div style="display:inline-block;width:10%; vertical-align:top;">
+            <div>
+                <ul role="listbox" class="next-menu next-ver next-nav next-normal next-active next-right setting-nav" aria-multiselectable="false">
+                    <li role="option" title="筛选设置" tabindex="0" class="next-menu-item next-nav-item next-selected">
+                        <div class="next-menu-item-inner">
+                            <span class="next-menu-item-text">筛选设置</span>
+                        </div>
+                    </li>
+                    <li role="option" title="表格设置" tabindex="1" class="next-menu-item next-nav-item">
+                        <div class="next-menu-item-inner">
+                            <span class="next-menu-item-text">表格设置</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="query_fieldlist" style="display:inline-block;width:80%;">
+            <div style="display:inline-block;width:20%;margin-left:10px;margin-right:20px;border:1px solid #a3b4cc;border-radius: 1px;">
+                <div id="listbox_query"></div>
+            </div>
+            <div style="display:inline-block;width:70%; vertical-align:top;">
+                <div>
+                    <span style="font-weight:700;height:28px;line-height:28px;">默认展示区</span>
+                </div>
+                <div id="defaultArea" class="fieldlist">
+                </div>
+                <div style="margin-top:20px;">
+                    <span style="font-weight:700;height:28px;line-height:28px;">收起区</span>
+                </div>
+                <div id="collapseArea" class="fieldlist">
+                    <div class="item"><span>单据类型</span></div>
+                    <div class="item"><span>生效日期</span></div>
+                    <div class="item"><span>至</span></div>
+                    <div class="item"><span>确认日期</span></div>
+                    <div class="item"><span>至</span></div>
+                    <div class="item"><span>单据来源</span></div>
+                    <div class="item"><span>创建人</span></div>
+                </div>
+            </div>
+        </div>
+        <div id="gird_fieldlist" style="display:none;width:80%;">
+            <div>
+                <span style="font-weight:700;height:28px;line-height:28px;">基础设置</span>
+            </div>
+            <div>
+                <div style="vertical-align:top;line-height:34px; display:inline-block;">每页行数</div>
+                <div id="cboPageSize" style="display:inline-block;">
+                </div>
+                <div>
+                    <span style="font-weight:700;height:28px;line-height:28px;">表头设置</span>
+                </div>
+                <div style="display:inline-block;width:20%;height:300px;overflow-y:visible;margin-left:10px;margin-right:5px;border:1px solid #a3b4cc;border-radius: 1px;">
+                    <div id="listbox_grid"></div>
+                </div>
+                <div style="display:inline-block;width:7%;vertical-align: top;line-height: 300px; ">
+                    <div id="btnMoveRight"></div>
+                </div>
+                <div id="columnGrid" style="width: 60%;height: 300px;vertical-align: top;display: inline-block;">
+
+                </div>
+            </div>
+        </div>
+        <div style="float:right;height:100px;">
+            <div style="height:24px;"></div>
+            <div style="display:inline-block;" id="btnOk"></div>
+            <div style="display:inline-block;" id="btnCancel"></div>
+        </div>
+    </div>
+</div>
+@section FooterScript{
+    <script src="~/busjs/common.js" asp-append-version="true"></script>
+    <script src="~/busjs/stock/stockmove.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-drag/jquery.dad.min.js"></script>
+}

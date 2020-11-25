@@ -1,0 +1,34 @@
+﻿[
+  {
+    "ID": "BOM",
+    "NAME": "预包区"
+  },
+  {
+    "ID": "DISC",
+    "NAME": "差异区"
+  },
+  {
+    "ID": "HOLD",
+    "NAME": "冻结区"
+  },
+  {
+    "ID": "PICK",
+    "NAME": "拣选区"
+  },
+  {
+    "ID": "RESERVE",
+    "NAME": "存储区"
+  },
+  {
+    "ID": "RETURN",
+    "NAME": "退货区"
+  },
+  {
+    "ID": "SOW_STORAGE",
+    "NAME": "播种暂存区"
+  },
+  {
+    "ID": "TRANSFER",
+    "NAME": "中转区"
+  }
+]
