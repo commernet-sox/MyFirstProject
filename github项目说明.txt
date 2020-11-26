@@ -3,5 +3,9 @@ MyFirstProject  :  是建造师后台管理系统。
 CompanyWebSite  : 是zjshow官网。vue项目。
 ApiGateway：    是api网关项目，测试用，用到了consul+ocelot
 SDT：               服务开发工具，api项目可以引用，快速开发
+<<<<<<< HEAD
 WF：                网关+身份验证项目+AMS权限管理系统。
+=======
+WF：                网关+身份验证项目。
+>>>>>>> b3605b5bc406de91a3ad5846c938891e052aea1c
 MyWebApi：    网上下载的api项目模板
