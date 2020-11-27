@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-﻿using Data.IdentityService;
+using Data.IdentityService;
 using Domain.IdentityService;
 using Infrastructure.IdentityService.Models;
 using AspectCore.DependencyInjection;
@@ -25,32 +24,13 @@ namespace IdentityService.Controllers
         #endregion
 
         #region Constructors
-=======
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using CPC;
-using CPC.Redis;
-using CPC.Service;
-using IdentityService.RequestEntities;
-using Microsoft.AspNetCore.Mvc;
 
-namespace IdentityService.Controllers
-{
-    public class OAuth2Controller : RestApiController
-    {
->>>>>>> b3605b5bc406de91a3ad5846c938891e052aea1c
         public OAuth2Controller()
         {
 
         }
-<<<<<<< HEAD
         #endregion
 
-=======
->>>>>>> b3605b5bc406de91a3ad5846c938891e052aea1c
         /// <summary>
         /// 获取临时凭证（access_token）
         /// </summary>
@@ -63,7 +43,6 @@ namespace IdentityService.Controllers
                 return Custom(ApiCode.NotOpened, "暂不支持该授权类型");
             }
 
-<<<<<<< HEAD
             using (var db = GlobalContext.Resolve<AMSContext>())
             {
                 var app = db.AuthApp.FirstOrDefault(t => t.AppKey == request.ClientId && t.AppSecret == request.ClientSecret);
@@ -78,7 +57,6 @@ namespace IdentityService.Controllers
                     return Custom(ApiCode.AccessLimit, "帐号处于非正常状态");
                 }
             }
-=======
             //using (var db = GlobalContext.Resolve<AMSContext>())
             //{
             //    var app = db.AuthApp.FirstOrDefault(t => t.AppKey == request.ClientId && t.AppSecret == request.ClientSecret);
@@ -93,13 +71,11 @@ namespace IdentityService.Controllers
             //        return Custom(ApiCode.AccessLimit, "帐号处于非正常状态");
             //    }
             //}
->>>>>>> b3605b5bc406de91a3ad5846c938891e052aea1c
 
             var refreshToken = string.Empty;
 
             switch (request.GrantType)
             {
-<<<<<<< HEAD
                 case JwtGrantType.PasswordCredential:
                     {
                         if (request.UserName.IsNull() || request.Password.IsNull())
@@ -117,7 +93,6 @@ namespace IdentityService.Controllers
                         refreshToken = RandomUtility.GuidString();
                         break;
                     }
-=======
                 //case JwtGrantType.PasswordCredential:
                 //    {
                 //        if (request.UserName.IsNull() || request.Password.IsNull())
@@ -135,7 +110,6 @@ namespace IdentityService.Controllers
                 //        refreshToken = RandomUtility.GuidString();
                 //        break;
                 //    }
->>>>>>> b3605b5bc406de91a3ad5846c938891e052aea1c
 
                 case JwtGrantType.AuthorizationCode:
                     {
@@ -157,7 +131,6 @@ namespace IdentityService.Controllers
                         break;
                     }
 
-<<<<<<< HEAD
                 case JwtGrantType.RefreshToken:
                     {
                         if (request.RefreshToken.IsNull())
@@ -183,7 +156,6 @@ namespace IdentityService.Controllers
                         redis.Key.Del("rt_" + request.RefreshToken);
                         break;
                     }
-=======
                 //case JwtGrantType.RefreshToken:
                 //    {
                 //        if (request.RefreshToken.IsNull())
@@ -209,25 +181,21 @@ namespace IdentityService.Controllers
                 //        redis.Key.Del("rt_" + request.RefreshToken);
                 //        break;
                 //    }
->>>>>>> b3605b5bc406de91a3ad5846c938891e052aea1c
                 default:
                     request.UserName = string.Empty;
                     break;
             }
 
-<<<<<<< HEAD
             if (!refreshToken.IsNull())
             {
                 var redis = GlobalContext.Resolve<RedisClient>();
                 redis.String.Set("rt_" + refreshToken, new RefreshTokenBody { ClientId = request.ClientId, UserName = request.UserName, Scope = request.Scope }, TimeSpan.FromDays(30));
             }
-=======
             //if (!refreshToken.IsNull())
             //{
             //    var redis = GlobalContext.Resolve<RedisClient>();
             //    redis.String.Set("rt_" + refreshToken, new RefreshTokenBody { ClientId = request.ClientId, UserName = request.UserName, Scope = request.Scope }, TimeSpan.FromDays(30));
             //}
->>>>>>> b3605b5bc406de91a3ad5846c938891e052aea1c
 
             var claims = new List<Claim>() { new Claim("ClientId", request.ClientId), new Claim("Scope", "scope") };
             if (!request.UserName.IsNull())
@@ -262,8 +230,5 @@ namespace IdentityService.Controllers
             return new OAuth2CodeResponse { Code = code, Expires = ttl.TotalSeconds.ConvertInt32() };
         }
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> b3605b5bc406de91a3ad5846c938891e052aea1c
+

@@ -6,11 +6,16 @@ using AspectCore.DependencyInjection;
 using CPC.DBCore;
 using CPC.Redis;
 using CPC.Service;
+using Infrastructure.IdentityService.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Debug;
 
 namespace IdentityService
 {
@@ -30,17 +35,13 @@ namespace IdentityService
             {
                 CreateForApiDesc = (d, o) =>
                 {
-                    o.Title = "Identity Authentication API";
-                    o.Description = "统一身份认证API";
+                    o.Title = "测试Identity Authentication API";
+                    o.Description = "测试统一身份认证API";
                 },
-<<<<<<< HEAD
-                //XmlComments = new[] { "IdentityService.xml", "Data.IdentityService.xml" }
-=======
-                //XmlComments = new[] { "AMS.IdentityService.xml", "AMS.Data.IdentityService.xml" }
->>>>>>> b3605b5bc406de91a3ad5846c938891e052aea1c
+                XmlComments = new[] { "IdentityService.xml", "Data.IdentityService.xml" }
             });
 
-            //services.AddNoLockDb<AMSContext>(o => o.UseMySql(Configuration.GetConnectionString("AMSConnection")).UseLoggerFactory(new LoggerFactory(new[] { new DebugLoggerProvider() })));
+            services.AddNoLockDb<AMSContext>(o => o.UseMySql(Configuration.GetConnectionString("AMSConnection")).UseLoggerFactory(new LoggerFactory(new[] { new DebugLoggerProvider() })));
         }
 
         public override void ConfigureContainer(IServiceContext services)

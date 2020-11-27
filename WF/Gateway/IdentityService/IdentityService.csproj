@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-<<<<<<< HEAD
     <Nullable>warnings</Nullable>
   </PropertyGroup>
 
@@ -43,15 +42,5 @@
     </VisualStudio>
   </ProjectExtensions>
 
-=======
-  </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="CPC.DBCore" Version="1.0.4.3" />
-    <PackageReference Include="CPC.Redis" Version="1.0.4.3" />
-    <PackageReference Include="CPC.Service" Version="1.0.4.3" />
-    <PackageReference Include="NLog.Web.AspNetCore" Version="4.9.3" />
-  </ItemGroup>
-
->>>>>>> b3605b5bc406de91a3ad5846c938891e052aea1c
 </Project>
