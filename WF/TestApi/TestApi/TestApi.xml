@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TestApi</name>
+    </assembly>
+    <members>
+        <member name="T:TestApi.Controllers.TestApiController">
+            <summary>
+            测试接口
+            </summary>
+        </member>
+        <member name="M:TestApi.Controllers.TestApiController.GetList">
+            <summary>
+            获取列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TestApi.Controllers.TestApiController.Add(TestData.RequestEntities.TestApiRequest)">
+            <summary>
+            新增
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TestApi.Controllers.TestApiController.Update(TestData.RequestEntities.TestApiRequest)">
+            <summary>
+            更新
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TestApi.Controllers.TestApiController.Delete(TestData.RequestEntities.TestApiRequest)">
+            <summary>
+            删除
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

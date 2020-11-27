@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TestData</name>
+    </assembly>
+    <members>
+        <member name="P:TestData.BaseDTO.Id">
+            <summary>
+            主键自增ID
+            </summary>
+        </member>
+        <member name="P:TestData.BaseDTO.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:TestData.BaseDTO.CreateBy">
+            <summary>
+            创建人
+            </summary>
+        </member>
+        <member name="P:TestData.BaseDTO.ModifyTime">
+            <summary>
+            修改时间
+            </summary>
+        </member>
+        <member name="P:TestData.BaseDTO.ModifyBy">
+            <summary>
+            修改人
+            </summary>
+        </member>
+        <member name="P:TestData.BaseDTO.IsDeleted">
+            <summary>
+            是否已被删除
+            </summary>
+        </member>
+        <member name="P:TestData.DTO.TestApiDTO.Name">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:TestData.DTO.TestApiDTO.Age">
+            <summary>
+            年龄
+            </summary>
+        </member>
+        <member name="P:TestData.RequestEntities.TestApiRequest.Id">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="P:TestData.RequestEntities.TestApiRequest.Name">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:TestData.RequestEntities.TestApiRequest.Age">
+            <summary>
+            年龄
+            </summary>
+        </member>
+    </members>
+</doc>
