@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Description>Redis&amp;分布式Lock</Description>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>..\bin\CPC.Redis.xml</DocumentationFile>
+    <OutputPath>..\bin</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>..\bin\CPC.Redis.xml</DocumentationFile>
+    <OutputPath>..\bin</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Lock\Lua\Extend.lua" />
+    <None Remove="Lock\Lua\Unlock.lua" />
+    <None Remove="Lock\RedisLock.cs~RF718e5f.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Lock\Lua\Extend.lua" />
+    <EmbeddedResource Include="Lock\Lua\Unlock.lua" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="StackExchange.Redis" Version="2.2.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CPC\CPC.csproj" />
+  </ItemGroup>
+
+</Project>

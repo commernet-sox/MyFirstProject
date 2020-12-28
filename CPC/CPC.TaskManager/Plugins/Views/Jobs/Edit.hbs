@@ -1,0 +1,156 @@
+﻿{{!<Layout}}
+{{#if Model.Job.IsNew}}
+{{ViewBag Title='添加作业'}}
+{{else}}
+{{ViewBag Title='编辑作业'}}
+{{/if}}
+
+<div class="ui inverted page dimmer" id="dimmer"><div class="ui loader"></div></div>
+<form class="ui form" id="form" method="post" enctype="multipart/form-data">
+    <div class="ui clearing basic segment" style="padding: 0px" id="header">
+        <div style="float: right">
+            <a class="ui button" id="btn-discard" href="{{ActionUrl ''}}">放弃修改</a>
+            {{#unless Model.Job.IsNew}}
+            <div class="negative ui button" id="btn-delete">删除</div>
+            {{/unless}}
+            <div class="ui buttons">
+                <div class="ui primary button" id="btn-save">保存</div>
+                <div class="ui floating dropdown icon primary button" id="save-dropdown">
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <div class="item ui basic button" id="btn-trigger"><i class="green play icon"></i> 保存并立即触发</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h1 class="ui left floated header">
+            {{#if Model.Job.IsNew}}添加作业{{else}}编辑作业 "{{Model.Job.JobName}}"{{/if}}
+        </h1>
+    </div>
+
+    <div class="ui segment">
+        {{#with Model.Job}}
+        <input type="hidden" name="job[isNew]" value="{{IsNew}}" />
+        {{#unless IsNew}}
+        <input type="hidden" name="job[oldJobName]" value="{{JobName}}" />
+        <input type="hidden" name="job[oldGroup]" value="{{Group}}" />
+        {{/unless}}
+        <div id="job-properties">
+
+            <div class="two fields">
+                <div class="field accept-error">
+                    <label>名称</label>
+                    <input type="text" name="job[jobName]" placeholder="Name" value="{{JobName}}" id="jobName" />
+                </div>
+                <div class="field accept-error">
+                    <label>分组</label>
+                    <input type="hidden" value="{{Group}}" id="jobGroup" />
+                    <select class="ui search selection dropdown allow-additions" name="job[group]">
+                        <option value="">分组</option>
+                        {{>DropdownOptions items=GroupList selected=Group}}
+                    </select>
+                </div>
+            </div>
+
+            <div class="field accept-error">
+                <label>类</label>
+                <input type="hidden" value="{{Type}}" id="jobType" />
+                <select class="ui search selection dropdown allow-additions" name="job[type]" id="jobTypeDropdown">
+                    <option value="">
+                        完全限定类型名
+                    </option>
+                    {{>DropdownOptions items=TypeList selected=Type}}
+                </select>
+            </div>
+
+            <div class="field accept-error">
+                <label>描述</label>
+                <textarea rows="2" name="job[description]">{{Description}}</textarea>
+            </div>
+
+            <div class="field accept-error">
+                <div class="ui checkbox">
+                    <input name="job[recovery]" type="checkbox" value="True" {{Checked Recovery}} />
+                    <label>恢复</label>
+                </div>
+            </div>
+        </div>
+        {{/with}}
+        <h3 class="ui dividing header">作业数据映射</h3>
+
+        {{>JobDataMap Model.DataMap}}
+    </div>
+</form>
+
+<div class="ui mini modal" id="delete-dialog">
+    <div class="content">
+        <p>确定要删除这条数据吗？</p>
+        <p><b class="confirm-item"></b></p>
+    </div>
+    <div class="actions">
+        <div class="ui approve red button">删除</div>
+        <div class="ui cancel button">取消</div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        const
+            $jobGroup = $('#jobGroup').val(),
+            $jobName = $('#jobName').val(),
+            $jobType = $('#jobType').val();
+
+        // inits
+        $('#job-properties .ui.dropdown, #header .ui.dropdown').each(function () {
+            $(this).dropdown({
+                allowAdditions: $(this).hasClass('allow-additions')
+            });
+        });
+
+        $('#save-dropdown').dropdown('setting', 'action', 'hide');
+        $('#job-properties .ui.checkbox').checkbox();
+
+        $('#jobTypeDropdown').dropdown('set selected', $jobType);
+
+        initDimmer();
+
+        // event handlers
+        $('#btn-delete').click(function () {
+            $('#delete-dialog .confirm-item').text($jobGroup + '.' + $jobName);
+            deleteItem({ name: $jobName, group: $jobGroup }, $('#job-properties'),
+                '{{ActionUrl "Delete"}}', '{{ActionUrl ""}}');
+        });
+
+        function save(triggerNow) {
+            if ($('#job-data-map .type-col .ui.dropdown.disabled').length > 0) return; // type change in progress
+
+            $('#dimmer').dimmer('show');
+
+            $('#job-data-map').jobDataMapPrepareForm();
+
+            var formData = new FormData($('#form')[0]);
+
+            $.ajax({
+                type: 'POST', enctype: 'multipart/form-data', url: '{{ActionUrl "Save"}}?trigger=' + triggerNow,
+                data: formData, processData: false, contentType: false, dataType: "json", cache: false,
+                success: function (data) {
+                    if (processValidationResponse(data)) {
+                        document.location = '{{ActionUrl ""}}';
+                    } else {
+                        $('#dimmer').dimmer('hide');
+                    }
+                },
+                error: function (e) {
+                    $('#dimmer').dimmer('hide');
+                    prependErrorMessage(e, $('#job-properties'));
+                }
+            });
+        }
+
+        $('#btn-save').click(function () { save(false); });
+        $('#btn-trigger').click(function () { save(true); });
+
+    });
+</script>
+
+<script src="Content/Scripts/post-validation.js"></script>

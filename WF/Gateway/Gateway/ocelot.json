@@ -24,7 +24,7 @@
   "GlobalConfiguration": {
     "BaseUrl": "http://127.0.0.1:2020",
     "ServiceDiscoveryProvider": {
-      "Host": "120.55.195.2",
+      "Host": "127.0.0.1",
       "Port": 8500,
       "Type": "Consul"
     }

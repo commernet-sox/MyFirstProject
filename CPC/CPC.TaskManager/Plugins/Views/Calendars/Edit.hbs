@@ -1,0 +1,96 @@
+﻿{{!<Layout}}
+
+{{#if ViewBag.IsNew}}
+{{ViewBag Title='添加日历'}}
+{{else}}
+{{ViewBag Title='编辑日历'}}
+{{/if}}
+
+<div class="ui inverted page dimmer" id="dimmer"><div class="ui loader"></div></div>
+<form class="ui form" id="form" method="post" enctype="multipart/form-data">
+    <div class="ui clearing basic segment" style="padding: 0px" id="header">
+        <div style="float: right">
+            <a class="ui button" id="btn-discard" href="{{ActionUrl ''}}">放弃修改</a>
+            {{#unless ViewBag.IsNew}}
+            <div class="negative ui button" id="btn-delete">删除</div>
+            {{/unless}}
+            <div class="ui primary button" id="btn-save">保存</div>
+        </div>
+        <h1 class="ui left floated header">
+            {{#if ViewBag.IsNew}}添加日历{{else}}编辑日历{{/if}}
+        </h1>
+    </div>
+
+    <input type="hidden" name="isNew" value="{{ViewBag.IsNew}}" />
+
+    <div id="msg-panel"></div>
+
+    <div class="ui segments" id="seg-root">
+
+    </div>
+
+</form>
+
+<div class="ui mini modal" id="delete-dialog">
+    <div class="content">
+        <p>是否确定要删除这条数据?</p>
+        <p><b class="confirm-item"></b></p>
+    </div>
+    <div class="actions">
+        <div class="ui approve red button">删除</div>
+        <div class="ui cancel button">取消</div>
+    </div>
+</div>
+
+<script src="Content/Scripts/calendar-editor.js"></script>
+<script src="Content/Scripts/post-validation.js"></script>
+
+<script>
+    $(function () {
+        initDimmer();
+
+        const model = {{Json Model}};
+
+        initQuartzCalendarEditor.call($('#seg-root'),
+            {
+                model: model,
+                timezones: {{SystemTimeZonesJson}},
+                defaultTimezone: '{{LocalTimeZoneInfoId}}',
+                cronUrl: '{{ActionUrl "Cron" "Triggers"}}',
+                dateFormat: '{{Upper (DefaultDateFormat)}}',
+                isNew: '{{ViewBag.IsNew}}' === 'True'
+            }
+        );
+
+        const calName = model[0].Name;
+        $('#btn-delete').click(function () {
+            $('#delete-dialog .confirm-item').text(calName);
+            deleteItem({ name: calName }, $('#msg-panel'),
+                '{{ActionUrl "Delete"}}', '{{ActionUrl ""}}');
+        });
+
+        $('#btn-save').click(function () {
+            const model = $('#seg-root').data('getModel')();
+
+            $('#dimmer').dimmer('show');
+
+            $.ajax({
+                type: 'POST', url: '{{ActionUrl "Save" isNew=ViewBag.IsNew}}',
+                data: JSON.stringify(model), contentType: 'application/json', dataType: "json", cache: false,
+                success: function (data) {
+                    if (processValidationResponse(data, $('#seg-root'))) {
+                        document.location = '{{ActionUrl ""}}';
+                    } else {
+                        $('#dimmer').dimmer('hide');
+                    }
+                },
+                error: function (e) {
+                    $('#dimmer').dimmer('hide');
+                    prependErrorMessage(e, $('#seg-root>.segment:first'));
+                }
+            });
+
+        });
+
+    });
+</script>
