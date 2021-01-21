@@ -1,8 +1,18 @@
-WcfService1     :  是zjshow网站的wcf服务。
-MyFirstProject  :  是建造师后台管理系统。
-CompanyWebSite  : 是zjshow官网。vue项目。
-ApiGateway：    是api网关项目，测试用，用到了consul+ocelot
-SDT：               服务开发工具，api项目可以引用，快速开发
-WF：                网关+身份验证项目+AMS权限管理系统。
-MyWebApi：    网上下载的api项目模板
-SimpleWebApi   一套采用CPC的接口服务。
+WcfService1     :             是zjshow网站的wcf服务。
+MyFirstProject  :            是建造师后台管理系统。
+CompanyWebSite  :      是zjshow官网。vue项目。
+ApiGateway：               是api网关项目，测试可以用，用到了consul+ocelot(有文档)
+SDT：                           服务开发工具，api项目可以引用，快速开发
+WF：                           网关+身份验证项目+AMS权限管理系统。
+WF.TestApi                  一套采用CPC的接口服务。
+MyWebApi：               网上下载的api项目模板
+SimpleWebApi              一套采用CPC的接口服务。(写重复了，有文档)
+wechat-weapp-Game-TNFB    一个微信小程序答题游戏
+Shkjem                         网站下载的vue官网模板
+QuestionWeChatApp    答题小程序，目前再用。
+OcelotDemo                  网关测试DEMO（忘记怎么用了）
+MiddleWareTest             测试中间件访问顺序Demo（忘记怎么用了）
+DXApplication1               测试DevExpress工具，cs客户端开发使用
+Demo.CSharpScript         前端运算在后端执行的demo，没有用过。
+CPC                                一套框架
+ConsoleApp1，CollectDatas，AutoFacIOC                   没有用
