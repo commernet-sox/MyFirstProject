@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SimpleWebApi.Data</name>
+    </assembly>
+    <members>
+        <member name="P:SimpleWebApi.Data.BaseDto.Id">
+            <summary>
+            主键自增ID
+            </summary>
+        </member>
+        <member name="P:SimpleWebApi.Data.BaseDto.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:SimpleWebApi.Data.BaseDto.CreateBy">
+            <summary>
+            创建人
+            </summary>
+        </member>
+        <member name="P:SimpleWebApi.Data.BaseDto.ModifyTime">
+            <summary>
+            修改时间
+            </summary>
+        </member>
+        <member name="P:SimpleWebApi.Data.BaseDto.ModifyBy">
+            <summary>
+            修改人
+            </summary>
+        </member>
+        <member name="P:SimpleWebApi.Data.BaseDto.IsDeleted">
+            <summary>
+            是否已被删除
+            </summary>
+        </member>
+    </members>
+</doc>

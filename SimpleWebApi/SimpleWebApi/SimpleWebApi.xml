@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SimpleWebApi</name>
+    </assembly>
+    <members>
+        <member name="T:SimpleWebApi.Controllers.TestApiController">
+            <summary>
+            测试接口
+            </summary>
+        </member>
+        <member name="M:SimpleWebApi.Controllers.TestApiController.GetList">
+            <summary>
+            查询
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SimpleWebApi.Controllers.TestApiController.Add(SimpleWebApi.Data.Requests.TestApiAddRequest)">
+            <summary>
+            添加
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SimpleWebApi.Controllers.TestApiController.Update(SimpleWebApi.Data.Requests.TestApiRequest)">
+            <summary>
+            更新
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SimpleWebApi.Controllers.TestApiController.Delete(SimpleWebApi.Data.DTO.TestApiDTO)">
+            <summary>
+            删除
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SimpleWebApi.Startup.ConfigureContext(AspectCore.DependencyInjection.IServiceContext)">
+            <summary>
+            服务注册方法
+            </summary>
+            <param name="services"></param>
+        </member>
+    </members>
+</doc>
