@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PollyTest1</name>
+    </assembly>
+    <members>
+        <member name="M:PollyTest1.Controllers.TestApiController.GetTestApis">
+            <summary>
+            获取TestApi
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PollyTest1.Controllers.WeatherForecastController.Get">
+            <summary>
+            获取天气信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:PollyTest1.DTO.Const.SecurityKey">
+            <summary>
+            这里为了演示，写死一个密钥。实际生产环境可以从配置文件读取,这个是用网上工具随便生成的一个密钥
+            </summary>
+        </member>
+        <member name="P:PollyTest1.Model.TestApi.Id">
+            <summary>
+            主键自增ID
+            </summary>
+        </member>
+        <member name="P:PollyTest1.Model.TestApi.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:PollyTest1.Model.TestApi.CreateBy">
+            <summary>
+            创建人
+            </summary>
+        </member>
+        <member name="P:PollyTest1.Model.TestApi.ModifyTime">
+            <summary>
+            修改时间
+            </summary>
+        </member>
+        <member name="P:PollyTest1.Model.TestApi.ModifyBy">
+            <summary>
+            修改人
+            </summary>
+        </member>
+        <member name="P:PollyTest1.Model.TestApi.IsDeleted">
+            <summary>
+            是否数据已删除
+            </summary>
+        </member>
+        <member name="P:PollyTest1.WeatherForecast.Date">
+            <summary>
+            时间
+            </summary>
+        </member>
+        <member name="P:PollyTest1.WeatherForecast.TemperatureC">
+            <summary>
+            摄氏度
+            </summary>
+        </member>
+        <member name="P:PollyTest1.WeatherForecast.TemperatureF">
+            <summary>
+            华氏度
+            </summary>
+        </member>
+        <member name="P:PollyTest1.WeatherForecast.Summary">
+            <summary>
+            小结
+            </summary>
+        </member>
+    </members>
+</doc>

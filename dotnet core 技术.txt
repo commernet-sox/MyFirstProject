@@ -1,0 +1,9 @@
+1.搭建项目框架，.net core + EF Core + consul + ocelot + gateway
+Aop:               aspectcore 
+Ioc:               aspectcore.extensions.DependentyInject
+实体映射：         autoMapper
+日志 ：            Nlog  
+服务治理：         polly
+缓存：             Redis
+接口文档：         Swashbuckle.aspectcore (Swagger)
+身份验证：         IdentityService4
