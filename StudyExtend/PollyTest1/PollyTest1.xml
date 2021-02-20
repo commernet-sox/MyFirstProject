@@ -4,6 +4,16 @@
         <name>PollyTest1</name>
     </assembly>
     <members>
+        <member name="T:PollyTest1.Controllers.AuthController">
+            <summary>
+            生成token
+            </summary>
+        </member>
+        <member name="T:PollyTest1.Controllers.JwtApiController">
+            <summary>
+            测试授权token接口
+            </summary>
+        </member>
         <member name="M:PollyTest1.Controllers.TestApiController.GetTestApis">
             <summary>
             获取TestApi

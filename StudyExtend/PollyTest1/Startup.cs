@@ -43,7 +43,7 @@ namespace PollyTest1
                         ValidateIssuer = true,//是否验证Issuer
                         ValidateAudience = true,//是否验证Audience
                         ValidateLifetime = true,//是否验证失效时间
-                        ClockSkew = TimeSpan.FromSeconds(30),
+                        ClockSkew = TimeSpan.FromSeconds(30),// 允许的服务器时间偏移量
                         ValidateIssuerSigningKey = true,//是否验证SecurityKey
                         ValidAudience = Const.Domain,//Audience
                         ValidIssuer = Const.Domain,//Issuer，这两项和前面签发jwt的设置一致

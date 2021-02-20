@@ -1,2 +1,0 @@
-﻿nuget push -Source http://10.27.1.28:1024 -ApiKey cpc CPC.*.nupkg
-pause
