@@ -14,5 +14,6 @@ namespace PollyTest1
             
         }
         public DbSet<TestApi> TestApi { get; set; }
+        public DbSet<SZCompanyInfo> SZCompanyInfo { get; set; }
     }
 }

@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AspectCore.Extensions.DependencyInjection" Version="2.2.0" />
+    <PackageReference Include="CPC" Version="1.2.2" />
+    <PackageReference Include="CPC.DBCore" Version="1.2.2" />
+    <PackageReference Include="CPC.TaskManager" Version="1.2.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.10" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.10" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="3.1.10" />
+    <PackageReference Include="Topshelf" Version="4.3.0" />
+    <PackageReference Include="Topshelf.NLog" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="app.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Store.Sqlite.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

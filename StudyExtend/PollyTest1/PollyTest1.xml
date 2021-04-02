@@ -14,6 +14,12 @@
             测试授权token接口
             </summary>
         </member>
+        <member name="M:PollyTest1.Controllers.SZController.Add">
+            <summary>
+            新增
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:PollyTest1.Controllers.TestApiController.GetTestApis">
             <summary>
             获取TestApi

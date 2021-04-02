@@ -1,0 +1,14 @@
+﻿{
+  "ConnectionStrings": {
+    "TestApiConnection": "server=10.27.1.58;database=SIMPLE_TMS;uid=wmsadmin;password=123qwe!@#"
+
+  },
+
+  "BeginDate": "2020-04-15 00:00:00",
+
+  "SyncPageNumber": 2000,
+
+  "SyncOrderTasktime": "0/30 * * * * ? "
+
+
+}

@@ -26,5 +26,6 @@ namespace PollyTest1.Controllers
             var res = _dbContext.TestApi.ToList();
             return res;
         }
+
     }
 }

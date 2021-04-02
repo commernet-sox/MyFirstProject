@@ -248,12 +248,13 @@ namespace WcfService1
                 string from = "1510595785@qq.com";//发件人qq
                 string to = "209045565@qq.com";//qq小号
                 string to1 = "746867748@qq.com";//公司qq
+                string to2 = "1423083617@qq.com";//公司qq1
                 string userName = "1510595785@qq.com";//SMTP服务账号
                 string password = "fpzmnaizbbckgeff";//SMTP服务验证密码
 
                 var message = new MimeMessage();
                 message.From.Add(new MailboxAddress(from));
-                message.To.AddRange(new MailboxAddress[] { new MailboxAddress(to) });
+                message.To.AddRange(new MailboxAddress[] { new MailboxAddress(to), new MailboxAddress(to2) });
                 //message.To.AddRange(new MailboxAddress[] { new MailboxAddress(to),new MailboxAddress(to1) });
                 message.Subject = Name + " 给您留言";
                 var entity = new TextPart(TextFormat.Text)

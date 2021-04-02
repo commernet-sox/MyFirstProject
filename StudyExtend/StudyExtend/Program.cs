@@ -10,6 +10,9 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using StudyExtend.ReptileTool;
+using StudyExtend.CSharp8;
+using StudyExtend.HtmlToImage;
 
 namespace StudyExtend
 {
@@ -71,7 +74,20 @@ namespace StudyExtend
             //Swagger接口在PollyTest1项目中展示
 
             //生产者-消费者 实现方式之Channels
-            Channels.Channels.SingleProducerSingleConsumer();
+            //Channels.Channels.SingleProducerSingleConsumer();
+            //Console.ReadKey();
+
+            //ReptileTool爬虫
+            //ShenZhengCompanyInfo sz = new ShenZhengCompanyInfo();
+            //sz.RequestUrl();
+
+            //CSharp8新用法
+            //UseRange.GetRange();
+
+            //htmlToImage
+            DemoImage demoImage = new DemoImage();
+            demoImage.Demo();
+
             Console.ReadKey();
         }
     }
