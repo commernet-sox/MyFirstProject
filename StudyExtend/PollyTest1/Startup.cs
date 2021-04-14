@@ -17,6 +17,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using PollyTest1.DTO;
+using CPC.DBCore;
 
 namespace PollyTest1
 {
@@ -83,6 +84,12 @@ namespace PollyTest1
             }
 
             app.UseHttpsRedirection();
+            //´úÂëÉó¼ÆÅäÖÃ
+            AuditManager.DefaultConfiguration.AutoSavePreAction = (c, a) =>
+            {
+                (c as PollyTestDbContext).AuditEntry.AddRange(a.Entries);
+            };
+            AuditManager.DefaultConfiguration.IgnoreEntityAdded = true;
 
             app.UseRouting();
 

@@ -10,6 +10,6 @@ namespace SimpleWebApi.Data.Requests
         [Required(ErrorMessage ="姓名不能为空")]
         public string Name { get; set; }
         [Required(ErrorMessage = "年龄不能为空")]
-        public string Age { get; set; }
+        public int Age { get; set; }
     }
 }

@@ -9,11 +9,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="CPC.Redis" Version="1.2.6" />
     <PackageReference Include="CPC.Service" Version="1.1.8" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.12.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\SimpleWebApi.Infrastructure\SimpleWebApi.Infrastructure.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DownLoad\" />
+  </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties properties_4launchsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>

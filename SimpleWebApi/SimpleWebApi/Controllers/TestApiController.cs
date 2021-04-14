@@ -1,5 +1,7 @@
 ﻿using CPC;
+using CPC.Redis;
 using Microsoft.AspNetCore.Mvc;
+using SimpleWebApi.Application.Cache.Attributes;
 using SimpleWebApi.Application.Core;
 using SimpleWebApi.Application.Service;
 using SimpleWebApi.Data.DTO;
@@ -17,7 +19,6 @@ namespace SimpleWebApi.Controllers
     public class TestApiController : BaseController
     {
         private IOperate _ioperate;
-
         public TestApiController(IOperate operate)
         {
             _ioperate = operate;
@@ -30,8 +31,10 @@ namespace SimpleWebApi.Controllers
         public ActionResult<List<TestApiDTO>> GetList()
         {
             var service = GlobalContext.Resolve<TestApiService>();
-            //return new List<TestApiDTO>() { new TestApiDTO { Name="王峰",Age=25} };
-            return service.Query.ToList();
+            ////return new List<TestApiDTO>() { new TestApiDTO { Name="王峰",Age=25} };
+            //return service.Query.ToList();
+            //var redisClient = GlobalContext.Resolve<RedisClient>();
+            return service.GetTestApis();
         }
         /// <summary>
         /// 添加

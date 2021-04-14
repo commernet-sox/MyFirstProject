@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CPC.DBCore;
+using SimpleWebApi.Application.Cache.Attributes;
 using SimpleWebApi.Application.Core;
 using SimpleWebApi.Core.Entities;
 using SimpleWebApi.Data.DTO;
@@ -17,6 +18,16 @@ namespace SimpleWebApi.Application.Service
         public TestApiService(IRepository<SimpleWebApiContext, TestApi> repository, IMapper mapper, IOperate operate) : base(repository, mapper,operate)
         {
             
+        }
+
+        [RedisCaching]
+        public virtual List<TestApiDTO> GetTestApis()
+        {
+            //var redis = GlobalContext.Resolve<ISeedCache>();
+            //string key = "StorerCode" + workCenter + storerId;
+            //var storerCode = redis.GetOrAdd(key,()=> Repository.Query.Where(t=>t.WorkCenter==workCenter && t.StorerId== storerId).ToList());
+            var TestApis = Query.ToList();
+            return TestApis;
         }
     }
 }

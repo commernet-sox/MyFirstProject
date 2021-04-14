@@ -85,8 +85,18 @@ namespace StudyExtend
             //UseRange.GetRange();
 
             //htmlToImage
-            DemoImage demoImage = new DemoImage();
-            demoImage.Demo();
+            //DemoImage demoImage = new DemoImage();
+            //demoImage.Demo();
+
+            //Task
+            //string content = Async.GetContent(Environment.CurrentDirectory+@"/test.txt");
+            //string content = Async.GetContentAsync(Environment.CurrentDirectory + @"/test.txt").Result;
+            //Console.WriteLine(content);
+            //Console.WriteLine("主线程...");
+
+            //ThreadPools.test();
+
+            //Tasks.Tasks.test();
 
             Console.ReadKey();
         }

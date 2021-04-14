@@ -4,6 +4,30 @@
         <name>SimpleWebApi</name>
     </assembly>
     <members>
+        <member name="P:SimpleWebApi.Application.Cache.Attributes.RedisCachingAttribute.Expire">
+            <summary>
+            过期时间（分钟）,默认120分钟
+            </summary>
+        </member>
+        <member name="M:SimpleWebApi.Application.Cache.ISeedCache.GetOrAdd``1(System.String,System.Func{``0})">
+            <summary>
+            从缓存中获取数据，获取不到则插入到缓存中，并返回结果，有效期默认为1天
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">缓存键</param>
+            <param name="creator">数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:SimpleWebApi.Application.Cache.ISeedCache.GetOrAdd``1(System.String,System.Func{``0},System.TimeSpan)">
+            <summary>
+            从缓存中获取数据，获取不到则插入到缓存中，并返回结果
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">缓存键</param>
+            <param name="creator">数据</param>
+            <param name="ttl">有效期</param>
+            <returns></returns>
+        </member>
         <member name="T:SimpleWebApi.Controllers.TestApiController">
             <summary>
             测试接口
@@ -35,6 +59,11 @@
             </summary>
             <param name="dto"></param>
             <returns></returns>
+        </member>
+        <member name="T:SimpleWebApi.Middleware.SafeIpMiddleware">
+            <summary>
+            非法ip拦截中间件
+            </summary>
         </member>
         <member name="M:SimpleWebApi.Startup.ConfigureContext(AspectCore.DependencyInjection.IServiceContext)">
             <summary>
