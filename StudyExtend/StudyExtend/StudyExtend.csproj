@@ -9,7 +9,12 @@
     <PackageReference Include="AspectCore.Core" Version="2.1.0" />
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="CoreHtmlToImage" Version="1.0.6" />
+    <PackageReference Include="CPC" Version="1.2.8" />
+    <PackageReference Include="CPC.Redis" Version="1.2.8" />
     <PackageReference Include="ImageProcessor.Core" Version="1.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.10" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.10" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="5.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="NLog" Version="4.7.7" />
     <PackageReference Include="Polly" Version="7.2.1" />

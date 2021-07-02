@@ -37,7 +37,7 @@ namespace WcfService1
         static SqlHelpClass()
         {
             //静态构造函数，如果你需要给数据库信息设置默认值
-            strServer = "120.55.195.2";
+            strServer = "47.98.229.13";
             strUid = "sa";
             strPwd = "123qwe!@#";
             strDatabaseName = "ZJWebsite";

@@ -28,18 +28,21 @@ namespace CSharpBasic
             //threads.CreateThreadPools();
             //threads.CreateTaskThread();
 
-            DoCallBack doCallBack = new DoCallBack();
-            CallBack callBack = new CallBack();
+            //DoCallBack doCallBack = new DoCallBack();
+            //CallBack callBack = new CallBack();
             //callBack.SetAddCallBack(doCallBack.add);//设置回调
             //callBack.CallAdd();//触发回调
             //匿名方法
-            callBack.add = delegate (int p, int q)
-            {
-                Console.WriteLine("调用匿名委托方法：p={0},q={1}", p, q);
-            };
-            callBack.add(1,2);
+            //callBack.add = delegate (int p, int q)
+            //{
+            //    Console.WriteLine("调用匿名委托方法：p={0},q={1}", p, q);
+            //};
+            //callBack.add(1,2);
             //UnsafeCode unsafeCode = new UnsafeCode();
             //unsafeCode.Unsafe2();
+
+            DateTime dt1 = new DateTime();
+
 
             Console.ReadKey();
         }

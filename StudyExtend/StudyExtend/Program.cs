@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using StudyExtend.ReptileTool;
 using StudyExtend.CSharp8;
 using StudyExtend.HtmlToImage;
+using StudyExtend.Multithreading;
 
 namespace StudyExtend
 {
@@ -98,6 +99,9 @@ namespace StudyExtend
 
             //Tasks.Tasks.test();
 
+
+            //Multithreading
+            AddCount.test();
             Console.ReadKey();
         }
     }
