@@ -28,12 +28,14 @@ namespace PollyTest1.Controllers
             TestApi testApi = new TestApi
             {
                 CreateBy = "wangfeng",
-
+                CreateTime = DateTime.Now,
+                Name = Guid.NewGuid().ToString("N").Substring(10),
+                Age = new Random().Next(10, 100),
             };
 
             _dbContext.TestApi.Add(testApi);
-            var dto = _dbContext.TestApi.FirstOrDefault();
-            dto.Name = Guid.NewGuid().ToString("N").Substring(10);
+            //var dto = _dbContext.TestApi.FirstOrDefault();
+            //dto.Name = Guid.NewGuid().ToString("N").Substring(10);
             //var org = _dbContext.TestApi.FirstOrDefault();
             //_dbContext.Entry(org).State = EntityState.Unchanged;
             //_dbContext.Entry(org).CurrentValues.SetValues(dto);
@@ -47,15 +49,36 @@ namespace PollyTest1.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPut("UpdateTestApis")]
-        public List<TestApi> UpdateTestApis(TestApi testApi)
+        public TestApi UpdateTestApis(TestApi testApi)
+        {
+            //var org = _dbContext.TestApi.FirstOrDefault();
+            //_dbContext.Entry(org).State = EntityState.Unchanged;
+            //_dbContext.Entry(org).CurrentValues.SetValues(testApi);
+            var data = _dbContext.TestApi.Update(testApi);
+            _dbContext.SaveChanges(new Audit());
+            var res = data.Entity;
+            return res;
+        }
+        /// <summary>
+        /// 更新TestApi加审计(savechanges二选一，一直接new audit(),二是在context重写savechanges)
+        /// </summary>
+        /// <param name="testApi"></param>
+        /// <returns></returns>
+        [HttpPut("UpdateTestApi")]
+        public bool UpdateTestApi()
         {
             var org = _dbContext.TestApi.FirstOrDefault();
-            _dbContext.Entry(org).State = EntityState.Unchanged;
-            _dbContext.Entry(org).CurrentValues.SetValues(testApi);
-            //_dbContext.TestApi.Update(dto);
-            _dbContext.SaveChanges(new Audit());
-            var res = _dbContext.TestApi.ToList();
-            return res;
+            org.Name= Guid.NewGuid().ToString("N").Substring(10);
+            _dbContext.TestApi.Update(org);
+            var res= _dbContext.SaveChanges();
+            if (res>0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

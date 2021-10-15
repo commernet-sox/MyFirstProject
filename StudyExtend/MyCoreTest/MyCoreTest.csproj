@@ -6,11 +6,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CPC" Version="1.2.8" />
-    <PackageReference Include="CPC.DBCore" Version="1.2.8" />
+    <PackageReference Include="AspectCore.Core" Version="2.2.0" />
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.10" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.10" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Core">
+      <HintPath>..\..\..\Core\Core.DBCore\bin\Debug\netstandard2.0\Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Core.DBCore">
+      <HintPath>..\..\..\Core\Core.DBCore\bin\Debug\netstandard2.0\Core.DBCore.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

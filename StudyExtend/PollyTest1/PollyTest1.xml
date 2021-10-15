@@ -9,6 +9,12 @@
             生成token
             </summary>
         </member>
+        <member name="M:PollyTest1.Controllers.JJController.Add">
+            <summary>
+            新增
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:PollyTest1.Controllers.JwtApiController">
             <summary>
             测试授权token接口
@@ -30,6 +36,13 @@
             <summary>
             合并更新TestApi
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PollyTest1.Controllers.TestApiController.UpdateTestApi">
+            <summary>
+            更新TestApi加审计(savechanges二选一，一直接new audit(),二是在context重写savechanges)
+            </summary>
+            <param name="testApi"></param>
             <returns></returns>
         </member>
         <member name="M:PollyTest1.Controllers.WeatherForecastController.Get">

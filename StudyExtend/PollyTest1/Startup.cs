@@ -18,6 +18,9 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using PollyTest1.DTO;
 using CPC.DBCore;
+using Newtonsoft.Json.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace PollyTest1
 {
@@ -34,7 +37,20 @@ namespace PollyTest1
         public void ConfigureServices(IServiceCollection services)
         {
             
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options => {
+                //设计全局JSON返回格式
+                options.SerializerSettings.ObjectCreationHandling = Newtonsoft.Json.ObjectCreationHandling.Replace;
+                options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+                options.SerializerSettings.MissingMemberHandling = MissingMemberHandling.Ignore;
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                //options.SerializerSettings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
+                IsoDateTimeConverter timeFormate = new IsoDateTimeConverter();
+                timeFormate.DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
+                options.SerializerSettings.Converters.Add(timeFormate);
+                options.SerializerSettings.Formatting = Formatting.Indented;
+                options.SerializerSettings.NullValueHandling = NullValueHandling.Include;//必须包含
+            });
+            
             //添加jwt验证：
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options => 
@@ -70,6 +86,8 @@ namespace PollyTest1
 
             // Add framework services.
             services.AddMvc();
+            // NoLock
+            services.AddNoLockDb<PollyTestDbContext>(b => b.UseSqlServer(Configuration["PollyTestConnection"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

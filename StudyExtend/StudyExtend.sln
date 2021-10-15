@@ -13,13 +13,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuartzPro", "QuartzPro\Quar
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DBCoreTest", "DBCoreTest\DBCoreTest.csproj", "{B9E4735C-07A1-4290-A1FD-9E11821993D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MQProducer", "MQProducer\MQProducer.csproj", "{05783CA5-B0CD-4D37-BF6C-9586E9F8DBB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MQProducer", "MQProducer\MQProducer.csproj", "{05783CA5-B0CD-4D37-BF6C-9586E9F8DBB2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MQConsumer", "MQConsumer\MQConsumer.csproj", "{C9EC2CE2-9C0B-457E-BEBA-E080CCCCADDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MQConsumer", "MQConsumer\MQConsumer.csproj", "{C9EC2CE2-9C0B-457E-BEBA-E080CCCCADDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcService", "GrpcService\GrpcService.csproj", "{931E2645-AE5C-487A-93A2-9669FE5D53BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcService", "GrpcService\GrpcService.csproj", "{931E2645-AE5C-487A-93A2-9669FE5D53BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcClient", "GrpcClient\GrpcClient.csproj", "{960730E7-88B6-4762-9351-0E06597A0E4A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcClient", "GrpcClient\GrpcClient.csproj", "{960730E7-88B6-4762-9351-0E06597A0E4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCoreTest", "MyCoreTest\MyCoreTest.csproj", "{86A83311-E7F0-4DE1-B2BF-5A16FD618A16}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{960730E7-88B6-4762-9351-0E06597A0E4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{960730E7-88B6-4762-9351-0E06597A0E4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{960730E7-88B6-4762-9351-0E06597A0E4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86A83311-E7F0-4DE1-B2BF-5A16FD618A16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86A83311-E7F0-4DE1-B2BF-5A16FD618A16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86A83311-E7F0-4DE1-B2BF-5A16FD618A16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86A83311-E7F0-4DE1-B2BF-5A16FD618A16}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

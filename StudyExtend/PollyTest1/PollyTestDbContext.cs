@@ -17,6 +17,14 @@ namespace PollyTest1
         }
         public DbSet<TestApi> TestApi { get; set; }
         public DbSet<SZCompanyInfo> SZCompanyInfo { get; set; }
+        public DbSet<jjInfo> JJInfo { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            //-----------------Filter EFCore自带过滤器---------------------------
+            modelBuilder.Entity<TestApi>().HasQueryFilter(t => t.IsDeleted == false);
+            base.OnModelCreating(modelBuilder);
+        }
         //public override int SaveChanges()
         //{
         //    Audit audit = new Audit();
@@ -26,13 +34,13 @@ namespace PollyTest1
 
         //    this.AuditEntry.AddRange(audit.Entries);
         //    base.SaveChanges();
-        //    if (audit.Configuration.AutoSavePreAction != null && !audit.Entries.IsNull())
-        //    {
+        //    //if (audit.Configuration.AutoSavePreAction != null && !audit.Entries.IsNull())
+        //    //{
 
-        //        audit.Configuration.AutoSavePreAction(this, audit);
-        //        this.AuditEntry.AddRange(audit.Entries);
-        //        base.SaveChanges();
-        //    }
+        //    //    audit.Configuration.AutoSavePreAction(this, audit);
+        //    //    this.AuditEntry.AddRange(audit.Entries);
+        //    //    base.SaveChanges();
+        //    //}
 
         //    return rowAffecteds;
         //}

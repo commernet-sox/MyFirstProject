@@ -6,6 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="RabbitMQs\**" />
+    <EmbeddedResource Remove="RabbitMQs\**" />
+    <None Remove="RabbitMQs\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AspectCore.Core" Version="2.1.0" />
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="CoreHtmlToImage" Version="1.0.6" />
@@ -19,17 +25,20 @@
     <PackageReference Include="NLog" Version="4.7.7" />
     <PackageReference Include="Polly" Version="7.2.1" />
     <PackageReference Include="StackExchange.Redis" Version="2.2.4" />
+    <PackageReference Include="SuperSocket" Version="2.0.0-beta.10" />
+    <PackageReference Include="SuperSocket.ProtoBase" Version="2.0.0-beta.10" />
+    <PackageReference Include="SuperSocket.Server" Version="2.0.0-beta.10" />
     <PackageReference Include="System.Threading.Channels" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DBCoreTest\DBCoreTest.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <None Update="NLog.Config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="RabbitMQs\" />
   </ItemGroup>
 
 </Project>

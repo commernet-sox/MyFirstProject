@@ -14,13 +14,23 @@ using StudyExtend.ReptileTool;
 using StudyExtend.CSharp8;
 using StudyExtend.HtmlToImage;
 using StudyExtend.Multithreading;
+using StudyExtend.AGVPath;
+using StudyExtend.AutoJson;
+using StudyExtend.WebSocket;
+using SuperSocket;
+using SuperSocket.ProtoBase;
+using System.Linq;
+using System.Text;
+using Microsoft.Extensions.Hosting;
+using StudyExtend.RequestProvider;
+using System.IO;
 
 namespace StudyExtend
 {
     public class Program
     {
         public static Logger logger = LogManager.GetLogger("SimpleDemo");
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             //AOP动态代码植入
             //DI
@@ -101,9 +111,60 @@ namespace StudyExtend
 
 
             //Multithreading
-            AddCount.test();
+            //AddCount.test();
+
+
+            //DownLoad
+            //DownLoad.DYVideo.DownLoad_Video();
+
+
+            //AGVPath
+            //var res =Floyd.GetRes(17,4);
+            //while (D[start, end].pre != start)
+            //{
+            //    Console.Write("->" + D[start, end].pre);
+            //    start = D[start, end].pre;
+            //}
+            //Console.Write("->" + end);
+
+
+            //自动生成json数据
+            //RCSJson.json(5,5);
+
+
+            //webSocket
+
+
+            //RequestProvider
+
+            //RequestProvider.RequestProvider requestProvider = new RequestProvider.RequestProvider();
+            //TestApi testApi=new TestApi();
+            //testApi.Id = 14;
+            //testApi.Name = "123456";
+            //testApi.CreateTime = DateTime.Now;
+            //testApi.CreateBy = "wf";
+            ////var res = requestProvider.GetAsync<List<TestApi>>("http://localhost:3003/TestApi/GetTestApis");
+
+            //var res = requestProvider.PutAsync<TestApi>("http://localhost:3003/TestApi/UpdateTestApis", testApi);
+
+            //var data = res.Result;
+
+
+            //File Exist
+            //var res = Directory.Exists(@"D:\MyCodes\MyFirstProject\StudyExtend");
+
+            //基金数据
+            //jijingInfo.RequestUrl();
+
+            //file write
+            File.WriteAllText("D:\\02\\test.txt","abcd");
+
+            //执行完成
+            Console.WriteLine("执行结束...");
             Console.ReadKey();
         }
+
+        
     }
     public class PollyTest
     {
