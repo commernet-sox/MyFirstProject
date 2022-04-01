@@ -50,5 +50,43 @@ namespace PollyTest1.Controllers
                 return BadRequest(new { message = "username or password is incorrect." });
             }
         }
+
+        [AllowAnonymous]
+        [HttpPost("Get")]
+        public IActionResult Get(Login login)
+        {
+            if (!string.IsNullOrEmpty(login.userName) && !string.IsNullOrEmpty(login.pwd))
+            {
+                var claims = new[]
+                {
+                    new Claim(JwtRegisteredClaimNames.Nbf,$"{new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds()}") ,
+                    new Claim (JwtRegisteredClaimNames.Exp,$"{new DateTimeOffset(DateTime.Now.AddMinutes(30)).ToUnixTimeSeconds()}"),
+                    new Claim(ClaimTypes.NameIdentifier, login.userName)
+                };
+                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Const.SecurityKey));
+                var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+                var token = new JwtSecurityToken(
+                    issuer: Const.Domain,
+                    audience: Const.Domain,
+                    claims: claims,
+                    expires: DateTime.Now.AddMinutes(30),
+                    signingCredentials: creds);
+
+                return Ok(new
+                {
+                    token = new JwtSecurityTokenHandler().WriteToken(token)
+                });
+            }
+            else
+            {
+                return BadRequest(new { message = "username or password is incorrect." });
+            }
+        }
+    }
+
+    public class Login
+    { 
+        public string userName { get; set; }
+        public string pwd { get; set; }
     }
 }

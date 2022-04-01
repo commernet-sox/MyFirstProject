@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DBCoreTest
 {
-    public class TestApiService : BaseService<TestApiContext,TestApi,TestApiDTO>
+    public class TestApiService : TableService<TestApiContext,TestApi,TestApiDTO>
     {
         public TestApiService(IRepository<TestApiContext, TestApi> repository, IMapper mapper) : base(repository, mapper)
         {

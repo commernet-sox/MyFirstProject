@@ -20,7 +20,7 @@ namespace PollyTest1
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>().UseUrls("http://localhost:3003");
+                    webBuilder.UseStartup<Startup>().UseUrls("http://*:3003");
                 });
     }
 }

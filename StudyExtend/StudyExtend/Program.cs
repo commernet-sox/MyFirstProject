@@ -112,7 +112,7 @@ namespace StudyExtend
 
             //Multithreading
             //AddCount.test();
-
+            ForChnTest.Test();
 
             //DownLoad
             //DownLoad.DYVideo.DownLoad_Video();
@@ -157,10 +157,10 @@ namespace StudyExtend
             //jijingInfo.RequestUrl();
 
             //file write
-            File.WriteAllText("D:\\02\\test.txt","abcd");
+            //File.WriteAllText("D:\\02\\test.txt","abcd");
 
             //执行完成
-            Console.WriteLine("执行结束...");
+            //Console.WriteLine("执行结束...");
             Console.ReadKey();
         }
 

@@ -167,7 +167,7 @@ namespace MQConsumer
         /// <param name="args"></param>
         public static void Exchange2(string[] args)
         {
-            if (args.Length == 0) throw new ArgumentException("args");
+            //if (args.Length == 0) throw new ArgumentException("args");
             //创建一个随机数,以创建不同的消息队列
             int random = new Random().Next(1, 1000);
             Console.WriteLine("Start" + random.ToString());

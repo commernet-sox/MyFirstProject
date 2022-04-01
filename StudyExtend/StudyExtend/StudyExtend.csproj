@@ -32,7 +32,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DBCoreTest\DBCoreTest.csproj" />
+    <Reference Include="Core">
+      <HintPath>..\..\..\Core\Core\bin\Debug\netstandard2.0\Core.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>

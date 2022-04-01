@@ -1,18 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CPC.DBCore;
+using Microsoft.EntityFrameworkCore;
 using System;
-using CPC.DBCore;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Debug;
-using System.Linq;
-using AspectCore.DependencyInjection;
-using CPC;
-using AutoMapper;
-using System.Collections.Generic;
-using CPC.DBCore.Bulk;
-using System.Diagnostics;
-using System.Reflection;
 using System.Collections;
-using CPC.DBCore.QueryFuture;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 
 namespace DBCoreTest
 {
@@ -132,22 +124,22 @@ namespace DBCoreTest
             //Console.WriteLine(time);
 
             //测试审计   Audit   
-            var optionsBuilder = new DbContextOptionsBuilder<TestApiContext>();
-            var connectionString = "server=47.98.229.13;database=CompanyInfo;uid=sa;password=123qwe!@#";
-            var optionBuilder = optionsBuilder.UseSqlServer(connectionString).UseLoggerFactory(new LoggerFactory(new[] { new DebugLoggerProvider() }));
-            // ---------------NoLock-----------------------
-            optionBuilder.UseNoLock();
-            var dbContext = new TestApiContext(optionBuilder.Options);
-            var service = new ServiceContext();
-            service.AddInstance(dbContext);
-            service.AddType(typeof(IUnitOfWork<>), typeof(UnitOfWork<>), Lifetime.Scoped);
-            service.AddType(typeof(IRepository<,>), typeof(Repository<,>), Lifetime.Scoped);
-            service.AddType<TestApiService>(Lifetime.Scoped);
-            var engineSettings = new EngineSettings() { AutoMapperAssemblies = new[] { "DBCoreTest.dll" } };
-            EngineContext.Initialize(true, engineSettings, service);
-            var scope = service.Build();
-            var scope1 = GlobalContext.CreateScope();
-            var testService = scope1.Resolve<TestApiService>();
+            //var optionsBuilder = new DbContextOptionsBuilder<TestApiContext>();
+            //var connectionString = "server=47.98.229.13;database=CompanyInfo;uid=sa;password=123qwe!@#";
+            //var optionBuilder = optionsBuilder.UseSqlServer(connectionString).UseLoggerFactory(new LoggerFactory(new[] { new DebugLoggerProvider() }));
+            //// ---------------NoLock-----------------------
+            //optionBuilder.UseNoLock();
+            //var dbContext = new TestApiContext(optionBuilder.Options);
+            //var service = new ServiceContext();
+            //service.AddInstance(dbContext);
+            //service.AddType(typeof(IUnitOfWork<>), typeof(UnitOfWork<>), Lifetime.Scoped);
+            //service.AddType(typeof(IRepository<,>), typeof(Repository<,>), Lifetime.Scoped);
+            //service.AddType<TestApiService>(Lifetime.Scoped);
+            //var engineSettings = new EngineSettings() { AutoMapperAssemblies = new[] { "DBCoreTest.dll" } };
+            //EngineContext.Initialize(true, engineSettings, service);
+            //var scope = service.Build();
+            //var scope1 = GlobalContext.CreateScope();
+            //var testService = scope1.Resolve<TestApiService>();
             //只更新修改的字段testService.Repository.CreateSet().FirstOrDefault();
             //更新所有字段testService.Query.FirstOrDefault();
             //var org = testService.Repository.CreateSet().FirstOrDefault();
@@ -160,17 +152,17 @@ namespace DBCoreTest
             //testService.Repository.Query.Where(t => t.Id > 1).Delete();
             #endregion
 
-            #region sql缓存   Cache
-            var third1 = testService.DataContext.Database.GetDbConnection().ConnectionString;
-            var first1 = testService.Repository.Query.Where(t => t.Id == 1).Take(1).Future();
-            var first = testService.Repository.Query.Where(t => t.Id == 1).FromCache().FirstOrDefault();
-            var second = testService.Repository.Query.Where(t => t.Id == 1).FromCache().FirstOrDefault();
-            var forth = testService.Query;
-            var third = testService.DataContext.Database.GetDbConnection().ConnectionString;
-            var cache = GetCacheKeys();
-            #endregion
-            Console.WriteLine("完成!");
-            Console.ReadKey();
+            //#region sql缓存   Cache
+            //var third1 = testService.DataContext.Database.GetDbConnection().ConnectionString;
+            //var first1 = testService.Repository.Query.Where(t => t.Id == 1).Take(1).Future();
+            //var first = testService.Repository.Query.Where(t => t.Id == 1).FromCache().FirstOrDefault();
+            //var second = testService.Repository.Query.Where(t => t.Id == 1).FromCache().FirstOrDefault();
+            //var forth = testService.Query;
+            //var third = testService.DataContext.Database.GetDbConnection().ConnectionString;
+            //var cache = GetCacheKeys();
+            //#endregion
+            //Console.WriteLine("完成!");
+            //Console.ReadKey();
         }
 
         public static List<string> GetCacheKeys()

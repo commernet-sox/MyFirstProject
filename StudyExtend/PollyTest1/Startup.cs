@@ -36,7 +36,18 @@ namespace PollyTest1
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
+            //跨域配置
+            //services.AddCors(option =>
+            //{
+            //    option.AddPolicy("Polly_cros", policy => policy.AllowAnyHeader()
+            //    .AllowAnyMethod()
+            //    .AllowCredentials()
+            //    .WithOrigins("http://*:3000"));
+            //});
+            services.AddCors(o => o.AddDefaultPolicy(b =>
+            {
+                b.SetIsOriginAllowed(_ => true).AllowCredentials().AllowAnyMethod().AllowAnyHeader();
+            }));
             services.AddControllers().AddNewtonsoftJson(options => {
                 //设计全局JSON返回格式
                 options.SerializerSettings.ObjectCreationHandling = Newtonsoft.Json.ObjectCreationHandling.Replace;
@@ -93,15 +104,20 @@ namespace PollyTest1
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            //添加jwt验证
-            app.UseAuthentication();
+            
 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-
             app.UseHttpsRedirection();
+
+            //app.UseCors("Polly_cros");
+            app.UseCors();
+            //添加jwt验证
+            app.UseAuthentication();
+
+            
             //代码审计配置
             AuditManager.DefaultConfiguration.AutoSavePreAction = (c, a) =>
             {

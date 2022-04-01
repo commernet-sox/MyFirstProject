@@ -1,0 +1,23 @@
+# https://hub.docker.com/_/microsoft-dotnet
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+WORKDIR /src
+
+# copy csproj and restore as distinct layers
+COPY *.sln .
+COPY Scorpio.Shop.slnf .
+COPY NuGet.config .
+COPY Directory.Build.targets .
+COPY Shop/. ./Shop/
+COPY packages/. ./packages/
+RUN dotnet restore Scorpio.Shop.slnf
+
+WORKDIR "/src/Shop/Scorpio.Shop.Service"
+RUN dotnet publish -c release -o /app --no-restore
+
+FROM mcr.microsoft.com/dotnet/aspnet:6.0
+WORKDIR /app
+COPY --from=build /app ./
+
+EXPOSE 6000/tcp
+ENV ASPNETCORE_URLS http://+:6000
+ENTRYPOINT ["dotnet", "Scorpio.Shop.Service.dll"]

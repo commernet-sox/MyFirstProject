@@ -25,11 +25,11 @@ namespace PollyTest1.Controllers
         [HttpGet]
         [Route("api/value2")]
         [Authorize]
-        public ActionResult<IEnumerable<string>> Get2()
+        public ActionResult<object> Get2()
         {
             var auth = HttpContext.AuthenticateAsync();
-            var userName = auth.Result.Principal.Claims.First(t=>t.Type.Equals(ClaimTypes.NameIdentifier))?.Value;
-            return new string[] { "value2", "value2",$"userName={userName}" };
+            var userName = auth.Result.Principal.Claims.First(t => t.Type.Equals(ClaimTypes.NameIdentifier))?.Value;
+            return new { username=userName };
         }
     }
 }

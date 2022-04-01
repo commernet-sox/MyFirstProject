@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using CPC.DBCore;
-using CPC.DBCore.QueryFilter;
+﻿using CPC.DBCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace DBCoreTest

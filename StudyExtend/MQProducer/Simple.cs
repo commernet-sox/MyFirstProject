@@ -133,7 +133,7 @@ namespace MQProducer
         /// <param name="args"></param>
         public static void Exchange2(string[] args)
         {
-            if (args.Length == 0) throw new ArgumentException("args");
+            //if (args.Length == 0) throw new ArgumentException("args");
             Console.WriteLine("Start");
             IConnectionFactory connFactory = new ConnectionFactory//创建连接工厂对象
             {

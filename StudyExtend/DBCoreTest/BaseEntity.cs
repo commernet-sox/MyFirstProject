@@ -1,4 +1,5 @@
 ﻿using CPC;
+using CPC.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

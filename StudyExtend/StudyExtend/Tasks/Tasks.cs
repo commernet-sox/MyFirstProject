@@ -45,6 +45,7 @@ namespace StudyExtend.Tasks
                 Thread.Sleep(100);
                 Console.WriteLine($"hello, task3的线程ID为{ Thread.CurrentThread.ManagedThreadId}");
             });
+            
             //阻塞主线程
             //Task.WaitAll(new Task[] { task2,task3});
             //Task.WaitAny(new Task[] { task2,task3});
