@@ -24,6 +24,8 @@ using System.Text;
 using Microsoft.Extensions.Hosting;
 using StudyExtend.RequestProvider;
 using System.IO;
+using System.Text.Json;
+using System.Data;
 
 namespace StudyExtend
 {
@@ -112,7 +114,7 @@ namespace StudyExtend
 
             //Multithreading
             //AddCount.test();
-            ForChnTest.Test();
+            //ForChnTest.Test();
 
             //DownLoad
             //DownLoad.DYVideo.DownLoad_Video();
@@ -159,6 +161,36 @@ namespace StudyExtend
             //file write
             //File.WriteAllText("D:\\02\\test.txt","abcd");
 
+
+
+            //SystemTextJsonDataTableConvert.DTConvert();
+            var serializeOptions = new JsonSerializerOptions
+            {
+                WriteIndented = true,
+                Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+                Converters = { new WeatherForecastRuntimeIgnoreConverter()}
+            };
+            var jsonstring = JsonSerializer.Serialize(new WeatherForecast() { Date=DateTime.Now,TemperatureCelsius=1,Summary="啊手动阀"},serializeOptions);
+
+            var obj = JsonSerializer.Deserialize("{\r\n  \"Date\": \"2022-04-07T08:46:54.223273+08:00\",\r\n  \"TemperatureCelsius\": 1,\r\n  \"Summary\": \"111\"\r\n}", typeof(WeatherForecast),serializeOptions);
+            Console.WriteLine(jsonstring);
+
+            var datatableoptions = new JsonSerializerOptions
+            {
+                WriteIndented = true,
+                Encoder=System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+                Converters = { new SystemTextJsonDataTableConvert<DataTable>() }
+            };
+            DataTable dataTable = new DataTable();
+            dataTable.Columns.Add(new DataColumn("Name",typeof(string)));
+            dataTable.Columns.Add(new DataColumn("Age",typeof(int)));
+            dataTable.Rows.Add("wangfeng",33);
+            dataTable.Rows.Add("王峰",23);
+
+            var jsonDatatable = JsonSerializer.Serialize(dataTable,datatableoptions);
+            Console.WriteLine(jsonDatatable);
+            var dtOjb = JsonSerializer.Deserialize(jsonDatatable,typeof(DataTable), datatableoptions);
+            
             //执行完成
             //Console.WriteLine("执行结束...");
             Console.ReadKey();
