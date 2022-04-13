@@ -164,35 +164,75 @@ namespace StudyExtend
 
 
             //SystemTextJsonDataTableConvert.DTConvert();
-            var serializeOptions = new JsonSerializerOptions
-            {
-                WriteIndented = true,
-                Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
-                Converters = { new WeatherForecastRuntimeIgnoreConverter()}
-            };
-            var jsonstring = JsonSerializer.Serialize(new WeatherForecast() { Date=DateTime.Now,TemperatureCelsius=1,Summary="啊手动阀"},serializeOptions);
 
-            var obj = JsonSerializer.Deserialize("{\r\n  \"Date\": \"2022-04-07T08:46:54.223273+08:00\",\r\n  \"TemperatureCelsius\": 1,\r\n  \"Summary\": \"111\"\r\n}", typeof(WeatherForecast),serializeOptions);
-            Console.WriteLine(jsonstring);
+            //常规序列化扩展
+            //var serializeOptions = new JsonSerializerOptions
+            //{
+            //    WriteIndented = true,
+            //    Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+            //    Converters = { new WeatherForecastRuntimeIgnoreConverter()}
+            //};
+            //var jsonstring = JsonSerializer.Serialize(new WeatherForecast() { Date=DateTime.Now,TemperatureCelsius=1,Summary="啊手动阀"},serializeOptions);
 
+            //var obj = JsonSerializer.Deserialize("{\r\n  \"Date\": \"2022-04-07T08:46:54.223273+08:00\",\r\n  \"TemperatureCelsius\": 1,\r\n  \"Summary\": \"111\"\r\n}", typeof(WeatherForecast),serializeOptions);
+            //Console.WriteLine(jsonstring);
+
+            //dataTable序列化扩展
             var datatableoptions = new JsonSerializerOptions
             {
                 WriteIndented = true,
-                Encoder=System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+                Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
                 Converters = { new SystemTextJsonDataTableConvert<DataTable>() }
             };
             DataTable dataTable = new DataTable();
-            dataTable.Columns.Add(new DataColumn("Name",typeof(string)));
-            dataTable.Columns.Add(new DataColumn("Age",typeof(int)));
-            dataTable.Rows.Add("wangfeng",33);
-            dataTable.Rows.Add("王峰",23);
+            dataTable.Columns.Add(new DataColumn("Name", typeof(string)));
+            dataTable.Columns.Add(new DataColumn("Age", typeof(int)));
+            dataTable.Columns.Add(new DataColumn("CreateTime", typeof(DateTime)));
+            dataTable.Columns.Add(new DataColumn("IsDelete", typeof(bool)));
+            dataTable.Columns.Add(new DataColumn("Seal", typeof(double)));
+            dataTable.Columns.Add(new DataColumn("Object", typeof(object)));
+            string name = null;
+            dataTable.Rows.Add("wangfeng", 33, DateTime.Now, true, 2000.32, new[] { "123", "234" });
+            dataTable.Rows.Add(name, 23, null, false, 4000.23,"2222");
 
-            var jsonDatatable = JsonSerializer.Serialize(dataTable,datatableoptions);
+            var jsonDatatable = JsonSerializer.Serialize(dataTable, datatableoptions);
             Console.WriteLine(jsonDatatable);
-            var dtOjb = JsonSerializer.Deserialize(jsonDatatable,typeof(DataTable), datatableoptions);
-            
+            var dtOjb = JsonSerializer.Deserialize(jsonDatatable, typeof(DataTable), datatableoptions);
+
+
+            //DataSet 序列化扩展
+            //var datasetOptions = new JsonSerializerOptions
+            //{
+            //    WriteIndented = true,
+            //    Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+            //    Converters = { new DataSetConvert() }
+            //};
+            //DataSet dataSet = new DataSet();
+            //DataTable dt1 = new DataTable();
+            //dt1.Columns.Add(new DataColumn("Name", typeof(string)));
+            //dt1.Columns.Add(new DataColumn("Age", typeof(int)));
+            //dt1.Columns.Add(new DataColumn("CreateTime", typeof(DateTime)));
+            //dt1.Columns.Add(new DataColumn("IsDelete", typeof(bool)));
+            //dt1.Columns.Add(new DataColumn("Seal", typeof(double)));
+            //dt1.Columns.Add(new DataColumn("Object", typeof(object)));
+            //dt1.Rows.Add("wangfeng", 33, DateTime.Now, true, 2000.32,new[] { "123","234"});
+            //dt1.Rows.Add("王峰", 23, null, false, 4000.23,"111");
+            //dataSet.Merge(dt1);
+            //DataTable dt2 = new DataTable();
+            //dt2.Columns.Add(new DataColumn("EmpName", typeof(string)));
+            //dt2.Columns.Add(new DataColumn("EmpAge", typeof(int)));
+            //dt2.Rows.Add("wangfeng", 33);
+            //dt2.Rows.Add("王峰", 23);
+            //dataSet.Merge(dt2);
+            //var jsonDataSet = JsonSerializer.Serialize(dataSet, datasetOptions);
+            //var json1 = Newtonsoft.Json.JsonConvert.SerializeObject(dataSet);
+
+            //Console.WriteLine(jsonDataSet);
+            //var dtSetOjb = JsonSerializer.Deserialize(jsonDataSet, typeof(DataSet), datasetOptions);
+
+
             //执行完成
-            //Console.WriteLine("执行结束...");
+            Console.WriteLine("执行结束...");
             Console.ReadKey();
         }
 
