@@ -26,6 +26,7 @@ using StudyExtend.RequestProvider;
 using System.IO;
 using System.Text.Json;
 using System.Data;
+using ClassLibrary1;
 
 namespace StudyExtend
 {
@@ -182,7 +183,7 @@ namespace StudyExtend
             {
                 WriteIndented = true,
                 Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
-                Converters = { new SystemTextJsonDataTableConvert<DataTable>() }
+                Converters = { new SystemTextJsonDataTableConvert<DataTable>(), new DataSetConvert() }
             };
             DataTable dataTable = new DataTable();
             dataTable.Columns.Add(new DataColumn("Name", typeof(string)));
@@ -191,11 +192,14 @@ namespace StudyExtend
             dataTable.Columns.Add(new DataColumn("IsDelete", typeof(bool)));
             dataTable.Columns.Add(new DataColumn("Seal", typeof(double)));
             dataTable.Columns.Add(new DataColumn("Object", typeof(object)));
+            var obj = new WeatherForecast() { Date = DateTime.Now, TemperatureCelsius = 1, Summary = "啊手动阀" };
             string name = null;
             dataTable.Rows.Add("wangfeng", 33, DateTime.Now, true, 2000.32, new[] { "123", "234" });
-            dataTable.Rows.Add(name, 23, null, false, 4000.23,"2222");
+            dataTable.Rows.Add(name, 23, null, false, 4000.23, obj);
 
+            var json1 = Newtonsoft.Json.JsonConvert.SerializeObject(dataTable);
             var jsonDatatable = JsonSerializer.Serialize(dataTable, datatableoptions);
+            
             Console.WriteLine(jsonDatatable);
             var dtOjb = JsonSerializer.Deserialize(jsonDatatable, typeof(DataTable), datatableoptions);
 
@@ -230,13 +234,13 @@ namespace StudyExtend
             //Console.WriteLine(jsonDataSet);
             //var dtSetOjb = JsonSerializer.Deserialize(jsonDataSet, typeof(DataSet), datasetOptions);
 
-
+            //Class1.Test();
             //执行完成
             Console.WriteLine("执行结束...");
             Console.ReadKey();
         }
 
-        
+
     }
     public class PollyTest
     {

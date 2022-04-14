@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="HWMS_DEV" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=10.27.1.58;Initial Catalog=HWMS_DEV;Persist Security Info=True;User ID=wmsadmin" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="HWMS_DEVConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.PACK_CTN" Member="PACK_CTN">
+    <Type Name="PACK_CTN">
+      <Column Name="WORK_CENTER" Type="System.String" DbType="NVarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="STORER_ID" Type="System.String" DbType="NVarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PACK_ID" Type="System.String" DbType="NVarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CARTON_NO" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CARTON_TYPE" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="CTN_LINE_SEQ" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="LENGTH" Type="System.Decimal" DbType="Decimal(18,8)" CanBeNull="true" />
+      <Column Name="WIDTH" Type="System.Decimal" DbType="Decimal(18,8)" CanBeNull="true" />
+      <Column Name="HEIGHT" Type="System.Decimal" DbType="Decimal(18,8)" CanBeNull="true" />
+      <Column Name="CTN_VOLUME" Type="System.Decimal" DbType="Decimal(18,8)" CanBeNull="true" />
+      <Column Name="CTN_GROSS_WEIGHT" Type="System.Decimal" DbType="Decimal(18,8)" CanBeNull="true" />
+      <Column Name="CTN_NET_WEIGHT" Type="System.Decimal" DbType="Decimal(18,8)" CanBeNull="true" />
+      <Column Name="CARRIER" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="TRACKING_NO" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="PALLET_NO" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="BUILD_PALLET_BY" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="BUILD_PALLET_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="BUILD_PALLET_SEQ" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CONTAINER_NO" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CONTAINER_TYPE" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="SEAL_NO" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SCAN_LOAD_BY" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SCAN_LOAD_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SCAN_LOAD_SEQ" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="REMARKS" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="VERSION" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CREATE_BY" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CREATE_DATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="MODIFY_BY" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MODIFY_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="PACKING_MATERIALS" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="BENCH_NO" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PACK_HDR" Member="PACK_HDR">
+    <Type Name="PACK_HDR">
+      <Column Name="WORK_CENTER" Type="System.String" DbType="NVarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="STORER_ID" Type="System.String" DbType="NVarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PACK_ID" Type="System.String" DbType="NVarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="STATUS" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="PACK_LEVEL" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="PACK_DATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="WAVE_ID" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="REL_ID" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="BATCH_NO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PICK_SET_NO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="VERSION" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CREATE_BY" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CREATE_DATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="MODIFY_BY" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MODIFY_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MEMO" Type="System.String" DbType="NVarChar(400)" CanBeNull="true" />
+      <Column Name="ORDER_TYPE" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="BENCH_NO" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PACK_DTL" Member="PACK_DTL">
+    <Type Name="PACK_DTL">
+      <Column Name="WORK_CENTER" Type="System.String" DbType="NVarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="STORER_ID" Type="System.String" DbType="NVarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PACK_ID" Type="System.String" DbType="NVarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PACK_LINE_SEQ" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CTN_LINE_SEQ" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="SKU" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SKU_STATUS" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="QTY" Type="System.Decimal" DbType="Decimal(18,8)" CanBeNull="true" />
+      <Column Name="REL_LINE_SEQ" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="PICK_LINE_SEQ" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="LOT_ID" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="ORIGINAL_LOT_ID" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="VERSION" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CREATE_BY" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CREATE_DATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="MODIFY_BY" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MODIFY_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MANUF_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EXPIRY_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="PRODUCT_LOT" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PRODUCT_BATCH" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="REL_ID" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="REL_BATCH_NO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PICK_SET_NO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

@@ -59,7 +59,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CPCRedisTest", "CPCRedisTes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreSixTest", "CoreSixTest\CoreSixTest.csproj", "{A5306942-6391-4BE7-A3E5-57DEB8E9CE13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormsApp1", "WinFormsApp1\WinFormsApp1.csproj", "{FD8FF019-D2F7-4F49-9135-8845FF76A2CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WinFormsApp1", "WinFormsApp1\WinFormsApp1.csproj", "{FD8FF019-D2F7-4F49-9135-8845FF76A2CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary1", "ClassLibrary1\ClassLibrary1.csproj", "{9F41FA53-A08B-4CDD-97E4-F318B58C3571}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPC.NugetServer", "CPC.NugetServer\CPC.NugetServer.csproj", "{B84AD15C-773B-4EE7-BD84-7F850432414C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -143,6 +147,14 @@ Global
 		{FD8FF019-D2F7-4F49-9135-8845FF76A2CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD8FF019-D2F7-4F49-9135-8845FF76A2CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD8FF019-D2F7-4F49-9135-8845FF76A2CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F41FA53-A08B-4CDD-97E4-F318B58C3571}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F41FA53-A08B-4CDD-97E4-F318B58C3571}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F41FA53-A08B-4CDD-97E4-F318B58C3571}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F41FA53-A08B-4CDD-97E4-F318B58C3571}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B84AD15C-773B-4EE7-BD84-7F850432414C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B84AD15C-773B-4EE7-BD84-7F850432414C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B84AD15C-773B-4EE7-BD84-7F850432414C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B84AD15C-773B-4EE7-BD84-7F850432414C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

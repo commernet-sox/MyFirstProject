@@ -1,0 +1,2 @@
+﻿dotnet nuget push -s http://47.98.229.13:8024 -k nuget *.nupkg
+pause

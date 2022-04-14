@@ -131,7 +131,14 @@ namespace StudyExtend
                             writer.WriteNumber(col.ColumnName, (int)row[col]);
                             break;
                         case TypeCode.DateTime:
-                            writer.WriteString(col.ColumnName, row[col].ToString());
+                            if (row[col] != DBNull.Value)
+                            {
+                                writer.WriteString(col.ColumnName, (DateTime)row[col]);
+                            }
+                            else
+                            {
+                                writer.WriteString(col.ColumnName, (string?)null);
+                            }
                             break;
                         case TypeCode.Decimal:
                             writer.WriteNumber(col.ColumnName, (decimal)row[col]);
@@ -215,20 +222,7 @@ namespace StudyExtend
 
                     switch (reader.TokenType)
                     {
-                        //case JsonTokenType.StartArray:
-                        //    if (dt.TableName != "")
-                        //    {
-                        //        dt.TableName = propertyName;
-                        //    }
-                        //    else
-                        //    {
-                        //        if (!dt.Columns.Contains(propertyName))
-                        //        {
-                        //            dt.Columns.Add(new DataColumn(propertyName, typeof(Array)));
-                        //        }
-                        //        reader.
-                        //    }
-                        //    break;
+                        
                         case JsonTokenType.Number:
                             if (!dt.Columns.Contains(propertyName))
                             {
